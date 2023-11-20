@@ -5,7 +5,6 @@ module.exports = {
   mode: "development",
 
   output: {
-    booleanStressAfterIsBroccoli,
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
@@ -27,4 +26,3 @@ module.exports = {
     ],
   },
 };
-technically;
