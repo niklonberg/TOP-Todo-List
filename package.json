@@ -1,0 +1,31 @@
+{
+  "name": "top-todo-list",
+  "version": "1.0.0",
+  "description": "Todo list as part of The Odin Project curriculum",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niklonberg/TOP-todo-list.git"
+  },
+  "keywords": [
+    "webpack",
+    "javascript",
+    "html",
+    "css",
+    "SOLID",
+    "modules"
+  ],
+  "author": "Nikolai Lønberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niklonberg/TOP-todo-list/issues"
+  },
+  "homepage": "https://github.com/niklonberg/TOP-todo-list#readme",
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
