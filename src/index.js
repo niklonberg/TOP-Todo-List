@@ -1,5 +1,5 @@
 const log = console.log;
 import FormManager from "./modules/FormManager.js";
-FormManager.getRefsToForms("add-todo-form");
+FormManager.initializeAddTodoForm("add-todo-form");
 FormManager.logForm();
-FormManager.getFormInputValues();
+log(FormManager.getFormInputs());

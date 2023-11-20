@@ -4,8 +4,13 @@
 const FormManager = (() => {
   let addTodoForm;
 
-  const getRefsToForms = (addTodoFormID) => {
+  const initializeAddTodoForm = (addTodoFormID) => {
     addTodoForm = document.querySelector(`#${addTodoFormID}`);
+
+    addTodoForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      console.log("i worked");
+    });
   };
 
   const getFormInputs = () => {
@@ -18,7 +23,7 @@ const FormManager = (() => {
   };
 
   return {
-    getRefsToForms,
+    initializeAddTodoForm,
     getFormInputs,
     logForm,
   };
