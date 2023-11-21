@@ -1,6 +1,6 @@
 import ProjectFactory from "./ProjectFactory.js";
 
-const TodoManager = (() => {
+const ProjectManager = (() => {
   const projects = {
     //user can add keys that will be new projects
     default: [
@@ -20,6 +20,8 @@ const TodoManager = (() => {
     delete projects[projectTitle];
   };
 
+  const addTodo = () => {};
+
   const sendProjects = () => {}; //send projects to be rendered in side-bar
 
   const methods = {
@@ -33,4 +35,4 @@ const TodoManager = (() => {
   };
 })();
 
-export default TodoManager;
+export default ProjectManager;

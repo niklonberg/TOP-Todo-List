@@ -1,9 +1,10 @@
 /* Handles all form data, submitting and sending that data to other modules*/
 /* gets hold of submitted form data */
 import createTodoForm from "./createTodoForm.js";
-import TodoFactory from "./TodoFactory.js";
+/* import TodoFactory from "./TodoFactory.js"; */
 import createProjectForm from "./createProjectForm.js";
-import ProjectFactory from "./ProjectFactory.js";
+/* import ProjectFactory from "./ProjectFactory.js"; */
+import ProjectManager from "./ProjectManager.js";
 
 const FormManager = (() => {
   const createNewTodoBtn =
@@ -19,6 +20,10 @@ const FormManager = (() => {
     const form = document.querySelector(`#${formID}`);
     form.addEventListener("submit", (event) => {
       event.preventDefault(); /* make all this into sep. function */
+      //ProjectManager.addTodo(getInputElements())
+      //get selected project                    -
+      //use todofactory to create a todo        - these 3 not done here
+      //append todo to selected project.todos   -
     });
   };
 
@@ -30,13 +35,13 @@ const FormManager = (() => {
     initializeForm(content.id);
   });
 
-  createNewProjectBtn.addEventListener("click", () => {
+  /* createNewProjectBtn.addEventListener("click", () => {
     //atm adds multiple identical eventlisteners if clicked multiple times
     //make into single function
     content.innerHTML = createProjectForm();
     console.log(content);
     initializeForm(content.id);
-  });
+  }); */
 
   const getInputElements = () => {
     return [...addTodoForm.elements].filter((item) => item.tagName === "INPUT");
