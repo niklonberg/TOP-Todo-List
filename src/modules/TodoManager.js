@@ -12,11 +12,13 @@ const TodoManager = (() => {
     ],
   };
 
-  const addProject = (title) => {
-    projects[title] = ProjectFactory(title);
+  const addProject = (projectTitle) => {
+    projects[projectTitle] = ProjectFactory();
   };
 
-  const deleteProject = () => {};
+  const deleteProject = (projectTitle) => {
+    delete projects[projectTitle];
+  };
 
   const sendProjects = () => {}; //send projects to be rendered in side-bar
 

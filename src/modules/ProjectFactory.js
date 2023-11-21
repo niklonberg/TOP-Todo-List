@@ -1,4 +1,4 @@
-function ProjectFactory(title) {
+function ProjectFactory() {
   const todos = [];
 
   const getTodos = () => todos;
