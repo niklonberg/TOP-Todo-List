@@ -1,4 +1,4 @@
-function TodoFactory(templateTodoObj) {
+function TodoFactory(inputElements) {
   /* loops through each key in argumentobj */
   /* returns {} with key:value pairs*/
   /* title */
@@ -8,14 +8,11 @@ function TodoFactory(templateTodoObj) {
   /* notes */
   /* checklist (sub steps) */
   /* maybe add methods to the objects as well? */
-  /* const createTodoObj = () => {
-    return [...addTodoForm.elements]
-      .filter((item) => item.tagName === "INPUT")
-      .reduce((resultObj, item) => {
-        resultObj[item.id] = item.value;
-        return resultObj;
-      }, {});
-  }; */
+  return inputElements.reduce(
+    (resultObj, item) =>
+      item.value ? { ...resultObj, [item.id]: item.value } : resultObj,
+    {}
+  );
 }
 
 export default TodoFactory;

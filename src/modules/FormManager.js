@@ -13,7 +13,7 @@ const FormManager = (() => {
     addTodoForm = document.querySelector("#add-todo-form");
     addTodoForm.addEventListener("submit", (event) => {
       event.preventDefault(); /* make all this into sep. function */
-      console.log(getInputElements());
+      console.log(TodoFactory(getInputElements()));
     });
   };
 
@@ -25,10 +25,10 @@ const FormManager = (() => {
     content.innerHTML = createTodoForm();
     initializeCreateTodo();
   });
-
+  /* 
   return {
-    getInputElements,
-  };
+    getInputElements, necessary?
+  }; */
 })();
 
 export default FormManager;
