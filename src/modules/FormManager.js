@@ -3,17 +3,21 @@
 /* can construct an object from form data, which it can send */
 import createTodoForm from "./createTodoForm.js";
 import TodoFactory from "./TodoFactory.js";
+import ProjectFactory from "./ProjectFactory.js";
 
 const FormManager = (() => {
   const createNewTodo = document.querySelector("#create-new-todo"); /* temp */
-  const content = document.querySelector("#content");
+  const createNewProject = document.querySelector(
+    "#create-new-project"
+  ); /* temp */
+  const content = document.querySelector("#content"); /* temp */
   let addTodoForm;
+  let addProjectForm;
 
-  const initializeCreateTodo = () => {
-    addTodoForm = document.querySelector("#add-todo-form");
-    addTodoForm.addEventListener("submit", (event) => {
+  const initializeForm = (formID) => {
+    form = document.querySelector(`#${formID}`);
+    form.addEventListener("submit", (event) => {
       event.preventDefault(); /* make all this into sep. function */
-      console.log(TodoFactory(getInputElements()));
     });
   };
 
@@ -25,10 +29,10 @@ const FormManager = (() => {
     content.innerHTML = createTodoForm();
     initializeCreateTodo();
   });
-  /* 
+
   return {
-    getInputElements, necessary?
-  }; */
+    getInputElements,
+  };
 })();
 
 export default FormManager;
