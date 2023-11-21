@@ -13,17 +13,12 @@ const FormManager = (() => {
     addTodoForm = document.querySelector("#add-todo-form");
     addTodoForm.addEventListener("submit", (event) => {
       event.preventDefault(); /* make all this into sep. function */
-      console.log(createTodoObj());
+      console.log(getInputElements());
     });
   };
 
-  const createTodoObj = () => {
-    return [...addTodoForm.elements]
-      .filter((item) => item.tagName === "INPUT")
-      .reduce((resultObj, item) => {
-        resultObj[item.id] = item.value;
-        return resultObj;
-      }, {});
+  const getInputElements = () => {
+    return [...addTodoForm.elements].filter((item) => item.tagName === "INPUT");
   };
 
   createNewTodo.addEventListener("click", () => {
@@ -32,7 +27,7 @@ const FormManager = (() => {
   });
 
   return {
-    createTodoObj,
+    getInputElements,
   };
 })();
 
