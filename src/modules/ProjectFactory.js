@@ -1,7 +1,14 @@
-function createProject(title) {
+function ProjectFactory(title) {
+  const todos = [];
+
+  const getTodos = () => todos;
+
+  //use object.assign to assign methods to protoype, to avoid duplication
+
   return {
-    title,
+    todos, //keep private
+    getTodos,
   };
 }
 
-export default createProject;
+export default ProjectFactory;

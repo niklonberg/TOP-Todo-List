@@ -1,4 +1,4 @@
-import createProject from "./ProjectFactory.js";
+import ProjectFactory from "./ProjectFactory.js";
 
 const TodoManager = (() => {
   const projects = {
@@ -13,7 +13,7 @@ const TodoManager = (() => {
   };
 
   const addProject = (title) => {
-    projects.newProject = createProject(title);
+    projects[title] = ProjectFactory(title);
   };
 
   const deleteProject = () => {};
