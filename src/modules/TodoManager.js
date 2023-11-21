@@ -1,3 +1,5 @@
+import createProject from "./ProjectFactory.js";
+
 const TodoManager = (() => {
   const projects = {
     //user can add keys that will be new projects
@@ -10,9 +12,23 @@ const TodoManager = (() => {
     ],
   };
 
-  const addProject = () => {};
+  const addProject = (title) => {
+    projects.newProject = createProject(title);
+  };
 
   const deleteProject = () => {};
+
+  const sendProjects = () => {}; //send projects to be rendered in side-bar
+
+  const methods = {
+    addProject,
+    deleteProject,
+  };
+
+  return {
+    projects, //should be private, create methods for getting it instead
+    methods,
+  };
 })();
 
 export default TodoManager;
