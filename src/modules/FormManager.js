@@ -5,36 +5,19 @@ import createTodoForm from "./createTodoForm.js";
 
 const FormManager = (() => {
   const createNewTodo = document.querySelector("#create-new-todo"); /* temp */
-  const dialog = document.querySelector("dialog");
+  const content = document.querySelector("#content");
   let addTodoForm;
 
-  /* const initializeAddTodoForm = (addTodoFormID) => {
-    addTodoForm = document.querySelector(`#${addTodoFormID}`);
-
-    addTodoForm.addEventListener("submit", (event) => {
-      event.preventDefault(); // all of this logic put in seperate function
-      console.log("i worked");
-    });
-  };
- */
   const getFormInputs = () => {
     return [...addTodoForm.elements].filter((item) => item.tagName === "INPUT");
   };
 
-  const logForm = () => {
-    console.log(addTodoForm);
-    console.log(addTodoForm.elements);
-  };
-
   createNewTodo.addEventListener("click", () => {
-    dialog.innerHTML = createTodoForm();
-    dialog.showModal();
+    content.innerHTML = createTodoForm();
   });
 
   return {
-    /* initializeAddTodoForm, */
     getFormInputs,
-    logForm,
   };
 })();
 
