@@ -13,7 +13,7 @@ const sharedMethods = {
 };
 
 function ProjectFactory(projectTitle, projectID) {
-  console.log(projectID);
+  console.log(projectTitle, projectID);
   const project = {
     title: projectTitle,
     id: projectID,

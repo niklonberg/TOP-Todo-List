@@ -4,7 +4,7 @@ import ProjectManager from "./modules/ProjectManager.js";
 log(ProjectManager);
 ProjectManager.methods.addProject("skate");
 ProjectManager.methods.addProject("bike");
-ProjectManager.methods.setSelectedProject(0);
+/* ProjectManager.methods.setSelectedProject(0); */
 /* ProjectManager.methods.addTodoToSelectedProject([
   "buy skateboard",
   "at darbys skates",
