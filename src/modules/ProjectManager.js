@@ -6,8 +6,10 @@ const ProjectManager = (() => {
   //each key is an object, a project
   //each project has a key of todos, which is an array
   //and a key with its methods (for now, will hopefully be set on its protoype)
+  let projectID = 2;
   const projects = {
     default: {
+      projectID: 0,
       isSelected: false,
       todos: [
         {
@@ -23,6 +25,7 @@ const ProjectManager = (() => {
       },
     },
     paint: {
+      projectID: 1,
       isSelected: true,
       todos: [
         {
@@ -52,6 +55,8 @@ const ProjectManager = (() => {
     }
     return null; //needed? i think one project will always be selected
   };
+
+  const setSelectedProject = (project) => {};
 
   const addTodoToSelectedProject = (inputElements) => {
     const selectedProject = getSelectedProject();

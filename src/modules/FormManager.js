@@ -11,8 +11,8 @@ const FormManager = (() => {
     "#create-new-project"
   ); /* temp */
   const content = document.querySelector("#content"); /* temp */
-  let addTodoForm;
-  let addProjectForm;
+  let addTodoForm; /* needed? */
+  let addProjectForm; /* needed? */
 
   const initializeForm = (form) => {
     form.addEventListener("submit", (event) => {
