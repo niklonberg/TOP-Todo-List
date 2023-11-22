@@ -8,6 +8,7 @@ const ProjectManager = (() => {
   //and a key with its methods (for now, will hopefully be set on its protoype)
   let projectID = 2;
   const projects = {
+    //static template projects
     default: {
       projectID: 0,
       isSelected: false,
@@ -51,9 +52,7 @@ const ProjectManager = (() => {
 
   const getSelectedProject = () => {
     for (const project of Object.values(projects)) {
-      if (project.isSelected) {
-        return project;
-      }
+      if (project.isSelected) return project;
     }
     return null; //needed? i think one project will always be selected
   };
