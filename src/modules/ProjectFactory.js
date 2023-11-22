@@ -11,12 +11,15 @@ function ProjectFactory(id) {
 
   const addTodo = (todo) => todos.push(todo);
 
+  const toggleSelected = () => (isSelected = !isSelected);
+
   //use object.assign to assign methods to protoype, to avoid duplication
 
   return {
     projectID,
     isSelected,
     todos, //keep private
+    toggleSelected,
     getTodos,
     addTodo,
   };
