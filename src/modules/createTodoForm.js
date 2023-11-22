@@ -1,4 +1,3 @@
-/* function to create and return the todoform, which FormManager can use */
 const createTodoForm = () => {
   return `
   <form action="#" id="add-todo-form">

@@ -1,9 +1,7 @@
 /* Handles all form data, submitting and sending that data to other modules*/
 /* gets hold of submitted form data */
 import createTodoForm from "./createTodoForm.js";
-/* import TodoFactory from "./TodoFactory.js"; */
 import createProjectForm from "./createProjectForm.js";
-/* import ProjectFactory from "./ProjectFactory.js"; */
 import ProjectManager from "./ProjectManager.js";
 
 const FormManager = (() => {
@@ -16,36 +14,25 @@ const FormManager = (() => {
   let addTodoForm;
   let addProjectForm;
 
-  const initializeForm = (formID) => {
-    const form = document.querySelector(`#${formID}`);
+  const initializeForm = (form) => {
     form.addEventListener("submit", (event) => {
       event.preventDefault(); /* make all this into sep. function */
-      //ProjectManager.addTodo(getInputElements())
-      //get selected project                    -
-      //use todofactory to create a todo        - these 3 not done here
-      //append todo to selected project.todos   -
+      ProjectManager.methods.addTodoToSelectedProject(getInputElements(form));
     });
   };
 
   createNewTodoBtn.addEventListener("click", () => {
     //atm adds multiple identical eventlisteners if clicked multiple times
     //make into single function
+    //add guard clause incase form is already present
     content.innerHTML = createTodoForm();
-    console.log(content);
-    initializeForm(content.id);
+    const form = document.querySelector("#add-todo-form"); //temp hardcoded val
+    console.log(form);
+    initializeForm(form);
   });
 
-  /* createNewProjectBtn.addEventListener("click", () => {
-    //atm adds multiple identical eventlisteners if clicked multiple times
-    //make into single function
-    content.innerHTML = createProjectForm();
-    console.log(content);
-    initializeForm(content.id);
-  }); */
-
-  const getInputElements = () => {
-    return [...addTodoForm.elements].filter((item) => item.tagName === "INPUT");
-  };
+  const getInputElements = (form) =>
+    [...form.elements].filter((item) => item.tagName === "INPUT");
 
   return {
     getInputElements,
@@ -53,3 +40,11 @@ const FormManager = (() => {
 })();
 
 export default FormManager;
+
+/* createNewProjectBtn.addEventListener("click", () => {
+    //atm adds multiple identical eventlisteners if clicked multiple times
+    //make into single function
+    content.innerHTML = createProjectForm();
+    console.log(content);
+    initializeForm(content.id);
+  }); */

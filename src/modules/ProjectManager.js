@@ -1,3 +1,4 @@
+import TodoFactory from "./TodoFactory.js";
 import ProjectFactory from "./ProjectFactory.js";
 
 const ProjectManager = (() => {
@@ -20,11 +21,19 @@ const ProjectManager = (() => {
     delete projects[projectTitle];
   };
 
+  const addTodoToSelectedProject = (inputElements) => {
+    console.log(inputElements);
+    //get selected project                    -
+    //use todofactory to create a todo        - these 3 not done here
+    //append todo to selected project.todos   -
+  };
+
   const sendProjects = () => {}; //send projects to be rendered in side-bar
 
   const methods = {
     addProject,
     deleteProject,
+    addTodoToSelectedProject,
   };
 
   return {
