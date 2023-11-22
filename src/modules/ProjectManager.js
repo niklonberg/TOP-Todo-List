@@ -7,47 +7,14 @@ const ProjectManager = (() => {
   //each project has a key of todos, which is an array
   //and a key with its methods (for now, will hopefully be set on its protoype)
   let projectID = 2;
-  const projects = {
-    //static template projects
-    default: {
-      projectID: 0,
-      isSelected: false,
-      todos: [
-        {
-          title: "Wash dishes",
-          description: "Remember to use soap",
-        },
-      ],
-      getTodos() {
-        return this.todos;
-      },
-      addTodo(todo) {
-        this.todos.push(todo);
-      },
-    },
-    paint: {
-      projectID: 1,
-      isSelected: true,
-      todos: [
-        {
-          title: "buy paint",
-          description: "take i-95 highway",
-        },
-      ],
-      getTodos() {
-        return this.todos;
-      },
-      addTodo(todo) {
-        this.todos.push(todo);
-      },
-    },
-  };
+  const projects = {};
 
   const addProject = (projectTitle) => {
     projects[projectTitle] = ProjectFactory(projectID);
     projectID++;
   };
 
+  /* edit this to use projectID instead */
   const deleteProject = (projectTitle) => delete projects[projectTitle];
 
   const getSelectedProject = () => {
@@ -72,6 +39,8 @@ const ProjectManager = (() => {
     addProject,
     deleteProject,
     addTodoToSelectedProject,
+    getSelectedProject,
+    setSelectedProject,
   };
 
   return {

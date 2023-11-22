@@ -4,7 +4,7 @@
 
 function ProjectFactory(id) {
   const projectID = id;
-  const isSelected = false;
+  let isSelected = false;
   const todos = [];
 
   const getTodos = () => todos;
