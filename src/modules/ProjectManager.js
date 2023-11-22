@@ -2,15 +2,22 @@ import TodoFactory from "./TodoFactory.js";
 import ProjectFactory from "./ProjectFactory.js";
 
 const ProjectManager = (() => {
+  //projects is an object
+  //each key is an object, a project
+  //each project has a key of todos, which is an array
+  //and a key with its methods (for now, will hopefully be set on its protoype)
   const projects = {
-    //user can add keys that will be new projects
-    default: [
-      //each key is an array of objects, that are each a todo
-      {
-        title: "Wash dishes",
-        description: "Remember to use soap",
+    default: {
+      todos: [
+        {
+          title: "Wash dishes",
+          description: "Remember to use soap",
+        },
+      ],
+      getTodos() {
+        return todos;
       },
-    ],
+    },
   };
 
   const addProject = (projectTitle) => {
@@ -22,7 +29,9 @@ const ProjectManager = (() => {
   };
 
   const addTodoToSelectedProject = (inputElements) => {
-    console.log(inputElements);
+    const selectedProject = projects.default;
+    const todo = TodoFactory(inputElements);
+
     //get selected project                    -
     //use todofactory to create a todo        - these 3 not done here
     //append todo to selected project.todos   -
