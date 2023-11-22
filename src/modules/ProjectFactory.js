@@ -1,3 +1,7 @@
+/* const sharedMethods = {
+  
+} */
+
 function ProjectFactory() {
   const todos = [];
 

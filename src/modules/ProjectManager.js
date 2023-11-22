@@ -23,16 +23,13 @@ const ProjectManager = (() => {
     },
   };
 
-  const addProject = (projectTitle) => {
-    projects[projectTitle] = ProjectFactory();
-  };
+  const addProject = (projectTitle) =>
+    (projects[projectTitle] = ProjectFactory());
 
-  const deleteProject = (projectTitle) => {
-    delete projects[projectTitle];
-  };
+  const deleteProject = (projectTitle) => delete projects[projectTitle];
 
   const addTodoToSelectedProject = (inputElements) => {
-    const selectedProject = projects.default;
+    const selectedProject = projects.default; //hardcoded for now
     const todo = TodoFactory(inputElements);
     selectedProject.addTodo(todo);
     console.log(selectedProject, todo);
