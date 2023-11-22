@@ -6,7 +6,7 @@ const ProjectManager = (() => {
   //each key is an object, a project
   //each project has a key of todos, which is an array
   //and a key with its methods (for now, will hopefully be set on its protoype)
-  let projectID = 0;
+  let projectID = 20;
   const projects = [];
 
   const addProject = (projectTitle) => {
@@ -19,19 +19,20 @@ const ProjectManager = (() => {
   const deleteProject = (projectTitle) => delete projects[projectTitle];
 
   const getSelectedProject = () => {
-    for (const project of Object.values(projects)) {
-      if (project.isSelected) return project;
-    }
-    return null; //needed? i think one project will always be selected
+    return projects.filter((project) => project.isSelected === true);
   };
 
-  const setSelectedProject = (projectTitle, projectID) => {
-    /* will be using projectID later, for now its just by title */
+  const setSelectedProject = (projectID) => {
     /* temporary looping and setting all isSelected to false*/
-    for (const key in projects) {
-      projects[key].isSelected = false;
-    }
-    projects[projectTitle].isSelected = true;
+    projects.forEach((project) => (project.isSelected = false));
+    projects.forEach((project) => {
+      if ((project.id = projectID)) {
+        project.toggleSelected();
+        return;
+      }
+    });
+    projects[projectID].isSelected = true;
+    console.log(projects[projectID].isSelected);
   };
 
   const addTodoToSelectedProject = (inputElements) => {
