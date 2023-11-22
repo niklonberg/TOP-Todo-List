@@ -15,7 +15,10 @@ const ProjectManager = (() => {
         },
       ],
       getTodos() {
-        return todos;
+        return this.todos;
+      },
+      addTodo(todo) {
+        this.todos.push(todo);
       },
     },
   };
@@ -31,10 +34,9 @@ const ProjectManager = (() => {
   const addTodoToSelectedProject = (inputElements) => {
     const selectedProject = projects.default;
     const todo = TodoFactory(inputElements);
-
-    //get selected project                    -
-    //use todofactory to create a todo        - these 3 not done here
-    //append todo to selected project.todos   -
+    selectedProject.addTodo(todo);
+    console.log(selectedProject, todo);
+    console.log(selectedProject.getTodos());
   };
 
   const sendProjects = () => {}; //send projects to be rendered in side-bar
