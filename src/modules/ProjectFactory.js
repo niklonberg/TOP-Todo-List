@@ -9,7 +9,6 @@ const sharedMethods = {
 
   toggleSelected: function () {
     this.isSelected = !this.isSelected;
-    console.log("i toggled");
   },
 };
 

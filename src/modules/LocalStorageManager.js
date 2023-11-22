@@ -1,0 +1,3 @@
+/* will be in charge of handling localStorage. 
+ProjectManagers projects variable will be set to this
+storage if localStorage is found */
