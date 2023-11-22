@@ -20,8 +20,6 @@ const ProjectManager = (() => {
     delete projects[projectTitle];
   };
 
-  const addTodo = () => {};
-
   const sendProjects = () => {}; //send projects to be rendered in side-bar
 
   const methods = {
