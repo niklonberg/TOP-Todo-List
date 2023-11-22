@@ -8,10 +8,26 @@ const ProjectManager = (() => {
   //and a key with its methods (for now, will hopefully be set on its protoype)
   const projects = {
     default: {
+      isSelected: false,
       todos: [
         {
           title: "Wash dishes",
           description: "Remember to use soap",
+        },
+      ],
+      getTodos() {
+        return this.todos;
+      },
+      addTodo(todo) {
+        this.todos.push(todo);
+      },
+    },
+    paint: {
+      isSelected: true,
+      todos: [
+        {
+          title: "buy paint",
+          description: "take i-95 highway",
         },
       ],
       getTodos() {
@@ -28,12 +44,20 @@ const ProjectManager = (() => {
 
   const deleteProject = (projectTitle) => delete projects[projectTitle];
 
+  const getSelectedProject = () => {
+    for (const project of Object.values(projects)) {
+      if (project.isSelected) {
+        return project;
+      }
+    }
+    return null; //needed? i think one project will always be selected
+  };
+
   const addTodoToSelectedProject = (inputElements) => {
-    const selectedProject = projects.default; //hardcoded for now
+    const selectedProject = getSelectedProject();
     const todo = TodoFactory(inputElements);
     selectedProject.addTodo(todo);
-    console.log(selectedProject, todo);
-    console.log(selectedProject.getTodos());
+    console.log(projects);
   };
 
   const sendProjects = () => {}; //send projects to be rendered in side-bar
