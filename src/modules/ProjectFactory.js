@@ -1,8 +1,10 @@
 /* const sharedMethods = {
-  
+
 } */
 
-function ProjectFactory() {
+function ProjectFactory(id) {
+  const projectID = id;
+  const isSelected = false;
   const todos = [];
 
   const getTodos = () => todos;
@@ -12,6 +14,8 @@ function ProjectFactory() {
   //use object.assign to assign methods to protoype, to avoid duplication
 
   return {
+    projectID,
+    isSelected,
     todos, //keep private
     getTodos,
     addTodo,

@@ -42,8 +42,10 @@ const ProjectManager = (() => {
     },
   };
 
-  const addProject = (projectTitle) =>
-    (projects[projectTitle] = ProjectFactory());
+  const addProject = (projectTitle) => {
+    projects[projectTitle] = ProjectFactory(projectID);
+    projectID++;
+  };
 
   const deleteProject = (projectTitle) => delete projects[projectTitle];
 
@@ -56,7 +58,7 @@ const ProjectManager = (() => {
     return null; //needed? i think one project will always be selected
   };
 
-  const setSelectedProject = (project) => {};
+  const setSelectedProject = (projectID) => {};
 
   const addTodoToSelectedProject = (inputElements) => {
     const selectedProject = getSelectedProject();
