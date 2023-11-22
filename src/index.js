@@ -3,7 +3,7 @@ import FormManager from "./modules/FormManager.js";
 import ProjectManager from "./modules/ProjectManager.js";
 log(ProjectManager);
 ProjectManager.methods.addProject("skate");
-ProjectManager.methods.setSelectedProject("skate", 0);
+/* ProjectManager.methods.setSelectedProject("skate", 0);
 ProjectManager.methods.addTodoToSelectedProject([
   "buy skateboard",
   "at darbys skates",
@@ -18,3 +18,4 @@ ProjectManager.methods.addTodoToSelectedProject([
   "use bike money",
   "to purchase cookies",
 ]);
+log(ProjectManager); */

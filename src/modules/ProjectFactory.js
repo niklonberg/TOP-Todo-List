@@ -12,16 +12,16 @@ const sharedMethods = {
   },
 };
 
-function ProjectFactory(id) {
+function ProjectFactory(projectTitle, projectID) {
   const project = {
-    projectID: id,
+    title: projectTitle,
+    id: projectID,
     isSelected: false,
     todos: [],
   };
 
   //use object.setPrototypeOf to assign methods to protoype, to avoid duplication
   Object.setPrototypeOf(project, sharedMethods);
-  console.log("hello", Object.getPrototypeOf(project));
 
   return project;
 }

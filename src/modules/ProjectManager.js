@@ -7,10 +7,11 @@ const ProjectManager = (() => {
   //each project has a key of todos, which is an array
   //and a key with its methods (for now, will hopefully be set on its protoype)
   let projectID = 0;
-  const projects = {};
+  const projects = [];
 
   const addProject = (projectTitle) => {
-    projects[projectTitle] = ProjectFactory(projectID);
+    const project = ProjectFactory(projectTitle, projectID);
+    projects.push(project);
     projectID++;
   };
 
