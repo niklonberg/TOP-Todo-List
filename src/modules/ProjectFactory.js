@@ -9,11 +9,11 @@ const sharedMethods = {
 
   toggleSelected: function () {
     this.isSelected = !this.isSelected;
+    console.log("i toggled");
   },
 };
 
 function ProjectFactory(projectTitle, projectID) {
-  console.log(projectTitle, projectID);
   const project = {
     title: projectTitle,
     id: projectID,
