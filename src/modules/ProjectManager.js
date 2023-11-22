@@ -25,7 +25,11 @@ const ProjectManager = (() => {
   };
 
   const setSelectedProject = (projectTitle, projectID) => {
-    /* will be using projectID later, for its just title */
+    /* will be using projectID later, for now its just by title */
+    /* temporary looping and setting all isSelected to false*/
+    for (const key in projects) {
+      projects[key].isSelected = false;
+    }
     projects[projectTitle].isSelected = true;
   };
 
