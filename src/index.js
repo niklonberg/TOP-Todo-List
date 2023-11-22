@@ -5,4 +5,8 @@ import ProjectFactory from "./modules/ProjectFactory.js";
 import TodoFactory from "./modules/TodoFactory.js";
 log(ProjectManager);
 ProjectManager.methods.addProject("skate");
-ProjectManager.methods.setSelectedProject(2);
+ProjectManager.methods.setSelectedProject("skate", 0);
+ProjectManager.methods.addTodoToSelectedProject([
+  "buy skateboard",
+  "at darbys skates",
+]);

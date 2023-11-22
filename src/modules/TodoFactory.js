@@ -1,9 +1,18 @@
 function TodoFactory(inputElements) {
-  return inputElements.reduce(
+  const todo = {};
+  let val = 0;
+
+  inputElements.forEach((element) => {
+    todo[val] = element;
+    val++;
+  });
+
+  return todo;
+  /* return inputElements.reduce(
     (todoObj, item) =>
-      item.value ? { ...todoObj, [item.id]: item.value } : resultObj,
+      item.value ? { ...todoObj, [item.id]: item.value } : todoObj,
     {}
-  );
+  ); */
 }
 
 export default TodoFactory;
