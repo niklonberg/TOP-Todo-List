@@ -15,10 +15,6 @@ const ProjectManager = (() => {
   /* edit this to use projectID instead */
   const deleteProject = (projectTitle) => delete projects[projectTitle];
 
-  const getSelectedProject = () => {
-    return projects.find((project) => project.isSelected === true);
-  };
-
   const setSelectedProject = (projectID) => {
     projects.forEach((project) => {
       if (project.id === projectID) {
