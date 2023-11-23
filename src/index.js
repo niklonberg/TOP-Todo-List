@@ -9,8 +9,8 @@ ProjectManager.methods.setSelectedProject(1);
   "buy skateboard",
   "at darbys skates",
 ]);
-ProjectManager.methods.setSelectedProject("bike", 0);
-ProjectManager.methods.addTodoToSelectedProject([
+ProjectManager.methods.setSelectedProject("bike", 0); */
+/* ProjectManager.methods.addTodoToSelectedProject([
   "sell bike",
   "at darbys skates",
 ]);
@@ -18,6 +18,4 @@ ProjectManager.methods.addTodoToSelectedProject([
   "use bike money",
   "to purchase cookies",
 ]);
-log(ProjectManager);
- */
-log(ProjectManager);
+log(ProjectManager); */

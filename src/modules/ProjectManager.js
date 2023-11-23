@@ -2,12 +2,9 @@ import TodoFactory from "./TodoFactory.js";
 import ProjectFactory from "./ProjectFactory.js";
 
 const ProjectManager = (() => {
-  //projects is an object
-  //each key is an object, a project
-  //each project has a key of todos, which is an array
-  //and a key with its methods (for now, will hopefully be set on its protoype)
   let projectID = 0;
   const projects = [];
+  let currSelectedProj;
 
   const addProject = (projectTitle) => {
     const project = ProjectFactory(projectTitle, projectID);
@@ -19,16 +16,15 @@ const ProjectManager = (() => {
   const deleteProject = (projectTitle) => delete projects[projectTitle];
 
   const getSelectedProject = () => {
-    return projects.filter((project) => project.isSelected === true);
+    return projects.find((project) => project.isSelected === true);
   };
 
   const setSelectedProject = (projectID) => {
-    /* temporary looping and setting all isSelected to false*/
-    projects.forEach((project) => (project.isSelected = false));
     projects.forEach((project) => {
-      console.log(project.id);
       if (project.id === projectID) {
+        /* project.isSelected = true; */
         project.toggleSelected();
+        console.log({ project });
         return;
       }
     });
@@ -36,7 +32,7 @@ const ProjectManager = (() => {
 
   const addTodoToSelectedProject = (inputElements) => {
     const selectedProject = getSelectedProject();
-    console.log(selectedProject);
+    console.log("selected project is: ", { selectedProject });
     const todo = TodoFactory(inputElements);
     selectedProject.addTodo(todo);
     console.log(projects);
