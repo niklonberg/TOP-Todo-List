@@ -1,6 +1,7 @@
 const log = console.log;
 import FormManager from "./modules/FormManager.js";
 import ProjectManager from "./modules/ProjectManager.js";
+import TodoUIManager from "./modules/TodoUIManager.js";
 log(ProjectManager);
 ProjectManager.addProject("skate");
 ProjectManager.addProject("bike");
@@ -16,3 +17,4 @@ ProjectManager.addTodoToSelectedProject([
 ProjectManager.deleteProject(2);
 ProjectManager.deleteTodoFromSelectedProject(1);
 log(ProjectManager.getProjects());
+TodoUIManager.populateProjectsList();
