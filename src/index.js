@@ -3,9 +3,9 @@ import FormManager from "./modules/FormManager.js";
 import ProjectManager from "./modules/ProjectManager.js";
 import TodoUIManager from "./modules/TodoUIManager.js";
 log(ProjectManager);
-ProjectManager.addProject("skate");
-ProjectManager.addProject("bike");
-ProjectManager.addProject("glasses");
+ProjectManager.addProject("Refurnish Home");
+ProjectManager.addProject("Paint Walls");
+ProjectManager.addProject("test");
 ProjectManager.setSelectedProject(1);
 ProjectManager.addTodoToSelectedProject(["buy skateboard", "at darbys skates"]);
 ProjectManager.setSelectedProject(0);
@@ -14,7 +14,6 @@ ProjectManager.addTodoToSelectedProject([
   "use bike money",
   "to purchase cookies",
 ]);
-ProjectManager.deleteProject(2);
-ProjectManager.deleteTodoFromSelectedProject(1);
 log(ProjectManager.getProjects());
+TodoUIManager.populateList("projects");
 TodoUIManager.populateList("todos");
