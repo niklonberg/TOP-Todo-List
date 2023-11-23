@@ -1,3 +1,5 @@
+let projectIDCounter = 0;
+
 const sharedMethods = {
   getTodos: function () {
     return this.todos;
@@ -14,10 +16,10 @@ const sharedMethods = {
   },
 };
 
-function ProjectFactory(projectTitle, id) {
+function ProjectFactory(projectTitle) {
   const project = {
     title: projectTitle,
-    projectID: id,
+    projectID: projectIDCounter,
     isSelected: false,
     todos: [],
   };
@@ -25,6 +27,7 @@ function ProjectFactory(projectTitle, id) {
   //use object.setPrototypeOf to assign methods to protoype, to avoid duplication
   Object.setPrototypeOf(project, sharedMethods);
 
+  projectIDCounter++;
   return project;
 }
 

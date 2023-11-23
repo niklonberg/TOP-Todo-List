@@ -2,14 +2,12 @@ import TodoFactory from "./TodoFactory.js";
 import ProjectFactory from "./ProjectFactory.js";
 
 const ProjectManager = (() => {
-  let projectID = 0;
   const projects = [];
   let currSelectedProj;
 
   const addProject = (projectTitle) => {
-    const project = ProjectFactory(projectTitle, projectID);
+    const project = ProjectFactory(projectTitle);
     projects.push(project);
-    projectID++;
   };
 
   const deleteProject = (projectID) => {
