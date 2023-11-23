@@ -15,7 +15,7 @@ const TodoUIManager = (() => {
     }
   });
 
-  const populateList = (whatContent) => {
+  const populateTodos = (projectID) => {
     let content;
     let list; /* temp */
     if (whatContent === "projects") {
@@ -51,8 +51,11 @@ const TodoUIManager = (() => {
     });
   };
 
+  const populateProjects = () => {};
+
   return {
-    populateList,
+    populateTodos,
+    populateProjects,
   };
 })();
 
