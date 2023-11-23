@@ -12,8 +12,11 @@ const TodoUIManager = (() => {
     const isListItem = target.tagName === "li" || target.closest("li");
 
     if (isListItem) {
-      /* set h1 to title of project */
       console.log(target);
+      /* set h1 to title of project */
+      /* get data- attr of listItem */
+      /* call setSelectedProject pass data attr value */
+      /* call populateTodos */
     }
   });
 
@@ -22,7 +25,6 @@ const TodoUIManager = (() => {
     const list = currProjectTodosList;
 
     console.log(content, list);
-    /* put below in sep util function */
     content.forEach((project) => {
       populateListFromObject(project);
     });

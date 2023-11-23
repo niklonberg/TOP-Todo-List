@@ -8,7 +8,7 @@ function populateListFromObject(object) {
   const objID = object.projectID || object.todoID;
   const idTag = object.projectID ? "project" : object.todoID ? "todo" : null;
 
-  const li = document.createElement("li");
+  const li = createElement("li");
   li.dataset[idTag] = objID;
 
   for (const [key, value] of Object.entries(object)) {
@@ -16,14 +16,13 @@ function populateListFromObject(object) {
 
     /* const button = document.createElement("button"); */
     if (key === "title") {
-      const heading = document.createElement("h3");
+      const heading = createElement("h3");
       heading.textContent = value;
-      console.log(heading);
       li.appendChild(heading);
     }
 
     if (key === "description") {
-      const p = document.createElement("p");
+      const p = createElement("p");
       p.textContent = value;
       li.appendChild(p);
     }

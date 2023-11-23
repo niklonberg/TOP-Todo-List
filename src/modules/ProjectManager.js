@@ -21,14 +21,10 @@ const ProjectManager = (() => {
 
   const getProjects = () => projects;
 
-  const getCurrSelectedProjectTodos = () => {
-    return currSelectedProj.getTodos();
-  };
+  const getCurrSelectedProjectTodos = () => currSelectedProj.getTodos();
 
   const setSelectedProject = (projectID) => {
-    console.log(currSelectedProj);
     deselectCurrProject();
-    console.log(currSelectedProj);
     projects.forEach((project) => {
       if (project.projectID === projectID) {
         currSelectedProj = project;
