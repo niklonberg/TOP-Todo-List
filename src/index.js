@@ -17,4 +17,4 @@ ProjectManager.addTodoToSelectedProject([
 ProjectManager.deleteProject(2);
 ProjectManager.deleteTodoFromSelectedProject(1);
 log(ProjectManager.getProjects());
-TodoUIManager.populateProjectsList();
+TodoUIManager.populateList("todos");

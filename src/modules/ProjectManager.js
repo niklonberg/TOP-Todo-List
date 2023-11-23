@@ -21,6 +21,10 @@ const ProjectManager = (() => {
 
   const getProjects = () => projects;
 
+  const getCurrSelectedProjectTodos = () => {
+    return currSelectedProj.getTodos();
+  };
+
   const setSelectedProject = (projectID) => {
     console.log(currSelectedProj);
     deselectCurrProject();
@@ -52,6 +56,7 @@ const ProjectManager = (() => {
     addProject,
     deleteProject,
     getProjects,
+    getCurrSelectedProjectTodos,
     setSelectedProject,
     addTodoToSelectedProject,
     deleteTodoFromSelectedProject,

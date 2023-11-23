@@ -6,26 +6,26 @@ const TodoUIManager = (() => {
   const projectsList = document.querySelector("#projects-list");
   const currProjectTodosList = document.querySelector("#curr-project-todos");
 
-  const populateProjectsList = () => {
-    /* shorten */
-    const projects = ProjectManager.getProjects();
-    console.log(projects);
-    const values = projects.map((project) => {
-      return project.title;
-    });
-    console.log(values);
-    values.forEach((val) => {
+  const populateList = (whatContent, whichList) => {
+    let content;
+    if (whatContent === "projects") {
+      content = ProjectManager.getProjects();
+    } else if (whatContent === "todos") {
+      content = ProjectManager.getCurrSelectedProjectTodos();
+    }
+    console.log(content); /* 
+    projects.forEach((val) => {
       const li = document.createElement("li");
       const button = document.createElement("button");
       button.textContent = val;
       li.appendChild(button);
 
       projectsList.appendChild(li);
-    });
+    }); */
   };
 
   return {
-    populateProjectsList,
+    populateList,
   };
 })();
 
