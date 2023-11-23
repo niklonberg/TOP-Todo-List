@@ -7,6 +7,8 @@ const sharedMethods = {
     this.todos.push(todo);
   },
 
+  deleteTodo: function (todoID) {},
+
   toggleSelected: function () {
     this.isSelected = !this.isSelected;
   },

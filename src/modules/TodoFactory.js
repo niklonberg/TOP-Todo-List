@@ -1,4 +1,5 @@
 function TodoFactory(inputElements) {
+  let todoID = 0;
   const todo = {};
   let val = 0;
 
