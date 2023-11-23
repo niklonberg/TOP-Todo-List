@@ -1,3 +1,9 @@
+const createElement = (type = "div", classname = "") => {
+  const ele = document.createElement(type);
+  if (classname) ele.classList.add(classname);
+  return ele;
+};
+
 function populateListFromObject(object) {
   const objID = object.projectID || object.todoID;
   const idTag = object.projectID ? "project" : object.todoID ? "todo" : null;
