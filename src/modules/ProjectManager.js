@@ -12,8 +12,14 @@ const ProjectManager = (() => {
     projectID++;
   };
 
-  /* edit this to use projectID instead */
-  const deleteProject = (projectTitle) => delete projects[projectTitle];
+  const deleteProject = (projectID) => {
+    projects.forEach((project, index) => {
+      if (project.id === projectID) {
+        projects.splice(index, 1);
+      }
+    });
+    /* alt version could use filter and reassign to projects var. */
+  };
 
   const setSelectedProject = (projectID) => {
     console.log(currSelectedProj);
@@ -21,8 +27,9 @@ const ProjectManager = (() => {
     console.log(currSelectedProj);
     projects.forEach((project) => {
       if (project.id === projectID) {
-        project.toggleSelected();
         currSelectedProj = project;
+        currSelectedProj.toggleSelected();
+        console.log(currSelectedProj);
         return;
       }
     });
