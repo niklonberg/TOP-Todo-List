@@ -5,11 +5,11 @@ log(ProjectManager);
 ProjectManager.methods.addProject("skate");
 ProjectManager.methods.addProject("bike");
 ProjectManager.methods.setSelectedProject(1);
-/* ProjectManager.methods.addTodoToSelectedProject([
+ProjectManager.methods.addTodoToSelectedProject([
   "buy skateboard",
   "at darbys skates",
 ]);
-ProjectManager.methods.setSelectedProject("bike", 0); */
+/* ProjectManager.methods.setSelectedProject("bike", 0); */
 /* ProjectManager.methods.addTodoToSelectedProject([
   "sell bike",
   "at darbys skates",

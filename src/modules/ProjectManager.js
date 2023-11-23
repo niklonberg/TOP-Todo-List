@@ -16,21 +16,24 @@ const ProjectManager = (() => {
   const deleteProject = (projectTitle) => delete projects[projectTitle];
 
   const setSelectedProject = (projectID) => {
+    console.log(currSelectedProj);
+    deselectCurrProject();
+    console.log(currSelectedProj);
     projects.forEach((project) => {
       if (project.id === projectID) {
-        /* project.isSelected = true; */
         project.toggleSelected();
-        console.log({ project });
+        currSelectedProj = project;
         return;
       }
     });
   };
 
+  const deselectCurrProject = () => currSelectedProj?.toggleSelected();
+
   const addTodoToSelectedProject = (inputElements) => {
-    const selectedProject = getSelectedProject();
-    console.log("selected project is: ", { selectedProject });
+    console.log("selected project is: ", currSelectedProj);
     const todo = TodoFactory(inputElements);
-    selectedProject.addTodo(todo);
+    currSelectedProj.addTodo(todo);
     console.log(projects);
   };
 
@@ -40,7 +43,6 @@ const ProjectManager = (() => {
     addProject,
     deleteProject,
     addTodoToSelectedProject,
-    getSelectedProject,
     setSelectedProject,
   };
 
