@@ -2,10 +2,10 @@ let todoIDCounter = 0;
 
 function TodoFactory(inputElements) {
   const todo = {};
-  let val = 0;
+  todo.todoID = todoIDCounter;
 
+  let val = 0;
   inputElements.forEach((element) => {
-    todo.todoID = todoIDCounter;
     todo[val] = element;
     val++;
   });

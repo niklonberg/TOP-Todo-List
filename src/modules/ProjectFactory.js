@@ -9,7 +9,13 @@ const sharedMethods = {
     this.todos.push(todo);
   },
 
-  deleteTodo: function (todoID) {},
+  deleteTodo: function (todoID) {
+    this.todos.forEach((todo, index) => {
+      if (todo.todoID === todoID) {
+        this.todos.splice(index, 1);
+      }
+    });
+  },
 
   toggleSelected: function () {
     this.isSelected = !this.isSelected;

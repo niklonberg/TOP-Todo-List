@@ -44,12 +44,17 @@ const ProjectManager = (() => {
     console.log(projects);
   };
 
+  const deleteTodoFromSelectedProject = (todoID) => {
+    currSelectedProj.deleteTodo(todoID);
+  };
+
   return {
     addProject,
     deleteProject,
     getProjects,
-    addTodoToSelectedProject,
     setSelectedProject,
+    addTodoToSelectedProject,
+    deleteTodoFromSelectedProject,
   };
 })();
 

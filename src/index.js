@@ -14,4 +14,5 @@ ProjectManager.addTodoToSelectedProject([
   "to purchase cookies",
 ]);
 ProjectManager.deleteProject(2);
+ProjectManager.deleteTodoFromSelectedProject(1);
 log(ProjectManager.getProjects());
