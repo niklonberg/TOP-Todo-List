@@ -5,15 +5,20 @@ import TodoUIManager from "./modules/TodoUIManager.js";
 log(ProjectManager);
 ProjectManager.addProject("Refurnish Home");
 ProjectManager.addProject("Paint Walls");
-ProjectManager.addProject("test");
-ProjectManager.setSelectedProject(1);
-ProjectManager.addTodoToSelectedProject(["buy skateboard", "at darbys skates"]);
 ProjectManager.setSelectedProject(0);
-ProjectManager.addTodoToSelectedProject(["sell bike", "at darbys skates"]);
-ProjectManager.addTodoToSelectedProject([
-  "use bike money",
-  "to purchase cookies",
-]);
+ProjectManager.addTodoToSelectedProject({
+  title: "move sofa",
+  description: "lift dont drag",
+});
+ProjectManager.addTodoToSelectedProject({
+  title: "move table",
+  description: "drag it roughly",
+});
+ProjectManager.setSelectedProject(1);
+ProjectManager.addTodoToSelectedProject({
+  title: "buy paint",
+  description: "mix it well before applying",
+});
 log(ProjectManager.getProjects());
 TodoUIManager.populateList("projects");
 TodoUIManager.populateList("todos");

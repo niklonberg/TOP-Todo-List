@@ -8,7 +8,7 @@ const TodoUIManager = (() => {
 
   const populateList = (whatContent) => {
     let content;
-    let list;
+    let list; /* temp */
     if (whatContent === "projects") {
       content = ProjectManager.getProjects();
       list = projectsList;
@@ -18,8 +18,8 @@ const TodoUIManager = (() => {
     }
 
     console.log(content, list);
+    /* put below in sep util function */
     content.forEach((val) => {
-      /* put this in sep util function */
       const li = document.createElement("li");
       /* const button = document.createElement("button"); */
       for (const [key, value] of Object.entries(val)) {
