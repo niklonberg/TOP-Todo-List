@@ -21,6 +21,8 @@ const ProjectManager = (() => {
     /* alt version could use filter and reassign to projects var. */
   };
 
+  const getProjects = () => projects;
+
   const setSelectedProject = (projectID) => {
     console.log(currSelectedProj);
     deselectCurrProject();
@@ -44,18 +46,12 @@ const ProjectManager = (() => {
     console.log(projects);
   };
 
-  const sendProjects = () => {}; //send projects to be rendered in side-bar
-
-  const methods = {
+  return {
     addProject,
     deleteProject,
+    getProjects,
     addTodoToSelectedProject,
     setSelectedProject,
-  };
-
-  return {
-    projects, //should be private, create methods for getting it instead
-    methods,
   };
 })();
 
