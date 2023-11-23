@@ -1,13 +1,16 @@
+let todoIDCounter = 0;
+
 function TodoFactory(inputElements) {
-  let todoID = 0;
   const todo = {};
   let val = 0;
 
   inputElements.forEach((element) => {
+    todo.todoID = todoIDCounter;
     todo[val] = element;
     val++;
   });
 
+  todoIDCounter++;
   return todo;
   /* return inputElements.reduce(
     (todoObj, item) =>

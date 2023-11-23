@@ -28,7 +28,7 @@ const ProjectManager = (() => {
     deselectCurrProject();
     console.log(currSelectedProj);
     projects.forEach((project) => {
-      if (project.id === projectID) {
+      if (project.projectID === projectID) {
         currSelectedProj = project;
         currSelectedProj.toggleSelected();
         console.log(currSelectedProj);

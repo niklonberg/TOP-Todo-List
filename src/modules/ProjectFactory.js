@@ -14,10 +14,10 @@ const sharedMethods = {
   },
 };
 
-function ProjectFactory(projectTitle, projectID) {
+function ProjectFactory(projectTitle, id) {
   const project = {
     title: projectTitle,
-    id: projectID,
+    projectID: id,
     isSelected: false,
     todos: [],
   };
