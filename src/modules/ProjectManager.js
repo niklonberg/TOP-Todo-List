@@ -12,7 +12,7 @@ const ProjectManager = (() => {
 
   const deleteProject = (projectID) => {
     projects.forEach((project, index) => {
-      if (project.id === projectID) {
+      if (project.projectID === projectID) {
         projects.splice(index, 1);
       }
     });
