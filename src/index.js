@@ -19,6 +19,9 @@ ProjectManager.addTodoToSelectedProject({
   title: "buy paint",
   description: "mix it well before applying",
 });
+ProjectManager.addTodoToSelectedProject({
+  title: "buy brush",
+});
 log(ProjectManager.getProjects());
 TodoUIManager.populateList("projects");
 TodoUIManager.populateList("todos");

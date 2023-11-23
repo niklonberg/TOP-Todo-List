@@ -6,6 +6,15 @@ const TodoUIManager = (() => {
   const projectsList = document.querySelector("#projects-list");
   const currProjectTodosList = document.querySelector("#curr-project-todos");
 
+  projectsList.addEventListener("click", (event) => {
+    const target = event.target;
+    const isListItem = target.tagName === "LI" || target.closest("li");
+
+    if (isListItem) {
+      console.log(target);
+    }
+  });
+
   const populateList = (whatContent) => {
     let content;
     let list; /* temp */
@@ -29,6 +38,12 @@ const TodoUIManager = (() => {
           h1.textContent = value;
           console.log(h1);
           li.appendChild(h1);
+        }
+
+        if (key === "description") {
+          const p = document.createElement("p");
+          p.textContent = value;
+          li.appendChild(p);
         }
       }
 
