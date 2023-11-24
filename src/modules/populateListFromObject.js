@@ -12,7 +12,7 @@ function populateListFromObject(object) {
   li.dataset[idTag] = objID;
 
   for (const [key, value] of Object.entries(object)) {
-    console.log(key + ": " + value);
+    /* console.log(key + ": " + value); */
 
     /* const button = document.createElement("button"); */
     if (key === "title") {
@@ -27,7 +27,7 @@ function populateListFromObject(object) {
       li.appendChild(p);
     }
   }
-  console.log(li);
+  return li;
 }
 
 export default populateListFromObject;

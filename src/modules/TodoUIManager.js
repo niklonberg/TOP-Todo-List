@@ -20,29 +20,28 @@ const TodoUIManager = (() => {
     }
   });
 
-  const populateTodos = (projectID) => {
-    const content = ProjectManager.getCurrSelectedProjectTodos();
-    const list = currProjectTodosList;
+  const populateProjects = () => {
+    const projects = ProjectManager.getProjects();
+    const list = projectsList;
 
-    console.log(content, list);
-    content.forEach((project) => {
-      populateListFromObject(project);
+    projects.forEach((project) => {
+      list.appendChild(populateListFromObject(project));
     });
   };
 
-  /* const populateProjects = () => {
+  const populateTodos = (projectID) => {
+    const selectedProjectTodos = ProjectManager.getCurrSelectedProjectTodos();
+    const list = currProjectTodosList;
 
-    const content = ProjectManager.getProjects();
-    const list = projectsList;
-
-    content.forEach((project) => {
-      populateListFromObject(project);
+    console.log(selectedProjectTodos, list);
+    selectedProjectTodos.forEach((project) => {
+      list.appendChild(populateListFromObject(project));
     });
-  }; */
+  };
 
   return {
+    populateProjects,
     populateTodos,
-    /* populateProjects, */
   };
 })();
 
