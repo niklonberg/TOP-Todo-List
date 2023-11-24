@@ -1,6 +1,4 @@
 import createElement from "./createElement.js";
-/*
-  <button id="create-new-todo">Create todo</button> */
 
 function renderSelectProjTodosHTML(elementToAppendTo, projectObj) {
   elementToAppendTo.innerHTML = "";

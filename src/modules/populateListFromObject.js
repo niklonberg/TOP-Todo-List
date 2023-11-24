@@ -26,8 +26,6 @@ function populateListFromObject(object) {
 
   for (const [key, value] of Object.entries(object)) {
     /* console.log(key + ": " + value); */
-
-    /* const button = document.createElement("button"); */
     if (key === "title") {
       const heading = createElement("h3");
       heading.textContent = value;
@@ -39,11 +37,9 @@ function populateListFromObject(object) {
       p.textContent = value;
       li.appendChild(p);
     }
-
-    const checkCompleteBtn = createElement("button", "not-complete");
-    checkCompleteBtn.textContent = "Mark complete";
   }
 
+  /* use order to place this all the way to left in li */
   if (object.hasOwnProperty("todoID")) {
     const checkCompleteBtn = createElement("button", "not-complete");
     checkCompleteBtn.textContent = "Mark complete";
