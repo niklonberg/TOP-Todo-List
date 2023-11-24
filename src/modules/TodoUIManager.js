@@ -16,7 +16,7 @@ const TodoUIManager = (() => {
       /* set h1 to title of project */
       const projectID = +isListItem.dataset.project;
       ProjectManager.setSelectedProject(projectID);
-      populateTodos();
+      populateSelectProjTodos();
     }
   });
 
@@ -31,8 +31,8 @@ const TodoUIManager = (() => {
     });
   };
 
-  const populateTodos = () => {
-    const selectedProjectTodos = ProjectManager.getCurrSelectedProjectTodos();
+  const populateSelectProjTodos = () => {
+    const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
     const list = currProjectTodosList;
 
     console.log(selectedProjectTodos, list);
@@ -43,7 +43,7 @@ const TodoUIManager = (() => {
 
   return {
     populateProjects,
-    populateTodos,
+    populateSelectProjTodos,
   };
 })();
 
