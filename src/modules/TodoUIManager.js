@@ -22,12 +22,11 @@ const TodoUIManager = (() => {
 
   const populateProjects = () => {
     const projects = ProjectManager.getProjects();
-    const list = projectsList;
 
     projects.forEach((project) => {
       console.log("id is: ", project.projectID);
       console.log({ project });
-      list.appendChild(populateListFromObject(project));
+      projectsList.appendChild(populateListFromObject(project));
     });
   };
 
@@ -35,7 +34,6 @@ const TodoUIManager = (() => {
     const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
     const list = currProjectTodosList;
 
-    console.log(selectedProjectTodos, list);
     selectedProjectTodos.forEach((project) => {
       list.appendChild(populateListFromObject(project));
     });
