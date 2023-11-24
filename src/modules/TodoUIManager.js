@@ -1,21 +1,21 @@
 import ProjectManager from "./ProjectManager.js";
 import populateListFromObject from "./populateListFromObject.js";
+import renderSelectProjTodosHTML from "./renderSelectProjTodos.js";
 
 const TodoUIManager = (() => {
   /* references */
+  const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
-  const currProjectTodosList = document.querySelector("#curr-project-todos");
 
   projectsList.addEventListener("click", (event) => {
     const target = event.target;
     const isListItem = target.closest("li");
 
+    /* Add statement to avoid running this if user clicks same project */
     if (isListItem) {
       console.log(isListItem);
-      /* set h1 to title of project */
       const projectID = +isListItem.dataset.project;
       ProjectManager.setSelectedProject(projectID);
-      /* renderProjectContent */
       populateSelectProjTodos();
     }
   });
@@ -28,12 +28,14 @@ const TodoUIManager = (() => {
     );
   };
 
+  /* rename to populateSelectTodos later */
   const populateSelectProjTodos = () => {
+    renderSelectProjTodosHTML(mainContent, ProjectManager.getSelectedProject());
     const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
-    const list = currProjectTodosList; /* query the dom for it later */
+    const currProjectTodosList = document.querySelector("#curr-project-todos");
 
     selectedProjectTodos.forEach((project) =>
-      list.appendChild(populateListFromObject(project))
+      currProjectTodosList.appendChild(populateListFromObject(project))
     );
   };
 
