@@ -1,8 +1,4 @@
-const createElement = (type = "div", classname = "") => {
-  const ele = document.createElement(type);
-  if (classname) ele.classList.add(classname);
-  return ele;
-};
+import createElement from "./createElement.js";
 
 const getObjectIDAndTag = (object) => {
   const key1 = "projectID";
