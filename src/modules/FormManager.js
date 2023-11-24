@@ -20,8 +20,18 @@ const FormManager = (() => {
     initializeForm(addProjectForm);
   });
 
+  createNewTodoBtn.addEventListener("click", () => {
+    if (document.querySelector("#content form")) return;
+    const form = createTodoForm();
+    mainContent.insertAdjacentHTML("beforeend", form);
+    const addTodoForm = document.querySelector("#add-todo-form");
+    initializeForm(addTodoForm);
+  });
+
+  /* make work for both buttons */
   const initializeForm = (form) => {
     /* needs to remove itself on submit */
+    /* or maybe not? since populateProjects() overwrites it */
     form.addEventListener("submit", (event) => {
       event.preventDefault(); /* make all this into sep. function */
       const object = createObjectFromForm(getInputElements(form));
@@ -29,16 +39,6 @@ const FormManager = (() => {
       TodoUIManager.populateProjects();
     });
   };
-
-  createNewTodoBtn.addEventListener("click", () => {
-    //atm adds multiple identical eventlisteners if clicked multiple times
-    //make into single function
-    //add guard clause incase form is already present
-    content.innerHTML = createTodoForm();
-    const form = document.querySelector("#add-todo-form"); //temp hardcoded val
-    console.log(form);
-    initializeForm(form);
-  });
 
   const getInputElements = (form) =>
     [...form.elements].filter((item) => item.tagName === "INPUT");
