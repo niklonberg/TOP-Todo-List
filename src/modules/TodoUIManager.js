@@ -1,6 +1,5 @@
 import ProjectManager from "./ProjectManager.js";
 import populateListFromObject from "./populateListFromObject.js";
-/* responsible for adding and inserting projects & todos into the dom etc. */
 
 const TodoUIManager = (() => {
   /* references */
@@ -32,9 +31,9 @@ const TodoUIManager = (() => {
     const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
     const list = currProjectTodosList;
 
-    selectedProjectTodos.forEach((project) => {
-      list.appendChild(populateListFromObject(project));
-    });
+    selectedProjectTodos.forEach((project) =>
+      list.appendChild(populateListFromObject(project))
+    );
   };
 
   return {
