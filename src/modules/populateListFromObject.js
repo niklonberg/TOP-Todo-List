@@ -39,7 +39,17 @@ function populateListFromObject(object) {
       p.textContent = value;
       li.appendChild(p);
     }
+
+    const checkCompleteBtn = createElement("button", "not-complete");
+    checkCompleteBtn.textContent = "Mark complete";
   }
+
+  if (object.hasOwnProperty("todoID")) {
+    const checkCompleteBtn = createElement("button", "not-complete");
+    checkCompleteBtn.textContent = "Mark complete";
+    li.appendChild(checkCompleteBtn);
+  }
+
   return li;
 }
 
