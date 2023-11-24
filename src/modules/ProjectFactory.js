@@ -22,9 +22,9 @@ const sharedMethods = {
   },
 };
 
-function ProjectFactory(projectTitle) {
+function ProjectFactory(object) {
   const project = {
-    title: projectTitle,
+    title: object.title,
     projectID: projectIDCounter,
     isSelected: false,
     todos: [],

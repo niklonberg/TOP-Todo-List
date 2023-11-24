@@ -10,11 +10,6 @@ function TodoFactory(obj) {
 
   todoIDCounter++;
   return todo;
-  /* return inputElements.reduce(
-    (todoObj, item) =>
-      item.value ? { ...todoObj, [item.id]: item.value } : todoObj,
-    {}
-  ); */
 }
 
 export default TodoFactory;

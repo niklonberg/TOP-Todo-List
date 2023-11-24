@@ -1,5 +1,6 @@
 import createTodoForm from "./createTodoForm.js";
 import createProjectForm from "./createProjectForm.js";
+import createObjectFromForm from "./createObjectFromForm.js";
 import ProjectManager from "./ProjectManager.js";
 import TodoUIManager from "./TodoUIManager.js";
 
@@ -23,9 +24,8 @@ const FormManager = (() => {
     /* needs to remove itself on submit */
     form.addEventListener("submit", (event) => {
       event.preventDefault(); /* make all this into sep. function */
-      ProjectManager.addProject(getInputElements(form));
-      console.log(getInputElements(form));
-      console.log(ProjectManager.getProjects());
+      const object = createObjectFromForm(getInputElements(form));
+      ProjectManager.addProject(object);
       TodoUIManager.populateProjects();
     });
   };

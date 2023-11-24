@@ -3,8 +3,8 @@ import FormManager from "./modules/FormManager.js";
 import ProjectManager from "./modules/ProjectManager.js";
 import TodoUIManager from "./modules/TodoUIManager.js";
 log(ProjectManager);
-ProjectManager.addProject("Refurnish Home");
-ProjectManager.addProject("Paint Walls");
+ProjectManager.addProject({ title: "Refurnish Home" });
+ProjectManager.addProject({ title: "Paint Walls" });
 ProjectManager.setSelectedProject(0);
 ProjectManager.addTodoToSelectedProject({
   title: "move sofa",
