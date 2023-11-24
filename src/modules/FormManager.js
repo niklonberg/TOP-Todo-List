@@ -11,6 +11,7 @@ const FormManager = (() => {
   let addTodoForm; /* needed? */
 
   createNewProjectBtn.addEventListener("click", () => {
+    if (document.querySelector("#projects-list form")) return;
     const form = createProjectForm();
     projectsList.insertAdjacentHTML("beforeend", form);
     addProjectForm = document.querySelector("#add-project-form");
