@@ -9,14 +9,14 @@ const TodoUIManager = (() => {
 
   projectsList.addEventListener("click", (event) => {
     const target = event.target;
-    const isListItem = target.tagName === "li" || target.closest("li");
+    const isListItem = target.closest("li");
 
     if (isListItem) {
-      console.log(target);
+      console.log(isListItem);
       /* set h1 to title of project */
-      /* get data- attr of listItem */
-      /* call setSelectedProject pass data attr value */
-      /* call populateTodos */
+      const projectID = +isListItem.dataset.project;
+      ProjectManager.setSelectedProject(projectID);
+      populateTodos();
     }
   });
 
@@ -31,7 +31,7 @@ const TodoUIManager = (() => {
     });
   };
 
-  const populateTodos = (projectID) => {
+  const populateTodos = () => {
     const selectedProjectTodos = ProjectManager.getCurrSelectedProjectTodos();
     const list = currProjectTodosList;
 
