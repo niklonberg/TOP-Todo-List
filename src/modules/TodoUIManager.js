@@ -25,6 +25,8 @@ const TodoUIManager = (() => {
     const list = projectsList;
 
     projects.forEach((project) => {
+      console.log("id is: ", project.projectID);
+      console.log({ project });
       list.appendChild(populateListFromObject(project));
     });
   };

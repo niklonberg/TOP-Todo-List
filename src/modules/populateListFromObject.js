@@ -4,9 +4,26 @@ const createElement = (type = "div", classname = "") => {
   return ele;
 };
 
+const getObjectIDAndTag = (object) => {
+  const key1 = "projectID";
+  const key2 = "todoID";
+  const objID = object.hasOwnProperty(key1)
+    ? object.projectID
+    : object.hasOwnProperty(key2)
+    ? object.todoID
+    : null;
+
+  const idTag = object.hasOwnProperty(key1)
+    ? "project"
+    : object.hasOwnProperty(key2)
+    ? "todo"
+    : null;
+
+  return [objID, idTag];
+};
+
 function populateListFromObject(object) {
-  const objID = object.projectID || object.todoID;
-  const idTag = object.projectID ? "project" : object.todoID ? "todo" : null;
+  const [objID, idTag] = getObjectIDAndTag(object);
 
   const li = createElement("li");
   li.dataset[idTag] = objID;
