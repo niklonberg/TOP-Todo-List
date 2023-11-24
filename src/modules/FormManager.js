@@ -1,6 +1,7 @@
 import createTodoForm from "./createTodoForm.js";
 import createProjectForm from "./createProjectForm.js";
 import ProjectManager from "./ProjectManager.js";
+import TodoUIManager from "./TodoUIManager.js";
 
 const FormManager = (() => {
   const createNewTodoBtn = document.querySelector("#create-new-todo");
@@ -14,14 +15,18 @@ const FormManager = (() => {
     if (document.querySelector("#projects-list form")) return;
     const form = createProjectForm();
     projectsList.insertAdjacentHTML("beforeend", form);
-    addProjectForm = document.querySelector("#add-project-form");
+    const addProjectForm = document.querySelector("#add-project-form");
     initializeForm(addProjectForm);
   });
 
   const initializeForm = (form) => {
+    /* needs to remove itself on submit */
     form.addEventListener("submit", (event) => {
       event.preventDefault(); /* make all this into sep. function */
-      ProjectManager.addTodoToSelectedProject(getInputElements(form));
+      ProjectManager.addProject(getInputElements(form));
+      console.log(getInputElements(form));
+      console.log(ProjectManager.getProjects());
+      TodoUIManager.populateProjects();
     });
   };
 

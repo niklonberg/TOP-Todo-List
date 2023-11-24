@@ -21,6 +21,7 @@ const TodoUIManager = (() => {
   });
 
   const populateProjects = () => {
+    projectsList.innerHTML = ""; /* bad? */
     const projects = ProjectManager.getProjects();
 
     projects.forEach((project) =>
