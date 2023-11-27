@@ -44,6 +44,8 @@ const FormManager = (() => {
     }
   };
 
+  const editSelectedItem = () => {};
+
   const getInputElements = (form) =>
     [...form.elements].filter((item) => item.tagName === "INPUT");
 

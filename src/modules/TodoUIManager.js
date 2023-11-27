@@ -20,13 +20,21 @@ const TodoUIManager = (() => {
 
   const addLatestItem = () => {
     //get list to add to
-    //
+    //get last created item
+    //use createListFromObject to append to list
   };
 
-  const removeSelectedItem = () => {};
+  const removeSelectedItem = () => {
+    //query dom for selected item and remove it
+    //all actual data changes handled by project manager
+  };
 
-  const editSelectedItem = () => {};
+  const editSelectedItem = () => {
+    //update selected items textContent
+    //all actual data changes handled by project manager
+  };
 
+  //change to renderProjects, as it is run once on startup
   const populateProjects = () => {
     projectsList.innerHTML = ""; /* bad? */
     const projects = ProjectManager.getProjects();

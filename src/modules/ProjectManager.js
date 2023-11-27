@@ -55,7 +55,7 @@ const ProjectManager = (() => {
     deleteProject,
     getProjects,
     getSelectedProject,
-    getSelectedProjectTodos,
+    getSelectedProjectTodos /* sure about export all of them?? */,
     setSelectedProject,
     addTodoToSelectedProject,
     deleteTodoFromSelectedProject,
