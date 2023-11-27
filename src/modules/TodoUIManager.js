@@ -11,7 +11,7 @@ const TodoUIManager = (() => {
   const showSelectedGroup = (event) => {
     const listGroupSelection = event.target.closest("li");
     if (listGroupSelection !== previousListGroupSelection) {
-      const projectID = +listGroup.dataset.project;
+      const projectID = +listGroupSelection.dataset.project;
       ProjectManager.setSelectedProject(projectID); //rename when you add the other groups
       populateSelectGroupTodos(); //'today', 'important' etc.
       previousListGroupSelection = listGroupSelection;

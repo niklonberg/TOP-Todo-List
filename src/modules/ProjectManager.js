@@ -8,6 +8,7 @@ const ProjectManager = (() => {
   const addProject = (projectTitle) => {
     const project = ProjectFactory(projectTitle);
     projects.push(project);
+    return project;
   };
 
   const deleteProject = (projectID) => {
@@ -18,6 +19,8 @@ const ProjectManager = (() => {
     });
     /* alt version could use filter and reassign to projects var. */
   };
+
+  const getProject = (projectID) => {};
 
   const getProjects = () => projects;
 
@@ -44,6 +47,7 @@ const ProjectManager = (() => {
     const todo = TodoFactory(inputElements);
     currSelectedProj.addTodo(todo);
     console.log(projects);
+    return todo;
   };
 
   const deleteTodoFromSelectedProject = (todoID) => {
