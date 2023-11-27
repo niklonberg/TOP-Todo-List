@@ -35,13 +35,10 @@ const FormManager = (() => {
   const handleFormSubmit = (event, form, isNewProject) => {
     event.preventDefault();
     const object = createObjectFromForm(getInputElements(form));
-    if (isNewProject) {
-      ProjectManager.addProject(object);
-      TodoUIManager.populateProjects();
-    } else {
-      ProjectManager.addTodoToSelectedProject(object);
-      TodoUIManager.populateSelectGroupTodos();
-    }
+    isNewProject
+      ? ProjectManager.addProject(object)
+      : ProjectManager.addTodoToSelectedProject(object);
+    TodoUIManager.addLatestItem(object, isNewProject);
   };
 
   const editSelectedItem = () => {};

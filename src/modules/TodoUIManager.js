@@ -6,6 +6,7 @@ const TodoUIManager = (() => {
   /* references */
   const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
+
   let previousListGroup;
 
   const showSelectedGroup = (event) => {
@@ -18,10 +19,13 @@ const TodoUIManager = (() => {
     }
   };
 
-  const addLatestItem = () => {
-    //get list to add to
-    //get last created item
-    //use createListFromObject to append to list
+  const addLatestItem = (object, isNewProject) => {
+    console.log(object);
+    const currProjectTodosList = document.querySelector("#curr-project-todos");
+    const item = createListItemFromObject(object);
+    isNewProject
+      ? projectsList.appendChild(item)
+      : currProjectTodosList.appendChild(item);
   };
 
   const removeSelectedItem = () => {
@@ -34,7 +38,7 @@ const TodoUIManager = (() => {
     //all actual data changes handled by project manager
   };
 
-  //change to renderProjects, as it is run once on startup
+  //change to renderProjects, as it is run once on startup / or is it?
   const populateProjects = () => {
     projectsList.innerHTML = ""; /* bad? */
     const projects = ProjectManager.getProjects();
