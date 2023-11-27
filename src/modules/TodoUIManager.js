@@ -6,16 +6,15 @@ const TodoUIManager = (() => {
   /* references */
   const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
-
-  let previousListGroup;
+  let previousListGroupSelection;
 
   const showSelectedGroup = (event) => {
-    const listGroup = event.target.closest("li");
-    if (listGroup !== previousListGroup) {
+    const listGroupSelection = event.target.closest("li");
+    if (listGroupSelection !== previousListGroupSelection) {
       const projectID = +listGroup.dataset.project;
       ProjectManager.setSelectedProject(projectID); //rename when you add the other groups
       populateSelectGroupTodos(); //'today', 'important' etc.
-      previousListGroup = listGroup;
+      previousListGroupSelection = listGroupSelection;
     }
   };
 

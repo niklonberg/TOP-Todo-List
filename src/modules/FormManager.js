@@ -28,7 +28,6 @@ const FormManager = (() => {
       form.removeEventListener("submit", submitHandler);
       form.remove();
     };
-
     form.addEventListener("submit", submitHandler);
   };
 
