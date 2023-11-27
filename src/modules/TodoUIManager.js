@@ -6,15 +6,15 @@ const TodoUIManager = (() => {
   /* references */
   const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
-  let previousListProject;
+  let previousListGroup;
 
-  const updateMainContent = (event) => {
-    const listProject = event.target.closest("li");
-    if (listProject !== previousListProject) {
-      const projectID = +listProject.dataset.project;
-      ProjectManager.setSelectedProject(projectID);
-      populateSelectProjTodos();
-      previousListProject = listProject;
+  const showSelectedGroup = (event) => {
+    const listGroup = event.target.closest("li");
+    if (listGroup !== previousListGroup) {
+      const projectID = +listGroup.dataset.project;
+      ProjectManager.setSelectedProject(projectID); //rename
+      populateSelectProjTodos(); //rename
+      previousListGroup = listGroup;
     }
   };
 
@@ -38,7 +38,7 @@ const TodoUIManager = (() => {
     );
   };
 
-  projectsList.addEventListener("click", updateMainContent);
+  projectsList.addEventListener("click", showSelectedGroup);
 
   return {
     populateProjects,
