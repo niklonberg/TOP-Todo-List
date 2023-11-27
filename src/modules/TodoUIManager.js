@@ -12,11 +12,17 @@ const TodoUIManager = (() => {
     const listGroup = event.target.closest("li");
     if (listGroup !== previousListGroup) {
       const projectID = +listGroup.dataset.project;
-      ProjectManager.setSelectedProject(projectID); //rename
-      populateSelectProjTodos(); //rename
+      ProjectManager.setSelectedProject(projectID); //rename when you add the other groups
+      populateSelectGroupTodos(); //'today', 'important' etc.
       previousListGroup = listGroup;
     }
   };
+
+  const addLatest = () => {};
+
+  const removeSelected = () => {};
+
+  const editSelected = () => {};
 
   const populateProjects = () => {
     projectsList.innerHTML = ""; /* bad? */
@@ -27,8 +33,8 @@ const TodoUIManager = (() => {
     );
   };
 
-  /* rename to populateSelectTodos later */
-  const populateSelectProjTodos = () => {
+  const populateSelectGroupTodos = () => {
+    mainContent.innerHTML = ""; /* bad? */
     renderSelectProjTodosHTML(mainContent, ProjectManager.getSelectedProject());
     const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
     const currProjectTodosList = document.querySelector("#curr-project-todos");
@@ -42,7 +48,7 @@ const TodoUIManager = (() => {
 
   return {
     populateProjects,
-    populateSelectProjTodos,
+    populateSelectGroupTodos,
   };
 })();
 

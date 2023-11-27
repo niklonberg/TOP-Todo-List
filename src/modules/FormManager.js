@@ -8,10 +8,6 @@ const FormManager = (() => {
   /* references */
   const createNewTodoBtn = document.querySelector("#create-new-todo");
   const createNewProjectBtn = document.querySelector("#create-new-project");
-  /* const projectsList = document.querySelector("#projects-list");
-  const mainContent = document.querySelector("#content");
-  let addProjectForm;
-  let addTodoForm; */
 
   const handleBtnCreateFormClick = (event) => {
     const elementToAppendFormTo = event.target.previousElementSibling;
@@ -44,7 +40,7 @@ const FormManager = (() => {
       TodoUIManager.populateProjects();
     } else {
       ProjectManager.addTodoToSelectedProject(object);
-      TodoUIManager.populateSelectProjTodos();
+      TodoUIManager.populateSelectGroupTodos();
     }
   };
 
@@ -54,10 +50,6 @@ const FormManager = (() => {
   createNewProjectBtn.addEventListener("click", handleBtnCreateFormClick);
 
   createNewTodoBtn.addEventListener("click", handleBtnCreateFormClick);
-
-  /* return {
-    getInputElements,
-  }; */
 })();
 
 export default FormManager;

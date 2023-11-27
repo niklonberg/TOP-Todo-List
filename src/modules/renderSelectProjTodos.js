@@ -1,7 +1,6 @@
 import createElement from "./createElement.js";
 
 function renderSelectProjTodosHTML(elementToAppendTo, projectObj) {
-  elementToAppendTo.innerHTML = "";
   const h1 = createElement("h1", "test", "project-title");
   h1.textContent = projectObj?.title ?? "Default Title";
 
@@ -9,7 +8,5 @@ function renderSelectProjTodosHTML(elementToAppendTo, projectObj) {
 
   elementToAppendTo.append(h1, list);
 }
-
-function initializeEventListeners() {}
 
 export default renderSelectProjTodosHTML;
