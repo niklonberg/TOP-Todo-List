@@ -45,6 +45,7 @@ const FormManager = (() => {
       ProjectManager.addTodoToSelectedProject(object);
       TodoUIManager.populateSelectProjTodos();
     }
+    form.remove();
   };
 
   const getInputElements = (form) =>
