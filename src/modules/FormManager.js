@@ -12,21 +12,26 @@ const FormManager = (() => {
   let addProjectForm; /* needed? */
   let addTodoForm; /* needed? */
 
-  createNewProjectBtn.addEventListener("click", () => {
-    if (document.querySelector("#projects-list form")) return;
-    const form = createProjectForm();
-    projectsList.insertAdjacentHTML("beforeend", form);
-    const addProjectForm = document.querySelector("#add-project-form");
-    initializeForm(addProjectForm);
-  });
+  createNewProjectBtn.addEventListener("click", handleBtnCreateFormClick);
 
-  createNewTodoBtn.addEventListener("click", () => {
-    if (document.querySelector("#content form")) return;
-    const form = createTodoForm();
-    mainContent.insertAdjacentHTML("beforeend", form);
-    const addTodoForm = document.querySelector("#add-todo-form");
-    initializeForm(addTodoForm);
-  });
+  createNewTodoBtn.addEventListener("click", handleBtnCreateFormClick);
+
+  function handleBtnCreateFormClick(event) {
+    const elementToAppendFormTo = event.target.previousElementSibling;
+
+    if (elementToAppendFormTo.querySelector("form")) return;
+
+    const isNewProject = event.target.id.includes("project");
+
+    let formTypeTemplate;
+    isNewProject
+      ? (formTypeTemplate = createProjectForm())
+      : (formTypeTemplate = createTodoForm());
+
+    elementToAppendFormTo.insertAdjacentHTML("beforeend", formTypeTemplate);
+    const form = elementToAppendFormTo.querySelector("form");
+    initializeForm(form);
+  }
 
   /* make work for both buttons */
   const initializeForm = (form) => {
