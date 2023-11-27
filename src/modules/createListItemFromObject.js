@@ -18,7 +18,7 @@ const getObjectIDAndTag = (object) => {
   return [objID, idTag];
 };
 
-function populateListFromObject(object) {
+function createListItemFromObject(object) {
   const [objID, idTag] = getObjectIDAndTag(object);
 
   const li = createElement("li");
@@ -49,4 +49,4 @@ function populateListFromObject(object) {
   return li;
 }
 
-export default populateListFromObject;
+export default createListItemFromObject;

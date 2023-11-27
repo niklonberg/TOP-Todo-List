@@ -1,5 +1,5 @@
 import ProjectManager from "./ProjectManager.js";
-import populateListFromObject from "./populateListFromObject.js";
+import createListItemFromObject from "./createListItemFromObject.js";
 import renderSelectProjTodosHTML from "./renderSelectProjTodos.js";
 
 const TodoUIManager = (() => {
@@ -18,18 +18,21 @@ const TodoUIManager = (() => {
     }
   };
 
-  const addLatest = () => {};
+  const addLatestItem = () => {
+    //get list to add to
+    //
+  };
 
-  const removeSelected = () => {};
+  const removeSelectedItem = () => {};
 
-  const editSelected = () => {};
+  const editSelectedItem = () => {};
 
   const populateProjects = () => {
     projectsList.innerHTML = ""; /* bad? */
     const projects = ProjectManager.getProjects();
 
     projects.forEach((project) =>
-      projectsList.appendChild(populateListFromObject(project))
+      projectsList.appendChild(createListItemFromObject(project))
     );
   };
 
@@ -40,7 +43,7 @@ const TodoUIManager = (() => {
     const currProjectTodosList = document.querySelector("#curr-project-todos");
 
     selectedProjectTodos.forEach((project) =>
-      currProjectTodosList.appendChild(populateListFromObject(project))
+      currProjectTodosList.appendChild(createListItemFromObject(project))
     );
   };
 
@@ -49,6 +52,7 @@ const TodoUIManager = (() => {
   return {
     populateProjects,
     populateSelectGroupTodos,
+    addLatestItem,
   };
 })();
 
