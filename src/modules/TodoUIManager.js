@@ -8,6 +8,7 @@ const TodoUIManager = (() => {
   const projectsList = document.querySelector("#projects-list");
 
   projectsList.addEventListener("click", (event) => {
+    /* put this in single function, give it a clear name */
     const target = event.target;
     const isListItem = target.closest("li");
 
