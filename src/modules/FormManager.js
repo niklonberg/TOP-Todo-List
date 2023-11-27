@@ -54,9 +54,9 @@ const FormManager = (() => {
 
   createNewTodoBtn.addEventListener("click", handleBtnCreateFormClick);
 
-  return {
+  /* return {
     getInputElements,
-  };
+  }; */
 })();
 
 export default FormManager;

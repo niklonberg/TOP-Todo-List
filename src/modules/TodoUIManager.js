@@ -6,20 +6,17 @@ const TodoUIManager = (() => {
   /* references */
   const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
+  let previousListProject;
 
-  projectsList.addEventListener("click", (event) => {
-    /* put this in single function, give it a clear name */
-    const target = event.target;
-    const isListItem = target.closest("li");
-
-    /* Add statement to avoid running this if user clicks same project */
-    if (isListItem) {
-      console.log(isListItem);
-      const projectID = +isListItem.dataset.project;
+  const updateMainContent = (event) => {
+    const listProject = event.target.closest("li");
+    if (listProject !== previousListProject) {
+      const projectID = +listProject.dataset.project;
       ProjectManager.setSelectedProject(projectID);
       populateSelectProjTodos();
+      previousListProject = listProject;
     }
-  });
+  };
 
   const populateProjects = () => {
     projectsList.innerHTML = ""; /* bad? */
@@ -40,6 +37,8 @@ const TodoUIManager = (() => {
       currProjectTodosList.appendChild(populateListFromObject(project))
     );
   };
+
+  projectsList.addEventListener("click", updateMainContent);
 
   return {
     populateProjects,
