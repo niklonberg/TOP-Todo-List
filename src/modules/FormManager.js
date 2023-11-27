@@ -30,6 +30,7 @@ const FormManager = (() => {
     const submitHandler = (event) => {
       handleFormSubmit(event, form, isNewProject);
       form.removeEventListener("submit", submitHandler);
+      form.remove();
     };
 
     form.addEventListener("submit", submitHandler);
@@ -45,7 +46,6 @@ const FormManager = (() => {
       ProjectManager.addTodoToSelectedProject(object);
       TodoUIManager.populateSelectProjTodos();
     }
-    form.remove();
   };
 
   const getInputElements = (form) =>
