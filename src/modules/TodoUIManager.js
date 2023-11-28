@@ -63,10 +63,19 @@ const TodoUIManager = (() => {
   projectsList.addEventListener("click", showSelectedGroup);
 
   appContent.addEventListener("click", (event) => {
-    if (event.target.classList.contains("toggle-complete-btn")) {
+    let todoProperty = null;
+    if (event.target.classList.contains("toggle-complete-btn"))
+      todoProperty = "isCompleted";
+    if (event.target.classList.contains("toggle-important-btn"))
+      todoProperty = "isImportant";
+
+    if (todoProperty) {
       const btn = event.target;
       const todoID = +btn.parentElement.dataset.todo;
-      ProjectManager.getSelectedProject().toggleTodoComplete(todoID);
+      ProjectManager.getSelectedProject().toggleTodoBoolProperty(
+        todoID,
+        todoProperty
+      );
       console.log(ProjectManager.getSelectedProject());
     }
   });

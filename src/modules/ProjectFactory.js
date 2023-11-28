@@ -19,19 +19,10 @@ const sharedMethods = {
     }); */
   },
 
-  toggleTodoComplete: function (todoID) {
+  toggleTodoBoolProperty: function (todoID, todoProperty) {
     const targetTodo = this.todos.find((todo) => todo.todoID === todoID);
-    targetTodo.isCompleted = !targetTodo.isCompleted;
-    /* this.todos.forEach((todo) => {
-      if (todo.todoID === todoID) {
-        todo.isCompleted = !todo.isCompleted;
-        console.log(todo.isCompleted);
-        return;
-      }
-    }); */
+    targetTodo[todoProperty] = !targetTodo[todoProperty];
   },
-
-  toggleTodoImportant: function (todoID) {},
 
   toggleSelected: function () {
     this.isSelected = !this.isSelected;
