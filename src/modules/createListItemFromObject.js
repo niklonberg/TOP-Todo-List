@@ -1,4 +1,5 @@
 import createElement from "./createElement.js";
+import createEditContainer from "./createEditContainer.js";
 
 const getObjectIDAndTag = (object) => {
   const key1 = "projectID";
@@ -45,6 +46,9 @@ function createListItemFromObject(object) {
     checkCompleteBtn.textContent = "Mark complete";
     li.appendChild(checkCompleteBtn);
   }
+
+  const editContainer = createEditContainer();
+  li.appendChild(editContainer);
 
   return li;
 }
