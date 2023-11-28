@@ -3,6 +3,8 @@ let todoIDCounter = 0;
 function TodoFactory(obj) {
   const todo = {};
   todo.todoID = todoIDCounter;
+  todo.isCompleted = false;
+  todo.isImportant = false;
 
   for (const [key, value] of Object.entries(obj)) {
     todo[key] = value;

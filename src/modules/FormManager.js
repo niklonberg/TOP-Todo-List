@@ -39,10 +39,10 @@ const FormManager = (() => {
   const handleFormSubmit = (event, form, isNewProject) => {
     event.preventDefault();
     const templateObj = createObjectFromForm(getInputElements(form));
-    let object;
-    isNewProject
-      ? (object = ProjectManager.addProject(templateObj))
-      : (object = ProjectManager.addTodoToSelectedProject(templateObj));
+    const object = isNewProject
+      ? ProjectManager.addProject(templateObj)
+      : ProjectManager.addTodoToSelectedProject(templateObj);
+
     TodoUIManager.addLatestItem(object, isNewProject);
   };
 
