@@ -1,6 +1,8 @@
 import createTodoForm from "./createTodoForm.js";
 import createProjectForm from "./createProjectForm.js";
 import createObjectFromForm from "./createObjectFromForm.js";
+import createAndAppendForm from "./createAndAppendForm.js";
+import determineFormType from "./determineFormType.js";
 import ProjectManager from "./ProjectManager.js";
 import TodoUIManager from "./TodoUIManager.js";
 
@@ -12,12 +14,15 @@ const FormManager = (() => {
   const handleBtnCreateFormClick = (event) => {
     const elementToAppendFormTo = event.target.previousElementSibling;
     if (elementToAppendFormTo.querySelector("form")) return;
-    const isNewProject = event.target.id.includes("project");
-    let formTypeTemplate;
-    isNewProject
-      ? (formTypeTemplate = createProjectForm())
-      : (formTypeTemplate = createTodoForm());
-    elementToAppendFormTo.insertAdjacentHTML("beforeend", formTypeTemplate);
+
+    const isNewProject = determineFormType(event);
+
+    const formTypeTemplate = isNewProject
+      ? createProjectForm()
+      : createTodoForm();
+
+    createAndAppendForm(elementToAppendFormTo, formTypeTemplate);
+
     const form = elementToAppendFormTo.querySelector("form");
     initializeForm(form, isNewProject);
   };

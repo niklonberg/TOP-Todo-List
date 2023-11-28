@@ -34,6 +34,7 @@ const TodoUIManager = (() => {
 
   const editSelectedItem = () => {
     //update selected items textContent
+    //tells formManager to create form to edit in
     //all actual data changes handled by project manager
   };
 
