@@ -9,13 +9,14 @@ const sharedMethods = {
     this.todos.push(todo);
   },
 
-  deleteTodo: function (todoID) {
-    this.todos.forEach((todo, index) => {
+  removeTodo: function (todoID) {
+    this.todos = this.todos.filter((todo) => todo.todoID !== todoID);
+    /* this.todos.forEach((todo, index) => {
       if (todo.todoID === todoID) {
         this.todos.splice(index, 1);
         return;
       }
-    });
+    }); */
   },
 
   toggleTodoComplete: function (todoID) {
