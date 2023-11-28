@@ -9,16 +9,6 @@ const TodoUIManager = (() => {
   const projectsList = document.querySelector("#projects-list");
   let previousListGroupSelection;
 
-  const showSelectedGroup = (event) => {
-    const listGroupSelection = event.target.closest("li");
-    if (listGroupSelection !== previousListGroupSelection) {
-      const projectID = +listGroupSelection.dataset.project;
-      ProjectManager.setSelectedProject(projectID); //rename when you add the other groups
-      populateSelectGroupTodos(); //'today', 'important' etc.
-      previousListGroupSelection = listGroupSelection;
-    }
-  };
-
   //change to renderProjects, as it is run once on startup / or is it?
   const populateProjects = () => {
     projectsList.innerHTML = ""; /* bad? */
@@ -60,9 +50,18 @@ const TodoUIManager = (() => {
     //all actual data changes handled by project manager
   };
 
+  const showSelectedGroup = (event) => {
+    const listGroupSelection = event.target.closest("li");
+    if (listGroupSelection !== previousListGroupSelection) {
+      const projectID = +listGroupSelection.dataset.project;
+      ProjectManager.setSelectedProject(projectID); //rename when you add the other groups
+      populateSelectGroupTodos(); //'today', 'important' etc.
+      previousListGroupSelection = listGroupSelection;
+    }
+  };
   projectsList.addEventListener("click", showSelectedGroup);
 
-  appContent.addEventListener("click", (event) => {
+  const toggleBtnTodoProperty = (event) => {
     let todoProperty = determineTodoProperty(event);
 
     if (todoProperty) {
@@ -74,7 +73,8 @@ const TodoUIManager = (() => {
       );
       console.log(ProjectManager.getSelectedProject());
     }
-  });
+  };
+  appContent.addEventListener("click", toggleBtnTodoProperty);
 
   return {
     populateProjects,
