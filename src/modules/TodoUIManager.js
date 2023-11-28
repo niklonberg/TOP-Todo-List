@@ -19,26 +19,6 @@ const TodoUIManager = (() => {
     }
   };
 
-  const addLatestItem = (object, isNewProject) => {
-    console.log(object);
-    const currProjectTodosList = document.querySelector("#curr-project-todos");
-    const item = createListItemFromObject(object);
-    isNewProject
-      ? projectsList.appendChild(item)
-      : currProjectTodosList.appendChild(item);
-  };
-
-  const removeSelectedItem = () => {
-    //query dom for selected item and remove it
-    //all actual data changes handled by project manager
-  };
-
-  const editSelectedItem = () => {
-    //update selected items textContent
-    //tells formManager to create form to edit in
-    //all actual data changes handled by project manager
-  };
-
   //change to renderProjects, as it is run once on startup / or is it?
   const populateProjects = () => {
     projectsList.innerHTML = ""; /* bad? */
@@ -60,14 +40,30 @@ const TodoUIManager = (() => {
     );
   };
 
+  const addLatestItem = (object, isNewProject) => {
+    console.log(object);
+    const currProjectTodosList = document.querySelector("#curr-project-todos");
+    const item = createListItemFromObject(object);
+    isNewProject
+      ? projectsList.appendChild(item)
+      : currProjectTodosList.appendChild(item);
+  };
+
+  const removeSelectedItem = () => {
+    //query dom for selected item and remove it
+    //all actual data changes handled by project manager
+  };
+
+  const editSelectedItem = () => {
+    //update selected items textContent
+    //tells formManager to create form to edit in
+    //all actual data changes handled by project manager
+  };
+
   projectsList.addEventListener("click", showSelectedGroup);
 
   appContent.addEventListener("click", (event) => {
-    let todoProperty = null;
-    if (event.target.classList.contains("toggle-complete-btn"))
-      todoProperty = "isCompleted";
-    if (event.target.classList.contains("toggle-important-btn"))
-      todoProperty = "isImportant";
+    let todoProperty = determineTodoProperty(event);
 
     if (todoProperty) {
       const btn = event.target;
@@ -88,3 +84,12 @@ const TodoUIManager = (() => {
 })();
 
 export default TodoUIManager;
+
+function determineTodoProperty(event) {
+  let todoProperty = null;
+  if (event.target.classList.contains("toggle-complete-btn"))
+    todoProperty = "isCompleted";
+  if (event.target.classList.contains("toggle-important-btn"))
+    todoProperty = "isImportant";
+  return todoProperty;
+}

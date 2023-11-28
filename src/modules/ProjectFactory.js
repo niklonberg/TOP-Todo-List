@@ -15,6 +15,8 @@ function ProjectFactory(object) {
   return project;
 }
 
+export default ProjectFactory;
+
 const sharedMethods = {
   getTodos: function () {
     return this.todos;
@@ -43,5 +45,3 @@ const sharedMethods = {
     this.isSelected = !this.isSelected;
   },
 };
-
-export default ProjectFactory;
