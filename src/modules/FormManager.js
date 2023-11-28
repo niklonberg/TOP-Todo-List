@@ -2,7 +2,6 @@ import createTodoForm from "./createTodoForm.js";
 import createProjectForm from "./createProjectForm.js";
 import createObjectFromForm from "./createObjectFromForm.js";
 import createAndAppendForm from "./createAndAppendForm.js";
-import determineFormType from "./determineFormType.js";
 import ProjectManager from "./ProjectManager.js";
 import TodoUIManager from "./TodoUIManager.js";
 
@@ -57,3 +56,7 @@ const FormManager = (() => {
 })();
 
 export default FormManager;
+
+function determineFormType(event) {
+  return event.target.id.includes("project");
+}
