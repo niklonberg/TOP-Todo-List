@@ -1,7 +1,17 @@
 import createElement from "./createElement.js";
-import createEditContainer from "./createEditContainer.js";
 
-const getObjectIDAndTag = (object) => {
+function createEditContainer() {
+  const editContainer = createElement("div", "edit-container");
+  const editBtn = createElement("button", "edit-item");
+  editBtn.textContent = "Edit";
+  const deleteBtn = createElement("button", "delete-item");
+  deleteBtn.textContent = "Delete";
+  editContainer.append(editBtn, deleteBtn);
+
+  return editContainer;
+}
+
+function getObjectIDAndTag(object) {
   const key1 = "projectID";
   const key2 = "todoID";
   const objID = object.hasOwnProperty(key1)
@@ -17,7 +27,7 @@ const getObjectIDAndTag = (object) => {
     : null;
 
   return [objID, idTag];
-};
+}
 
 function createListItemFromObject(object) {
   const [objID, idTag] = getObjectIDAndTag(object);
