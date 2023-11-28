@@ -20,13 +20,15 @@ const sharedMethods = {
   },
 
   toggleTodoComplete: function (todoID) {
-    this.todos.forEach((todo) => {
+    const targetTodo = this.todos.find((todo) => todo.todoID === todoID);
+    targetTodo.isCompleted = !targetTodo.isCompleted;
+    /* this.todos.forEach((todo) => {
       if (todo.todoID === todoID) {
         todo.isCompleted = !todo.isCompleted;
         console.log(todo.isCompleted);
         return;
       }
-    });
+    }); */
   },
 
   toggleTodoImportant: function (todoID) {},
