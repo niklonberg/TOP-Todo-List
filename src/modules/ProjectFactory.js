@@ -1,5 +1,20 @@
 let projectIDCounter = 0;
 
+function ProjectFactory(object) {
+  const project = {
+    title: object.title,
+    projectID: projectIDCounter,
+    isSelected: false,
+    todos: [],
+  };
+
+  //use object.setPrototypeOf to assign methods to protoype, to avoid duplication
+  Object.setPrototypeOf(project, sharedMethods);
+
+  projectIDCounter++;
+  return project;
+}
+
 const sharedMethods = {
   getTodos: function () {
     return this.todos;
@@ -28,20 +43,5 @@ const sharedMethods = {
     this.isSelected = !this.isSelected;
   },
 };
-
-function ProjectFactory(object) {
-  const project = {
-    title: object.title,
-    projectID: projectIDCounter,
-    isSelected: false,
-    todos: [],
-  };
-
-  //use object.setPrototypeOf to assign methods to protoype, to avoid duplication
-  Object.setPrototypeOf(project, sharedMethods);
-
-  projectIDCounter++;
-  return project;
-}
 
 export default ProjectFactory;
