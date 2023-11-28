@@ -50,11 +50,15 @@ function createListItemFromObject(object) {
     }
   }
 
-  /* use order to place this all the way to left in li */
   if (object.hasOwnProperty("todoID")) {
+    /* use order to place completeBtn all the way to left in li */
     const checkCompleteBtn = createElement("button", "not-complete");
     checkCompleteBtn.textContent = "Mark complete";
     li.appendChild(checkCompleteBtn);
+
+    const checkImportantBtn = createElement("button", "not-important");
+    checkImportantBtn.textContent = "Mark important";
+    li.appendChild(checkImportantBtn);
   }
 
   const editContainer = createEditContainer();
