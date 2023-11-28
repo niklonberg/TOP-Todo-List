@@ -52,19 +52,19 @@ function createListItemFromObject(object) {
 
   if (object.hasOwnProperty("todoID")) {
     /* use order to place completeBtn all the way to left in li */
-    const checkCompleteBtn = createElement("button", "not-complete");
-    checkCompleteBtn.textContent = "Mark complete";
+    const checkCompleteBtn = createElement("button", "toggle-complete-btn");
+    checkCompleteBtn.textContent = "Mark complete"; /* make sep fn */
     li.appendChild(checkCompleteBtn);
 
-    const checkImportantBtn = createElement("button", "not-important");
-    checkImportantBtn.textContent = "Mark important";
+    const checkImportantBtn = createElement("button", "toggle-important-btn");
+    checkImportantBtn.textContent = "Mark important"; /* make sep fn */
     li.appendChild(checkImportantBtn);
   }
 
   const editContainer = createEditContainer();
   li.appendChild(editContainer);
 
-  return li;
+  return li; /* lots of repeating appendCHilding */
 }
 
 export default createListItemFromObject;

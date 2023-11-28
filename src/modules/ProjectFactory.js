@@ -13,9 +13,22 @@ const sharedMethods = {
     this.todos.forEach((todo, index) => {
       if (todo.todoID === todoID) {
         this.todos.splice(index, 1);
+        return;
       }
     });
   },
+
+  toggleTodoComplete: function (todoID) {
+    this.todos.forEach((todo) => {
+      if (todo.todoID === todoID) {
+        todo.isCompleted = !todo.isCompleted;
+        console.log(todo.isCompleted);
+        return;
+      }
+    });
+  },
+
+  toggleTodoImportant: function (todoID) {},
 
   toggleSelected: function () {
     this.isSelected = !this.isSelected;

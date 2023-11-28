@@ -4,6 +4,7 @@ import renderSelectProjTodosHTML from "./renderSelectProjTodos.js";
 
 const TodoUIManager = (() => {
   /* references */
+  const appContent = document.querySelector("#app-content");
   const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
   let previousListGroupSelection;
@@ -60,6 +61,15 @@ const TodoUIManager = (() => {
   };
 
   projectsList.addEventListener("click", showSelectedGroup);
+
+  appContent.addEventListener("click", (event) => {
+    if (event.target.classList.contains("toggle-complete-btn")) {
+      const btn = event.target;
+      const todoID = +btn.parentElement.dataset.todo;
+      ProjectManager.getSelectedProject().toggleTodoComplete(todoID);
+      console.log(ProjectManager.getSelectedProject());
+    }
+  });
 
   return {
     populateProjects,
