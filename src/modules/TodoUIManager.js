@@ -18,7 +18,7 @@ const TodoUIManager = (() => {
   let previousListGroupSelection;
 
   //change to renderProjects, as it is run once on startup / or is it?
-  const populateProjects = () => {
+  const renderProjectsList = () => {
     projectsList.innerHTML = ""; /* bad? */
     const projects = ProjectManager.getProjects();
 
@@ -97,7 +97,7 @@ const TodoUIManager = (() => {
   appContent.addEventListener("click", toggleBtnTodoProperty);
 
   return {
-    populateProjects,
+    renderProjectsList,
     populateSelectGroupTodos,
     addLatestItem,
   };

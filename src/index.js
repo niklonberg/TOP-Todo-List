@@ -23,5 +23,5 @@ ProjectManager.addTodoToSelectedProject({
   title: "buy brush",
 });
 log(ProjectManager.getProjects());
-TodoUIManager.populateProjects("projects");
+TodoUIManager.renderProjectsList("projects");
 TodoUIManager.populateSelectGroupTodos("todos");
