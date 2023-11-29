@@ -33,20 +33,20 @@ const TodoUIManager = (() => {
     mainContent.append(h1, list);
 
     const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
-    const currProjectTodosList = document.querySelector("#curr-grouping-todos");
+    const currGroupTodosList = document.querySelector("#curr-grouping-todos");
 
     selectedProjectTodos.forEach((project) =>
-      currProjectTodosList.appendChild(createListItemFromObject(project))
+      currGroupTodosList.appendChild(createListItemFromObject(project))
     );
   };
 
   const addLatestItem = (object, isNewProject) => {
     console.log(object);
-    const currProjectTodosList = document.querySelector("#curr-grouping-todos");
+    const currGroupTodosList = document.querySelector("#curr-grouping-todos");
     const item = createListItemFromObject(object);
     isNewProject
       ? projectsList.appendChild(item)
-      : currProjectTodosList.appendChild(item);
+      : currGroupTodosList.appendChild(item);
   };
 
   const editSelectedItem = () => {
