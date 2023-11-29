@@ -7,13 +7,7 @@ const TodoUIManager = (() => {
   const appContent = document.querySelector("#app-content");
   const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
-
-  /* test, have single event listener on #home */
-  const allTasks = document.querySelector("#all-tasks");
-  allTasks.addEventListener("click", () => {
-    console.log(ProjectManager.getFilteredTasks());
-  });
-  /* test */
+  const sideBar = document.querySelector("#side-bar");
 
   let previousListGroupSelection;
 
@@ -38,6 +32,18 @@ const TodoUIManager = (() => {
       currGroupingTodos.appendChild(createListItemFromObject(project))
     );
   };
+
+  const showSelectedGroup = (event) => {
+    const listGroupSelection = event.target.closest("li");
+    if (listGroupSelection !== previousListGroupSelection) {
+      const projectID = +listGroupSelection.dataset.project ?? null;
+      if (projectID !== null) ProjectManager.setSelectedProject(projectID);
+      console.log(listGroupSelection);
+      renderSelectedGroup(); //'today', 'important' etc.
+      previousListGroupSelection = listGroupSelection;
+    }
+  };
+  sideBar.addEventListener("click", showSelectedGroup);
 
   const addLatestItem = (object, isNewProject) => {
     console.log(object);
@@ -71,17 +77,6 @@ const TodoUIManager = (() => {
     console.log(ProjectManager.getProjects());
   };
   appContent.addEventListener("click", removeSelectedItem);
-
-  const showSelectedGroup = (event) => {
-    const listGroupSelection = event.target.closest("li");
-    if (listGroupSelection !== previousListGroupSelection) {
-      const projectID = +listGroupSelection.dataset.project;
-      ProjectManager.setSelectedProject(projectID); //rename when you add the other groups
-      renderSelectedGroup(); //'today', 'important' etc.
-      previousListGroupSelection = listGroupSelection;
-    }
-  };
-  projectsList.addEventListener("click", showSelectedGroup);
 
   const toggleBtnTodoProperty = (event) => {
     let todoProperty = determineTodoProperty(event);
