@@ -28,15 +28,14 @@ const TodoUIManager = (() => {
   };
 
   const renderSelectedGroup = () => {
-    removeHTMLContent(mainContent);
-    const [h1, list] = createBaseGroupHTML(ProjectManager.getSelectedProject());
-    mainContent.append(h1, list);
+    removeHTMLContent(mainContent); /* edit below me */
+    const [h1, currGroupingTodos] = createBaseGroupHTML();
+    mainContent.append(h1, currGroupingTodos);
 
-    const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
-    const currGroupTodosList = document.querySelector("#curr-grouping-todos");
+    const selectedGroupTodos = ProjectManager.getSelectedProjectTodos();
 
-    selectedProjectTodos.forEach((project) =>
-      currGroupTodosList.appendChild(createListItemFromObject(project))
+    selectedGroupTodos.forEach((project) =>
+      currGroupingTodos.appendChild(createListItemFromObject(project))
     );
   };
 

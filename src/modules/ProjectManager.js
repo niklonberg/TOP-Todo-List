@@ -44,6 +44,7 @@ const ProjectManager = (() => {
     return todo;
   };
 
+  /* need to be able to remove todos from any project, hmm.. */
   const removeTodoFromSelectedProject = (todoID) => {
     currSelectedProj.removeTodo(todoID);
   };
