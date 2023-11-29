@@ -14,7 +14,7 @@ const ProjectManager = (() => {
   const removeProject = (projectID) =>
     (projects = projects.filter((project) => project.projectID !== projectID));
 
-  const getProject = (projectID) => {};
+  /* const getProject = (projectID) => {}; */
 
   const getProjects = () => projects;
 
@@ -48,6 +48,14 @@ const ProjectManager = (() => {
     currSelectedProj.removeTodo(todoID);
   };
 
+  const getAllTasks = () => {
+    return projects
+      .map((project) => {
+        return project.getTodos();
+      })
+      .flat();
+  };
+
   return {
     addProject,
     removeProject,
@@ -57,7 +65,13 @@ const ProjectManager = (() => {
     setSelectedProject,
     addTodoToSelectedProject,
     removeTodoFromSelectedProject,
+    getAllTasks,
   };
 })();
 
 export default ProjectManager;
+
+// get todays tasks
+// get tasks within next 7 days
+// get important tasks
+// could be one 'getFilteredTasks() based on what calls it'

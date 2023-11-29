@@ -7,6 +7,12 @@ const TodoUIManager = (() => {
   const appContent = document.querySelector("#app-content");
   const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
+
+  const allTasks = document.querySelector("#all-tasks");
+  allTasks.addEventListener("click", () => {
+    console.log(ProjectManager.getAllTasks());
+  });
+
   let previousListGroupSelection;
 
   //change to renderProjects, as it is run once on startup / or is it?
@@ -51,7 +57,7 @@ const TodoUIManager = (() => {
     if (objectToDelete === "project") {
       ProjectManager.removeProject(objectID);
       parentLi.remove();
-      mainContent.innerHTML = "";
+      mainContent.innerHTML = ""; //This needs to change
     }
     if (objectToDelete === "todo") {
       ProjectManager.removeTodoFromSelectedProject(objectID);
@@ -97,7 +103,6 @@ const TodoUIManager = (() => {
 
 export default TodoUIManager;
 
-/* helper functions */
 function determineTodoProperty(event) {
   let todoProperty = null;
   if (event.target.classList.contains("toggle-complete-btn"))
