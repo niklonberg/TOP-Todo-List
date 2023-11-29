@@ -11,7 +11,7 @@ const TodoUIManager = (() => {
   /* test, have single event listener on #home */
   const allTasks = document.querySelector("#all-tasks");
   allTasks.addEventListener("click", () => {
-    console.log(ProjectManager.getAllTasks());
+    console.log(ProjectManager.getFilteredTasks());
   });
   /* test */
 
