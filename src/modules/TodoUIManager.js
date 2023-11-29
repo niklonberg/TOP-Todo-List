@@ -1,6 +1,6 @@
 import ProjectManager from "./ProjectManager.js";
 import createListItemFromObject from "./createListItemFromObject.js";
-import renderSelectProjTodosHTML from "./renderSelectProjTodos.js";
+import createBaseGroupHTML from "./createBaseGroupHTML.js";
 
 const TodoUIManager = (() => {
   /* references */
@@ -8,10 +8,12 @@ const TodoUIManager = (() => {
   const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
 
+  /* test, have single event listener on #home */
   const allTasks = document.querySelector("#all-tasks");
   allTasks.addEventListener("click", () => {
     console.log(ProjectManager.getAllTasks());
   });
+  /* test */
 
   let previousListGroupSelection;
 
@@ -27,7 +29,7 @@ const TodoUIManager = (() => {
 
   const populateSelectGroupTodos = () => {
     mainContent.innerHTML = ""; /* bad? */
-    renderSelectProjTodosHTML(mainContent, ProjectManager.getSelectedProject());
+    createBaseGroupHTML(mainContent, ProjectManager.getSelectedProject());
     const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
     const currProjectTodosList = document.querySelector("#curr-project-todos");
 
