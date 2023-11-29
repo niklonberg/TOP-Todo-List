@@ -19,7 +19,7 @@ const TodoUIManager = (() => {
 
   //change to renderProjects, as it is run once on startup / or is it?
   const renderProjectsList = () => {
-    projectsList.innerHTML = ""; /* bad? */
+    removeHTMLContent(projectsList);
     const projects = ProjectManager.getProjects();
 
     projects.forEach((project) =>
@@ -28,7 +28,7 @@ const TodoUIManager = (() => {
   };
 
   const populateSelectGroupTodos = () => {
-    mainContent.innerHTML = ""; /* bad? */
+    removeHTMLContent(mainContent);
     createBaseGroupHTML(mainContent, ProjectManager.getSelectedProject());
     const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
     const currProjectTodosList = document.querySelector("#curr-project-todos");
@@ -124,4 +124,8 @@ function determineTodoOrProject(event) {
     return [objectToDelete, objectID, parentLi];
   }
   return [null, null];
+}
+
+function removeHTMLContent(element) {
+  element.innerHTML = "";
 }
