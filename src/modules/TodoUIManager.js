@@ -27,7 +27,7 @@ const TodoUIManager = (() => {
     );
   };
 
-  const populateSelectGroupTodos = () => {
+  const renderSelectedGroup = () => {
     removeHTMLContent(mainContent);
     createBaseGroupHTML(mainContent, ProjectManager.getSelectedProject());
     const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
@@ -75,7 +75,7 @@ const TodoUIManager = (() => {
     if (listGroupSelection !== previousListGroupSelection) {
       const projectID = +listGroupSelection.dataset.project;
       ProjectManager.setSelectedProject(projectID); //rename when you add the other groups
-      populateSelectGroupTodos(); //'today', 'important' etc.
+      renderSelectedGroup(); //'today', 'important' etc.
       previousListGroupSelection = listGroupSelection;
     }
   };
@@ -98,7 +98,7 @@ const TodoUIManager = (() => {
 
   return {
     renderProjectsList,
-    populateSelectGroupTodos,
+    renderSelectedGroup,
     addLatestItem,
   };
 })();
