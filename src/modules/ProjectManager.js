@@ -50,8 +50,8 @@ const ProjectManager = (() => {
     return todo;
   };
 
-  const deleteTodoFromSelectedProject = (todoID) => {
-    currSelectedProj.deleteTodo(todoID);
+  const removeTodoFromSelectedProject = (todoID) => {
+    currSelectedProj.removeTodo(todoID);
   };
 
   return {
@@ -62,7 +62,7 @@ const ProjectManager = (() => {
     getSelectedProjectTodos /* sure about export all of them?? */,
     setSelectedProject,
     addTodoToSelectedProject,
-    deleteTodoFromSelectedProject,
+    removeTodoFromSelectedProject,
   };
 })();
 

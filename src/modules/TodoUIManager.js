@@ -76,6 +76,20 @@ const TodoUIManager = (() => {
   };
   appContent.addEventListener("click", toggleBtnTodoProperty);
 
+  appContent.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete-item")) {
+      const btn = event.target;
+      const parentObjectDataset = btn.closest("li").dataset;
+      const objectToDelete = Object.keys(parentObjectDataset)[0];
+      const objectID = +Object.values(parentObjectDataset)[0];
+      if (objectToDelete === "project") ProjectManager.deleteProject(objectID);
+      if (objectToDelete === "todo")
+        ProjectManager.removeTodoFromSelectedProject(objectID);
+
+      console.log(ProjectManager.getProjects());
+    }
+  });
+
   return {
     populateProjects,
     populateSelectGroupTodos,
