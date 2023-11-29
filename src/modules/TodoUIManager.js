@@ -51,8 +51,7 @@ const TodoUIManager = (() => {
     if (objectToDelete === "project") {
       ProjectManager.removeProject(objectID);
       parentLi.remove();
-      //select next project if exists
-      //else empty content
+      mainContent.innerHTML = "";
     }
     if (objectToDelete === "todo") {
       ProjectManager.removeTodoFromSelectedProject(objectID);
@@ -62,18 +61,6 @@ const TodoUIManager = (() => {
     console.log(ProjectManager.getProjects());
   };
   appContent.addEventListener("click", removeSelectedItem);
-
-  function determineTodoOrProject(event) {
-    if (event.target.classList.contains("delete-item")) {
-      const btn = event.target;
-      const parentLi = btn.closest("li");
-      const parentObjectDataset = parentLi.dataset;
-      const objectToDelete = Object.keys(parentObjectDataset)[0];
-      const objectID = +Object.values(parentObjectDataset)[0];
-      return [objectToDelete, objectID, parentLi];
-    }
-    return [null, null];
-  }
 
   const showSelectedGroup = (event) => {
     const listGroupSelection = event.target.closest("li");
@@ -110,6 +97,7 @@ const TodoUIManager = (() => {
 
 export default TodoUIManager;
 
+/* helper functions */
 function determineTodoProperty(event) {
   let todoProperty = null;
   if (event.target.classList.contains("toggle-complete-btn"))
@@ -117,4 +105,16 @@ function determineTodoProperty(event) {
   if (event.target.classList.contains("toggle-important-btn"))
     todoProperty = "isImportant";
   return todoProperty;
+}
+
+function determineTodoOrProject(event) {
+  if (event.target.classList.contains("delete-item")) {
+    const btn = event.target;
+    const parentLi = btn.closest("li");
+    const parentObjectDataset = parentLi.dataset;
+    const objectToDelete = Object.keys(parentObjectDataset)[0];
+    const objectID = +Object.values(parentObjectDataset)[0];
+    return [objectToDelete, objectID, parentLi];
+  }
+  return [null, null];
 }

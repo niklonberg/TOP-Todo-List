@@ -1,7 +1,3 @@
-import createTodoForm from "./createTodoForm.js";
-import createProjectForm from "./createProjectForm.js";
-import createObjectFromForm from "./createObjectFromForm.js";
-import createAndAppendForm from "./createAndAppendForm.js";
 import ProjectManager from "./ProjectManager.js";
 import TodoUIManager from "./TodoUIManager.js";
 
@@ -59,4 +55,42 @@ export default FormManager;
 
 function determineFormType(event) {
   return event.target.id.includes("project");
+}
+
+function createTodoForm() {
+  return `
+  <form action="#" id="add-todo-form">
+    <label for="title">Title: </label>
+    <input type="text" name="title" id="title" />
+    <label for="description">Description: </label>
+    <input type="text" name="description" id="description" />
+    <label for="isImportant">Extra important?</label>
+    <input type="checkbox" name="isImportant" id="isImportant" />
+    <button type="submit">Add todo</button>
+  </form>
+  `;
+}
+
+function createProjectForm() {
+  return `
+  <form action="#" id="add-project-form">
+    <label for="title">Title: </label>
+    <input type="text" name="title" id="title" />
+    <button type="submit">Add todo</button>
+  </form>
+  `;
+}
+
+function createObjectFromForm(formInputs) {
+  return formInputs.reduce((object, item) => {
+    if (item.type === "checkbox") {
+      return { ...object, [item.id]: item.checked };
+    } else {
+      return item.value ? { ...object, [item.id]: item.value } : object;
+    }
+  }, {});
+}
+
+function createAndAppendForm(elementToAppendFormTo, formTypeTemplate) {
+  elementToAppendFormTo.insertAdjacentHTML("beforeend", formTypeTemplate);
 }
