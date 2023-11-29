@@ -31,7 +31,7 @@ const TodoUIManager = (() => {
     removeHTMLContent(mainContent);
     createBaseGroupHTML(mainContent, ProjectManager.getSelectedProject());
     const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
-    const currProjectTodosList = document.querySelector("#curr-project-todos");
+    const currProjectTodosList = document.querySelector("#curr-grouping-todos");
 
     selectedProjectTodos.forEach((project) =>
       currProjectTodosList.appendChild(createListItemFromObject(project))
@@ -40,7 +40,7 @@ const TodoUIManager = (() => {
 
   const addLatestItem = (object, isNewProject) => {
     console.log(object);
-    const currProjectTodosList = document.querySelector("#curr-project-todos");
+    const currProjectTodosList = document.querySelector("#curr-grouping-todos");
     const item = createListItemFromObject(object);
     isNewProject
       ? projectsList.appendChild(item)
