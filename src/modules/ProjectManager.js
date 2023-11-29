@@ -2,7 +2,7 @@ import TodoFactory from "./TodoFactory.js";
 import ProjectFactory from "./ProjectFactory.js";
 
 const ProjectManager = (() => {
-  const projects = [];
+  let projects = [];
   let currSelectedProj;
 
   const addProject = (projectTitle) => {
@@ -11,14 +11,8 @@ const ProjectManager = (() => {
     return project;
   };
 
-  const deleteProject = (projectID) => {
-    projects.forEach((project, index) => {
-      if (project.projectID === projectID) {
-        projects.splice(index, 1);
-      }
-    });
-    /* alt version could use filter and reassign to projects var. */
-  };
+  const removeProject = (projectID) =>
+    (projects = projects.filter((project) => project.projectID !== projectID));
 
   const getProject = (projectID) => {};
 
@@ -56,7 +50,7 @@ const ProjectManager = (() => {
 
   return {
     addProject,
-    deleteProject,
+    removeProject,
     getProjects,
     getSelectedProject,
     getSelectedProjectTodos /* sure about export all of them?? */,

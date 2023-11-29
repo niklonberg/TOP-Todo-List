@@ -39,9 +39,14 @@ const TodoUIManager = (() => {
       : currProjectTodosList.appendChild(item);
   };
 
-  const removeSelectedItem = () => {
-    //query dom for selected item and remove it
-    //all actual data changes handled by project manager
+  const removeSelectedItem = (event) => {
+    const [objectToDelete, objectID] = determineTodoOrProject(event);
+
+    if (objectToDelete === "project") ProjectManager.removeProject(objectID);
+    if (objectToDelete === "todo")
+      ProjectManager.removeTodoFromSelectedProject(objectID);
+
+    console.log(ProjectManager.getProjects());
   };
 
   const editSelectedItem = () => {
@@ -76,19 +81,7 @@ const TodoUIManager = (() => {
   };
   appContent.addEventListener("click", toggleBtnTodoProperty);
 
-  appContent.addEventListener("click", (event) => {
-    if (event.target.classList.contains("delete-item")) {
-      const btn = event.target;
-      const parentObjectDataset = btn.closest("li").dataset;
-      const objectToDelete = Object.keys(parentObjectDataset)[0];
-      const objectID = +Object.values(parentObjectDataset)[0];
-      if (objectToDelete === "project") ProjectManager.deleteProject(objectID);
-      if (objectToDelete === "todo")
-        ProjectManager.removeTodoFromSelectedProject(objectID);
-
-      console.log(ProjectManager.getProjects());
-    }
-  });
+  appContent.addEventListener("click", removeSelectedItem);
 
   return {
     populateProjects,
@@ -106,4 +99,15 @@ function determineTodoProperty(event) {
   if (event.target.classList.contains("toggle-important-btn"))
     todoProperty = "isImportant";
   return todoProperty;
+}
+
+function determineTodoOrProject(event) {
+  if (event.target.classList.contains("delete-item")) {
+    const btn = event.target;
+    const parentObjectDataset = btn.closest("li").dataset;
+    const objectToDelete = Object.keys(parentObjectDataset)[0];
+    const objectID = +Object.values(parentObjectDataset)[0];
+    return [objectToDelete, objectID];
+  }
+  return [null, null];
 }
