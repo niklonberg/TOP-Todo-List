@@ -29,7 +29,9 @@ const TodoUIManager = (() => {
 
   const renderSelectedGroup = () => {
     removeHTMLContent(mainContent);
-    createBaseGroupHTML(mainContent, ProjectManager.getSelectedProject());
+    const [h1, list] = createBaseGroupHTML(ProjectManager.getSelectedProject());
+    mainContent.append(h1, list);
+
     const selectedProjectTodos = ProjectManager.getSelectedProjectTodos();
     const currProjectTodosList = document.querySelector("#curr-grouping-todos");
 
@@ -53,6 +55,7 @@ const TodoUIManager = (() => {
     //all actual data changes handled by project manager
   };
 
+  /* revisit fn */
   const removeSelectedItem = (event) => {
     const [objectToDelete, objectID, parentLi] = determineTodoOrProject(event);
 
