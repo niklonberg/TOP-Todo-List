@@ -22,7 +22,6 @@ const TodoUIManager = (() => {
   };
 
   const renderSelectedGroup = (listGroupSelection) => {
-    console.log(listGroupSelection);
     removeHTMLContent(mainContent);
     const [h1, currGroupingTodos] = createBaseGroupHTML();
     mainContent.append(h1, currGroupingTodos);
@@ -64,19 +63,18 @@ const TodoUIManager = (() => {
     //all actual data changes handled by project manager
   };
 
-  /* revisit fn */
   const removeSelectedItem = (event) => {
     const [objectToDelete, objectID, parentLi] = determineTodoOrProject(event);
 
     if (objectToDelete === "project") {
       ProjectManager.removeProject(objectID);
-      parentLi.remove();
-      mainContent.innerHTML = ""; //This needs to change
+      renderSelectedGroup();
     }
-    if (objectToDelete === "todo") {
+
+    if (objectToDelete === "todo")
       ProjectManager.removeTodoFromSelectedProject(objectID);
-      parentLi.remove();
-    }
+
+    parentLi?.remove();
 
     console.log(ProjectManager.getProjects());
   };
