@@ -22,6 +22,10 @@ const sharedMethods = {
     return this.todos;
   },
 
+  getTodo: function (todoID) {
+    return this.todos.filter((todo) => (todo.todoID = todoID));
+  },
+
   addTodo: function (todo) {
     this.todos.push(todo);
   },

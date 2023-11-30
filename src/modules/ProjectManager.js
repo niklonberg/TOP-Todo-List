@@ -50,6 +50,12 @@ const ProjectManager = (() => {
     });
   };
 
+  const toggleSelectedTodoProperty = (todoID, todoProperty) => {
+    projects.forEach((project) => {
+      project.toggleTodoBoolProperty(todoID, todoProperty);
+    });
+  };
+
   const getFilteredTasks = (listGroupSelectionID = "all-tasks") => {
     if (listGroupSelectionID === "all-tasks") {
       return projects
@@ -81,6 +87,7 @@ const ProjectManager = (() => {
     setSelectedProject,
     addTodoToSelectedProject,
     removeSelectedTodo,
+    toggleSelectedTodoProperty,
     getFilteredTasks,
   };
 })();

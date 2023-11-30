@@ -79,16 +79,15 @@ const TodoUIManager = (() => {
   };
   appContent.addEventListener("click", removeSelectedItem);
 
+  /* make this work when in other views like all tasks, important etc. */
   const toggleBtnTodoProperty = (event) => {
     let todoProperty = determineTodoProperty(event);
 
     if (todoProperty) {
       const btn = event.target;
-      const todoID = +btn.parentElement.dataset.todo;
-      ProjectManager.getSelectedProject().toggleTodoBoolProperty(
-        todoID,
-        todoProperty
-      );
+      const todoID = +btn.closest("li").dataset.todo;
+      /* this is the problem */
+      ProjectManager.toggleSelectedTodoProperty(todoID, todoProperty);
       console.log(ProjectManager.getSelectedProject());
     }
   };
