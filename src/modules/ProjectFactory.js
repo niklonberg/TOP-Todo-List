@@ -23,7 +23,7 @@ const sharedMethods = {
   },
 
   getTodo: function (todoID) {
-    return this.todos.filter((todo) => (todo.todoID = todoID));
+    return this.todos.find((todo) => todo.todoID === todoID);
   },
 
   addTodo: function (todo) {
@@ -35,7 +35,7 @@ const sharedMethods = {
   },
 
   toggleTodoBoolProperty: function (todoID, todoProperty) {
-    const targetTodo = this.todos.find((todo) => todo.todoID === todoID);
+    const targetTodo = this.getTodo(todoID);
     targetTodo[todoProperty] = !targetTodo[todoProperty];
   },
 

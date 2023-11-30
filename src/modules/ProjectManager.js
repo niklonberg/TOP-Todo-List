@@ -51,9 +51,10 @@ const ProjectManager = (() => {
   };
 
   const toggleSelectedTodoProperty = (todoID, todoProperty) => {
-    projects.forEach((project) => {
-      project.toggleTodoBoolProperty(todoID, todoProperty);
-    });
+    console.log(todoID, todoProperty);
+    projects
+      .find((project) => project.getTodo(todoID))
+      .toggleTodoBoolProperty(todoID, todoProperty);
   };
 
   const getFilteredTasks = (listGroupSelectionID = "all-tasks") => {

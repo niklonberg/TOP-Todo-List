@@ -88,7 +88,6 @@ const TodoUIManager = (() => {
       const todoID = +btn.closest("li").dataset.todo;
       /* this is the problem */
       ProjectManager.toggleSelectedTodoProperty(todoID, todoProperty);
-      console.log(ProjectManager.getSelectedProject());
     }
   };
   appContent.addEventListener("click", toggleBtnTodoProperty);
