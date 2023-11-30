@@ -59,24 +59,22 @@ const TodoUIManager = (() => {
 
   const editSelectedItem = (event) => {
     const [isDeleteAction, isEditAction] = determineEditOrDeleteAction(event);
-    const [objectToDelete, objectID, parentLi] = determineTodoOrProject(event);
+    const [objectToDelete, objectID, parentLi] =
+      isDeleteAction || isEditAction ? determineTodoOrProject(event) : null;
 
-    //if delete button was pressed
-    //run removeSelectedItem
-    if (isEditAction) removeSelectedItem();
+    if (isDeleteAction) removeSelectedItem(objectToDelete, objectID, parentLi);
 
     //if edit button was pressed
     //continue with running editSelectedItem
     //tells formManager to create form to edit in
 
-    if (isDeleteAction) {
-    }
+    /* if (isEditAction) {
+    } */
     //all actual data changes handled by project manager
   };
+  appContent.addEventListener("click", editSelectedItem);
 
-  const removeSelectedItem = (event) => {
-    const [objectToDelete, objectID, parentLi] = determineTodoOrProject(event);
-
+  const removeSelectedItem = (objectToDelete, objectID, parentLi) => {
     if (objectToDelete === "project") {
       ProjectManager.removeSelectedProject(objectID);
       renderSelectedGroup();
@@ -88,7 +86,6 @@ const TodoUIManager = (() => {
 
     console.log(ProjectManager.getProjects());
   };
-  appContent.addEventListener("click", removeSelectedItem);
 
   function determineEditOrDeleteAction(event) {
     const isDeleteAction = event.target.classList.contains("delete-item")
@@ -101,17 +98,11 @@ const TodoUIManager = (() => {
   }
 
   function determineTodoOrProject(event) {
-    if (
-      event.target.classList.contains("delete-item") ||
-      event.target.classList.contains("edit-item")
-    ) {
-      const parentLi = event.target.closest("li");
-      const parentObjectDataset = parentLi.dataset;
-      const objectToDelete = Object.keys(parentObjectDataset)[0];
-      const objectID = +Object.values(parentObjectDataset)[0];
-      return [objectToDelete, objectID, parentLi];
-    }
-    return [null, null];
+    const parentLi = event.target.closest("li");
+    const parentObjectDataset = parentLi.dataset;
+    const objectToDelete = Object.keys(parentObjectDataset)[0];
+    const objectID = +Object.values(parentObjectDataset)[0];
+    return [objectToDelete, objectID, parentLi];
   }
 
   const toggleBtnTodoProperty = (event) => {
