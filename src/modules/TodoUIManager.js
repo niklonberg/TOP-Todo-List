@@ -22,8 +22,9 @@ const TodoUIManager = (() => {
   };
 
   const renderSelectedGroup = (listGroupSelection) => {
+    console.log(listGroupSelection);
     removeHTMLContent(mainContent);
-    const [h1, currGroupingTodos] = createBaseGroupHTML();
+    const [h1, currGroupingTodos] = createBaseGroupHTML(listGroupSelection);
     mainContent.append(h1, currGroupingTodos);
 
     const selectedGroupTodos =
@@ -31,8 +32,8 @@ const TodoUIManager = (() => {
         ? ProjectManager.getSelectedProjectTodos()
         : ProjectManager.getFilteredTasks(listGroupSelection?.id);
 
-    selectedGroupTodos.forEach((project) =>
-      currGroupingTodos.appendChild(createListItemFromObject(project))
+    selectedGroupTodos.forEach((grouping) =>
+      currGroupingTodos.appendChild(createListItemFromObject(grouping))
     );
   };
 
