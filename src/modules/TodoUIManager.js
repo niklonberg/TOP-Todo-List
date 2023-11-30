@@ -1,3 +1,4 @@
+import FormManager from "./FormManager.js";
 import ProjectManager from "./ProjectManager.js";
 import createListItemFromObject from "./createListItemFromObject.js";
 import createBaseGroupHTML from "./createBaseGroupHTML.js";
@@ -8,7 +9,6 @@ const TodoUIManager = (() => {
   const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
   const sideBar = document.querySelector("#side-bar");
-
   let previousListGroupSelection;
 
   const renderProjectsList = () => {
@@ -59,18 +59,15 @@ const TodoUIManager = (() => {
 
   const editSelectedItem = (event) => {
     const [isDeleteAction, isEditAction] = determineEditOrDeleteAction(event);
-    const [objectToDelete, objectID, parentLi] =
+    const [object, objectID, parentLi] =
       isDeleteAction || isEditAction ? determineTodoOrProject(event) : null;
 
-    if (isDeleteAction) removeSelectedItem(objectToDelete, objectID, parentLi);
+    if (isDeleteAction) removeSelectedItem(object, objectID, parentLi);
 
-    //if edit button was pressed
-    //continue with running editSelectedItem
-    //tells formManager to create form to edit in
-
-    /* if (isEditAction) {
-    } */
-    //all actual data changes handled by project manager
+    if (isEditAction) {
+      console.log(object, objectID, parentLi);
+      //get formmanager in
+    }
   };
   appContent.addEventListener("click", editSelectedItem);
 
@@ -100,9 +97,9 @@ const TodoUIManager = (() => {
   function determineTodoOrProject(event) {
     const parentLi = event.target.closest("li");
     const parentObjectDataset = parentLi.dataset;
-    const objectToDelete = Object.keys(parentObjectDataset)[0];
+    const object = Object.keys(parentObjectDataset)[0];
     const objectID = +Object.values(parentObjectDataset)[0];
-    return [objectToDelete, objectID, parentLi];
+    return [object, objectID, parentLi];
   }
 
   const toggleBtnTodoProperty = (event) => {
