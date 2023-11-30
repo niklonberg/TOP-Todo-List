@@ -72,8 +72,7 @@ const TodoUIManager = (() => {
       renderSelectedGroup();
     }
 
-    if (objectToDelete === "todo")
-      ProjectManager.removeTodoFromSelectedProject(objectID);
+    if (objectToDelete === "todo") ProjectManager.removeSelectedTodo(objectID);
 
     parentLi?.remove();
 

@@ -44,9 +44,10 @@ const ProjectManager = (() => {
     return todo;
   };
 
-  /* need to be able to remove todos from any project, hmm.. */
-  const removeTodoFromSelectedProject = (todoID) => {
-    currSelectedProj.removeTodo(todoID);
+  const removeSelectedTodo = (todoID) => {
+    projects.forEach((project) => {
+      project.removeTodo(todoID);
+    });
   };
 
   const getFilteredTasks = (listGroupSelectionID = "all-tasks") => {
@@ -79,7 +80,7 @@ const ProjectManager = (() => {
     getSelectedProjectTodos /* sure about export all of them?? */,
     setSelectedProject,
     addTodoToSelectedProject,
-    removeTodoFromSelectedProject,
+    removeSelectedTodo,
     getFilteredTasks,
   };
 })();
