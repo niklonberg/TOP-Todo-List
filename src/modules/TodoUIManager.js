@@ -57,9 +57,20 @@ const TodoUIManager = (() => {
       : currGroupTodosList.appendChild(item);
   };
 
-  const editSelectedItem = () => {
-    //update selected items textContent
+  const editSelectedItem = (event) => {
+    const [isDeleteAction, isEditAction] = determineEditOrDeleteAction(event);
+    const [objectToDelete, objectID, parentLi] = determineTodoOrProject(event);
+
+    //if delete button was pressed
+    //run removeSelectedItem
+    if (isEditAction) removeSelectedItem();
+
+    //if edit button was pressed
+    //continue with running editSelectedItem
     //tells formManager to create form to edit in
+
+    if (isDeleteAction) {
+    }
     //all actual data changes handled by project manager
   };
 
@@ -79,14 +90,28 @@ const TodoUIManager = (() => {
   };
   appContent.addEventListener("click", removeSelectedItem);
 
-  /* make this work when in other views like all tasks, important etc. */
+  function determineEditOrDeleteAction(event) {}
+
+  function determineTodoOrProject(event) {
+    if (
+      event.target.classList.contains("delete-item") ||
+      event.target.classList.contains("edit-item")
+    ) {
+      const parentLi = event.target.closest("li");
+      const parentObjectDataset = parentLi.dataset;
+      const objectToDelete = Object.keys(parentObjectDataset)[0];
+      const objectID = +Object.values(parentObjectDataset)[0];
+      return [objectToDelete, objectID, parentLi];
+    }
+    return [null, null];
+  }
+
   const toggleBtnTodoProperty = (event) => {
     let todoProperty = determineTodoProperty(event);
 
     if (todoProperty) {
       const btn = event.target;
       const todoID = +btn.closest("li").dataset.todo;
-      /* this is the problem */
       ProjectManager.toggleSelectedTodoProperty(todoID, todoProperty);
     }
   };
@@ -108,18 +133,6 @@ function determineTodoProperty(event) {
   if (event.target.classList.contains("toggle-important-btn"))
     todoProperty = "isImportant";
   return todoProperty;
-}
-
-function determineTodoOrProject(event) {
-  if (event.target.classList.contains("delete-item")) {
-    const btn = event.target;
-    const parentLi = btn.closest("li");
-    const parentObjectDataset = parentLi.dataset;
-    const objectToDelete = Object.keys(parentObjectDataset)[0];
-    const objectID = +Object.values(parentObjectDataset)[0];
-    return [objectToDelete, objectID, parentLi];
-  }
-  return [null, null];
 }
 
 function removeHTMLContent(element) {
