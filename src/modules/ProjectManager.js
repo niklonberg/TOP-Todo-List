@@ -11,7 +11,7 @@ const ProjectManager = (() => {
     return project;
   };
 
-  const removeProject = (projectID) =>
+  const removeSelectedProject = (projectID) =>
     (projects = projects.filter((project) => project.projectID !== projectID));
 
   /* const getProject = (projectID) => {}; */
@@ -74,7 +74,7 @@ const ProjectManager = (() => {
 
   return {
     addProject,
-    removeProject,
+    removeSelectedProject,
     getProjects,
     getSelectedProject,
     getSelectedProjectTodos /* sure about export all of them?? */,
@@ -86,8 +86,3 @@ const ProjectManager = (() => {
 })();
 
 export default ProjectManager;
-
-// get todays tasks
-// get tasks within next 7 days
-// get important tasks
-// could be one 'getFilteredTasks() based on what calls it'

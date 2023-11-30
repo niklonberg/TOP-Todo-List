@@ -11,7 +11,6 @@ const TodoUIManager = (() => {
 
   let previousListGroupSelection;
 
-  //change to renderProjects, as it is run once on startup / or is it?
   const renderProjectsList = () => {
     removeHTMLContent(projectsList);
     const projects = ProjectManager.getProjects();
@@ -68,7 +67,7 @@ const TodoUIManager = (() => {
     const [objectToDelete, objectID, parentLi] = determineTodoOrProject(event);
 
     if (objectToDelete === "project") {
-      ProjectManager.removeProject(objectID);
+      ProjectManager.removeSelectedProject(objectID);
       renderSelectedGroup();
     }
 
