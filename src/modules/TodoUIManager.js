@@ -21,12 +21,16 @@ const TodoUIManager = (() => {
     );
   };
 
-  const renderSelectedGroup = () => {
-    removeHTMLContent(mainContent); /* edit below me */
+  const renderSelectedGroup = (listGroupSelection) => {
+    console.log(listGroupSelection);
+    removeHTMLContent(mainContent);
     const [h1, currGroupingTodos] = createBaseGroupHTML();
     mainContent.append(h1, currGroupingTodos);
 
-    const selectedGroupTodos = ProjectManager.getSelectedProjectTodos();
+    const selectedGroupTodos =
+      listGroupSelection && listGroupSelection.dataset.project
+        ? ProjectManager.getSelectedProjectTodos()
+        : ProjectManager.getFilteredTasks(listGroupSelection?.id);
 
     selectedGroupTodos.forEach((project) =>
       currGroupingTodos.appendChild(createListItemFromObject(project))
@@ -36,10 +40,10 @@ const TodoUIManager = (() => {
   const showSelectedGroup = (event) => {
     const listGroupSelection = event.target.closest("li");
     if (listGroupSelection !== previousListGroupSelection) {
-      const projectID = +listGroupSelection.dataset.project ?? null;
-      if (projectID !== null) ProjectManager.setSelectedProject(projectID);
-      console.log(listGroupSelection);
-      renderSelectedGroup(); //'today', 'important' etc.
+      const projectID = listGroupSelection.dataset.project;
+      if (projectID !== undefined)
+        ProjectManager.setSelectedProject(+projectID);
+      renderSelectedGroup(listGroupSelection);
       previousListGroupSelection = listGroupSelection;
     }
   };

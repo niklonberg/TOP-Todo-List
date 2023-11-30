@@ -49,23 +49,23 @@ const ProjectManager = (() => {
     currSelectedProj.removeTodo(todoID);
   };
 
-  const getFilteredTasks = (someFlag) => {
-    if (someFlag === "all") {
+  const getFilteredTasks = (listGroupSelectionID = "all-tasks") => {
+    if (listGroupSelectionID === "all-tasks") {
       return projects
         .map((project) => {
           return project.getTodos();
         })
         .flat();
     }
-    if (someFlag === "today") {
+    if (listGroupSelectionID === "today-tasks") {
       // filter through all projects todos
       // return the ones with a date obj of today
     }
-    if (someFlag === "week") {
+    if (someFlag === "week-tasks") {
       // filter through all projects todos
       // return the ones with a date within next 7 days
     }
-    if (someFlag === "important") {
+    if (someFlag === "important-tasks") {
       // filter through all projects todos
       // return the ones with a isImportant === true
     }
