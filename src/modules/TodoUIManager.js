@@ -90,7 +90,15 @@ const TodoUIManager = (() => {
   };
   appContent.addEventListener("click", removeSelectedItem);
 
-  function determineEditOrDeleteAction(event) {}
+  function determineEditOrDeleteAction(event) {
+    const isDeleteAction = event.target.classList.contains("delete-item")
+      ? true
+      : false;
+    const isEditAction = event.target.classList.contains("edit-item")
+      ? true
+      : false;
+    return [isDeleteAction, isEditAction];
+  }
 
   function determineTodoOrProject(event) {
     if (
