@@ -14,7 +14,7 @@ const FormManager = (() => {
   let editFormExists;
 
   const createForm = (event, object, objectID, parentElement) => {
-    const elementToAppendFormTo =
+    const elementToChange =
       parentElement || event.target.previousElementSibling;
 
     const itemToEdit = object
@@ -28,26 +28,44 @@ const FormManager = (() => {
       ? createProjectForm(itemToEdit)
       : createTodoForm(itemToEdit);
 
-    createAndAppendForm(elementToAppendFormTo, formTypeTemplate);
+    createAndAppendForm(elementToChange, formTypeTemplate);
 
-    const form = elementToAppendFormTo.querySelector("form");
-    initializeForm(form, isProjectForm);
+    const form = elementToChange.querySelector("form");
+    initializeForm(form, isProjectForm, itemToEdit, elementToChange);
   };
   createNewProjectBtn.addEventListener("click", createForm);
   createNewTodoBtn.addEventListener("click", createForm);
 
-  const initializeForm = (form, isProjectForm) => {
+  const initializeForm = (form, isProjectForm, itemToEdit, elementToChange) => {
     const submitHandler = (event) => {
-      handleFormSubmit(event, form, isProjectForm);
+      handleFormSubmit(event, form, isProjectForm, itemToEdit, elementToChange);
       form.removeEventListener("submit", submitHandler);
       form.remove();
     };
     form.addEventListener("submit", submitHandler);
   };
 
-  const handleFormSubmit = (event, form, isProjectForm) => {
+  const handleFormSubmit = (
+    event,
+    form,
+    isProjectForm,
+    itemToEdit,
+    elementToChange
+  ) => {
     event.preventDefault();
     const templateObj = createObjectFromForm(getInputElements(form));
+    console.log(templateObj);
+    //if is edit action
+    if (itemToEdit) {
+      //send templateObj to TodoUIManager
+      TodoUIManager.updateEditedItem(templateObj, elementToChange);
+      //run ProjectManager.editProject
+      //or run ProjectManager.editTodo
+      return;
+    }
+    //do above and return
+
+    //otherwise continue and do below
     const object = isProjectForm
       ? ProjectManager.addProject(templateObj)
       : ProjectManager.addTodoToSelectedProject(templateObj);

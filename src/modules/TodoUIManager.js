@@ -52,6 +52,7 @@ const TodoUIManager = (() => {
     console.log(object);
     const currGroupTodosList = document.querySelector("#curr-grouping-todos");
     const item = createListItemFromObject(object);
+    console.log(item);
     isNewProject
       ? projectsList.appendChild(item)
       : currGroupTodosList.appendChild(item);
@@ -64,11 +65,15 @@ const TodoUIManager = (() => {
 
     if (isDeleteAction) removeSelectedItem(object, objectID, parentLi);
 
-    if (isEditAction) {
-      FormManager.createForm(event, object, objectID, parentLi);
-    }
+    if (isEditAction) FormManager.createForm(event, object, objectID, parentLi);
   };
   appContent.addEventListener("click", editSelectedItem);
+
+  const updateEditedItem = (templateObj, elementToChange) => {
+    const newItem = createListItemFromObject(templateObj);
+    console.log(templateObj, elementToChange, newItem);
+    elementToChange.innerHTML = newItem.innerHTML;
+  };
 
   const removeSelectedItem = (objectToDelete, objectID, parentLi) => {
     if (objectToDelete === "project") {
@@ -118,6 +123,7 @@ const TodoUIManager = (() => {
     renderProjectsList,
     renderSelectedGroup,
     addLatestItem,
+    updateEditedItem,
   };
 })();
 
