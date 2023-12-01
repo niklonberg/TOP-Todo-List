@@ -26,11 +26,16 @@ const FormManager = (() => {
   const createEditForm = (event, object, objectID, parentLi) => {
     console.log(object, objectID, parentLi);
     console.log(event.target);
+    let ItemToEdit;
+    if (object === "project") {
+      ItemToEdit = ProjectManager.getProject(objectID);
+      console.log(ItemToEdit);
+    }
 
     const isProjectEdit = determineFormType(object);
     const formTypeTemplate = isProjectEdit
-      ? createProjectForm()
-      : createTodoForm();
+      ? createProjectForm(ItemToEdit)
+      : createTodoForm(ItemToEdit);
 
     createAndAppendForm(parentLi, formTypeTemplate);
   };
@@ -68,11 +73,13 @@ function determineFormType(objectType) {
   return objectType.includes("project") || objectType === "project";
 }
 
-function createProjectForm() {
+function createProjectForm(project) {
+  const titleAttribute = project?.title ? `${project.title}` : "";
+
   return `
   <form action="#" id="add-project-form">
     <label for="title">Title: </label>
-    <input type="text" name="title" id="title" />
+    <input type="text" name="title" id="title" value="${titleAttribute}" />
     <button type="submit">Add todo</button>
   </form>
   `;

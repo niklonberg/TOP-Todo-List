@@ -14,7 +14,8 @@ const ProjectManager = (() => {
   const removeSelectedProject = (projectID) =>
     (projects = projects.filter((project) => project.projectID !== projectID));
 
-  /* const getProject = (projectID) => {}; */
+  const getProject = (projectID) =>
+    projects.find((project) => project.projectID === projectID);
 
   const getProjects = () => projects;
 
@@ -83,6 +84,7 @@ const ProjectManager = (() => {
     addProject,
     removeSelectedProject,
     getProjects,
+    getProject,
     getSelectedProject,
     getSelectedProjectTodos /* sure about export all of them?? */,
     setSelectedProject,
