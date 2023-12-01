@@ -24,6 +24,10 @@ const FormManager = (() => {
   createNewProjectBtn.addEventListener("click", createAddForm);
   createNewTodoBtn.addEventListener("click", createAddForm);
 
+  const createEditForm = (object, objectID, parentLi) => {
+    console.log(object, objectID, parentLi);
+  };
+
   const initializeForm = (form, isNewProject) => {
     const submitHandler = (event) => {
       handleFormSubmit(event, form, isNewProject);
@@ -41,10 +45,6 @@ const FormManager = (() => {
       : ProjectManager.addTodoToSelectedProject(templateObj);
 
     TodoUIManager.addLatestItem(object, isNewProject);
-  };
-
-  const createEditForm = (object, objectID, parentLi) => {
-    console.log(object, objectID, parentLi);
   };
 
   const getInputElements = (form) =>
