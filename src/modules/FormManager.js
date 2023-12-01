@@ -10,7 +10,7 @@ const FormManager = (() => {
     const elementToAppendFormTo = event.target.previousElementSibling;
     if (elementToAppendFormTo.querySelector("form")) return;
 
-    const isNewProject = determineFormType(event);
+    const isNewProject = determineFormType(event.target.id);
 
     const formTypeTemplate = isNewProject
       ? createProjectForm()
@@ -24,8 +24,12 @@ const FormManager = (() => {
   createNewProjectBtn.addEventListener("click", createAddForm);
   createNewTodoBtn.addEventListener("click", createAddForm);
 
-  const createEditForm = (object, objectID, parentLi) => {
+  const createEditForm = (event, object, objectID, parentLi) => {
     console.log(object, objectID, parentLi);
+    console.log(event.target);
+
+    const isProjectEdit = determineFormType(object);
+    console.log(isProjectEdit);
   };
 
   const initializeForm = (form, isNewProject) => {
@@ -57,8 +61,8 @@ const FormManager = (() => {
 
 export default FormManager;
 
-function determineFormType(event) {
-  return event.target.id.includes("project");
+function determineFormType(objectType) {
+  return objectType.includes("project") || objectType === "project";
 }
 
 function createProjectForm() {
