@@ -51,6 +51,11 @@ const ProjectManager = (() => {
     });
   };
 
+  const getSelectedTodo = (todoID) => {
+    const projectWithTodo = projects.find((project) => project.getTodo(todoID));
+    return projectWithTodo.getTodo(todoID);
+  };
+
   const toggleSelectedTodoProperty = (todoID, todoProperty) => {
     console.log(todoID, todoProperty);
     projects
@@ -90,6 +95,7 @@ const ProjectManager = (() => {
     setSelectedProject,
     addTodoToSelectedProject,
     removeSelectedTodo,
+    getSelectedTodo,
     toggleSelectedTodoProperty,
     getFilteredTasks,
   };

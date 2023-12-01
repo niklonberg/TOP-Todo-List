@@ -26,16 +26,18 @@ const FormManager = (() => {
   const createEditForm = (event, object, objectID, parentLi) => {
     console.log(object, objectID, parentLi);
     console.log(event.target);
-    let ItemToEdit;
+    let itemToEdit;
     if (object === "project") {
-      ItemToEdit = ProjectManager.getProject(objectID);
-      console.log(ItemToEdit);
+      itemToEdit = ProjectManager.getProject(objectID);
+    } else {
+      itemToEdit = ProjectManager.getSelectedTodo(objectID);
+      console.log(itemToEdit);
     }
 
     const isProjectEdit = determineFormType(object);
     const formTypeTemplate = isProjectEdit
-      ? createProjectForm(ItemToEdit)
-      : createTodoForm(ItemToEdit);
+      ? createProjectForm(itemToEdit)
+      : createTodoForm(itemToEdit);
 
     createAndAppendForm(parentLi, formTypeTemplate);
   };
@@ -85,7 +87,7 @@ function createProjectForm(project) {
   `;
 }
 
-function createTodoForm() {
+function createTodoForm(todo) {
   return `
   <form action="#" id="add-todo-form">
     <label for="title">Title: </label>
