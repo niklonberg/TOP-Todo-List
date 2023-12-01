@@ -11,7 +11,6 @@ const FormManager = (() => {
     if (elementToAppendFormTo.querySelector("form")) return;
 
     const isNewProject = determineFormType(event.target.id);
-
     const formTypeTemplate = isNewProject
       ? createProjectForm()
       : createTodoForm();
@@ -29,7 +28,11 @@ const FormManager = (() => {
     console.log(event.target);
 
     const isProjectEdit = determineFormType(object);
-    console.log(isProjectEdit);
+    const formTypeTemplate = isProjectEdit
+      ? createProjectForm()
+      : createTodoForm();
+
+    createAndAppendForm(parentLi, formTypeTemplate);
   };
 
   const initializeForm = (form, isNewProject) => {
@@ -100,5 +103,7 @@ function createObjectFromForm(formInputs) {
 }
 
 function createAndAppendForm(elementToAppendFormTo, formTypeTemplate) {
-  elementToAppendFormTo.insertAdjacentHTML("beforeend", formTypeTemplate);
+  elementToAppendFormTo.tagName === "LI"
+    ? (elementToAppendFormTo.innerHTML = formTypeTemplate)
+    : elementToAppendFormTo.insertAdjacentHTML("beforeend", formTypeTemplate);
 }
