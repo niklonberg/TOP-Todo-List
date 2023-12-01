@@ -6,66 +6,60 @@ const FormManager = (() => {
   const createNewTodoBtn = document.querySelector("#create-new-todo");
   const createNewProjectBtn = document.querySelector("#create-new-project");
 
-  const createAddForm = (event) => {
-    const elementToAppendFormTo = event.target.previousElementSibling;
-    if (elementToAppendFormTo.querySelector("form")) return;
+  //variable that tracks if editForm exists
+  //variable that tracks if addForm exists
+  /* that way can avoid trying to do multiple create/edit actions at a time
+  and also having to track which element currently contains a form */
+  let addFormExists;
+  let editFormExists;
 
-    const isNewProject = determineFormType(event.target.id);
-    const formTypeTemplate = isNewProject
-      ? createProjectForm()
-      : createTodoForm();
+  const createForm = (event, object, objectID, parentElement) => {
+    const elementToAppendFormTo =
+      parentElement || event.target.previousElementSibling;
+
+    const itemToEdit = object
+      ? object === "project"
+        ? ProjectManager.getProject(objectID)
+        : ProjectManager.getSelectedTodo(objectID)
+      : null;
+
+    const isProjectForm = determineFormType(object || event.target.id);
+    const formTypeTemplate = isProjectForm
+      ? createProjectForm(itemToEdit)
+      : createTodoForm(itemToEdit);
 
     createAndAppendForm(elementToAppendFormTo, formTypeTemplate);
 
     const form = elementToAppendFormTo.querySelector("form");
-    initializeForm(form, isNewProject);
+    initializeForm(form, isProjectForm);
   };
-  createNewProjectBtn.addEventListener("click", createAddForm);
-  createNewTodoBtn.addEventListener("click", createAddForm);
+  createNewProjectBtn.addEventListener("click", createForm);
+  createNewTodoBtn.addEventListener("click", createForm);
 
-  const createEditForm = (event, object, objectID, parentLi) => {
-    console.log(object, objectID, parentLi);
-    console.log(event.target);
-    let itemToEdit;
-    if (object === "project") {
-      itemToEdit = ProjectManager.getProject(objectID);
-    } else {
-      itemToEdit = ProjectManager.getSelectedTodo(objectID);
-      console.log(itemToEdit);
-    }
-
-    const isProjectEdit = determineFormType(object);
-    const formTypeTemplate = isProjectEdit
-      ? createProjectForm(itemToEdit)
-      : createTodoForm(itemToEdit);
-
-    createAndAppendForm(parentLi, formTypeTemplate);
-  };
-
-  const initializeForm = (form, isNewProject) => {
+  const initializeForm = (form, isProjectForm) => {
     const submitHandler = (event) => {
-      handleFormSubmit(event, form, isNewProject);
+      handleFormSubmit(event, form, isProjectForm);
       form.removeEventListener("submit", submitHandler);
       form.remove();
     };
     form.addEventListener("submit", submitHandler);
   };
 
-  const handleFormSubmit = (event, form, isNewProject) => {
+  const handleFormSubmit = (event, form, isProjectForm) => {
     event.preventDefault();
     const templateObj = createObjectFromForm(getInputElements(form));
-    const object = isNewProject
+    const object = isProjectForm
       ? ProjectManager.addProject(templateObj)
       : ProjectManager.addTodoToSelectedProject(templateObj);
 
-    TodoUIManager.addLatestItem(object, isNewProject);
+    TodoUIManager.addLatestItem(object, isProjectForm);
   };
 
   const getInputElements = (form) =>
     [...form.elements].filter((item) => item.tagName === "INPUT");
 
   return {
-    createEditForm,
+    createForm,
   };
 })();
 

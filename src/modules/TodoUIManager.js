@@ -65,7 +65,7 @@ const TodoUIManager = (() => {
     if (isDeleteAction) removeSelectedItem(object, objectID, parentLi);
 
     if (isEditAction) {
-      FormManager.createEditForm(event, object, objectID, parentLi);
+      FormManager.createForm(event, object, objectID, parentLi);
     }
   };
   appContent.addEventListener("click", editSelectedItem);
