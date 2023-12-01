@@ -83,6 +83,7 @@ const TodoUIManager = (() => {
     console.log(ProjectManager.getProjects());
   };
 
+  /* move down */
   function determineEditOrDeleteAction(event) {
     const isDeleteAction = event.target.classList.contains("delete-item")
       ? true
@@ -93,6 +94,7 @@ const TodoUIManager = (() => {
     return [isDeleteAction, isEditAction];
   }
 
+  /* move down */
   function determineTodoOrProject(event) {
     const parentLi = event.target.closest("li");
     const parentObjectDataset = parentLi.dataset;

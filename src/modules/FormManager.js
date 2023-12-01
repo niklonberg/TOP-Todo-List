@@ -6,7 +6,7 @@ const FormManager = (() => {
   const createNewTodoBtn = document.querySelector("#create-new-todo");
   const createNewProjectBtn = document.querySelector("#create-new-project");
 
-  const handleBtnCreateFormClick = (event) => {
+  const createAddForm = (event) => {
     const elementToAppendFormTo = event.target.previousElementSibling;
     if (elementToAppendFormTo.querySelector("form")) return;
 
@@ -21,8 +21,8 @@ const FormManager = (() => {
     const form = elementToAppendFormTo.querySelector("form");
     initializeForm(form, isNewProject);
   };
-  createNewProjectBtn.addEventListener("click", handleBtnCreateFormClick);
-  createNewTodoBtn.addEventListener("click", handleBtnCreateFormClick);
+  createNewProjectBtn.addEventListener("click", createAddForm);
+  createNewTodoBtn.addEventListener("click", createAddForm);
 
   const initializeForm = (form, isNewProject) => {
     const submitHandler = (event) => {
