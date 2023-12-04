@@ -47,7 +47,6 @@ const ProjectManager = (() => {
     return projectWithTodo.getTodo(todoID);
   };
 
-  /* refactor me */
   const removeSelectedTodo = (todoID) => {
     const projectWithTodo = projects.find((project) => project.getTodo(todoID));
     projectWithTodo.removeTodo(todoID);
@@ -62,13 +61,11 @@ const ProjectManager = (() => {
     console.log(projects);
   };
 
-  /* refactor me */
-  const toggleSelectedTodoProperty = (todoID, todoProperty) => {
-    console.log(todoID, todoProperty);
-    projects
-      .find((project) => project.getTodo(todoID))
-      .toggleTodoBoolProperty(todoID, todoProperty);
-  };
+  const toggleSelectedTodoProperty = (todoID, todoProperty) =>
+    getProjectFromTodoID(todoID).toggleTodoBoolProperty(todoID, todoProperty);
+
+  const getProjectFromTodoID = (todoID) =>
+    projects.find((project) => project.getTodo(todoID));
 
   const getFilteredTasks = (listGroupSelectionID = "all-tasks") => {
     if (listGroupSelectionID === "all-tasks") {

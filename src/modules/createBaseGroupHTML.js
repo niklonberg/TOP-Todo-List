@@ -1,7 +1,6 @@
 import createElement from "./createElement.js";
 
 function createBaseGroupHTML(listGroupSelection) {
-  console.log(listGroupSelection);
   const h1 = createElement("h1", "test", "grouping-title");
   h1.textContent =
     listGroupSelection?.querySelector("h3").textContent ?? "All Tasks";
