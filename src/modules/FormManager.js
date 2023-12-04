@@ -8,6 +8,16 @@ const FormManager = (() => {
   let projectFormExists = false;
   let todoFormExists = false;
 
+  const limitFormCount = (isProjectForm) => {
+    if (isProjectForm && projectFormExists) return true;
+    if (!isProjectForm && todoFormExists) return true;
+    return false;
+  };
+
+  const toggleProjectTodoExisting = (boolean, isProjectForm) => {
+    isProjectForm ? (projectFormExists = boolean) : (todoFormExists = boolean);
+  };
+
   const createForm = (event, object, objectID, parentElement) => {
     console.log("project form exists: ", projectFormExists);
     console.log("todo form exists: ", todoFormExists);
@@ -92,16 +102,6 @@ export default FormManager;
 function determineFormType(objectType) {
   console.log(objectType);
   return objectType.includes("project") || objectType === "project";
-}
-
-function limitFormCount(isProjectForm) {
-  if (isProjectForm && projectFormExists) return true;
-  if (!isProjectForm && todoFormExists) return true;
-  return false;
-}
-
-function toggleProjectTodoExisting(boolean, isProjectForm) {
-  isProjectForm ? (projectFormExists = boolean) : (todoFormExists = boolean);
 }
 
 function createProjectForm(project) {

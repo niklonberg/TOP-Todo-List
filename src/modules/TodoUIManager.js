@@ -60,6 +60,7 @@ const TodoUIManager = (() => {
 
   const editSelectedItem = (event) => {
     const [isDeleteAction, isEditAction] = determineEditOrDeleteAction(event);
+    if (!isDeleteAction && !isEditAction) return;
     const [object, objectID, parentLi] =
       isDeleteAction || isEditAction ? determineTodoOrProject(event) : null;
 
