@@ -42,15 +42,11 @@ const ProjectManager = (() => {
   /* refactor me? */
   const getSelectedTodo = (todoID) => {
     const projectWithTodo = projects.find((project) => project.getTodo(todoID));
-    console.log(projectWithTodo);
-    console.log(projectWithTodo.getTodo(todoID));
     return projectWithTodo.getTodo(todoID);
   };
 
-  const removeSelectedTodo = (todoID) => {
-    const projectWithTodo = projects.find((project) => project.getTodo(todoID));
-    projectWithTodo.removeTodo(todoID);
-  };
+  const removeSelectedTodo = (todoID) =>
+    getProjectFromTodoID(todoID).removeTodo(todoID);
 
   const editItem = (itemToEdit, templateObj) => {
     console.log("item to edit is: ", itemToEdit);
