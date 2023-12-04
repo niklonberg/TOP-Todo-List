@@ -89,26 +89,6 @@ const TodoUIManager = (() => {
     console.log(ProjectManager.getProjects());
   };
 
-  /* move down */
-  function determineEditOrDeleteAction(event) {
-    const isDeleteAction = event.target.classList.contains("delete-item")
-      ? true
-      : false;
-    const isEditAction = event.target.classList.contains("edit-item")
-      ? true
-      : false;
-    return [isDeleteAction, isEditAction];
-  }
-
-  /* move down */
-  function determineTodoOrProject(event) {
-    const parentLi = event.target.closest("li");
-    const parentObjectDataset = parentLi.dataset;
-    const object = Object.keys(parentObjectDataset)[0];
-    const objectID = +Object.values(parentObjectDataset)[0];
-    return [object, objectID, parentLi];
-  }
-
   const toggleBtnTodoProperty = (event) => {
     let todoProperty = determineTodoProperty(event);
 
@@ -137,6 +117,24 @@ function determineTodoProperty(event) {
   if (event.target.classList.contains("toggle-important-btn"))
     todoProperty = "isImportant";
   return todoProperty;
+}
+
+function determineEditOrDeleteAction(event) {
+  const isDeleteAction = event.target.classList.contains("delete-item")
+    ? true
+    : false;
+  const isEditAction = event.target.classList.contains("edit-item")
+    ? true
+    : false;
+  return [isDeleteAction, isEditAction];
+}
+
+function determineTodoOrProject(event) {
+  const parentLi = event.target.closest("li");
+  const parentObjectDataset = parentLi.dataset;
+  const object = Object.keys(parentObjectDataset)[0];
+  const objectID = +Object.values(parentObjectDataset)[0];
+  return [object, objectID, parentLi];
 }
 
 function removeHTMLContent(element) {

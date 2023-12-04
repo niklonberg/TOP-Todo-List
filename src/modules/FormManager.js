@@ -13,9 +13,15 @@ const FormManager = (() => {
   let addFormExists;
   let editFormExists;
 
+  /* function checkIfProjectFormExists() {
+    return document.querySelector("#add-project-form") ? true : false;
+  } */
+
   const createForm = (event, object, objectID, parentElement) => {
+    /*     if (checkIfProjectFormExists()) return; */
     const elementToChange =
       parentElement || event.target.previousElementSibling;
+    console.log(elementToChange);
 
     const itemToEdit = object
       ? object === "project"
@@ -85,6 +91,7 @@ const FormManager = (() => {
 export default FormManager;
 
 function determineFormType(objectType) {
+  console.log(objectType);
   return objectType.includes("project") || objectType === "project";
 }
 
@@ -92,7 +99,7 @@ function createProjectForm(project) {
   const titleAttribute = project?.title ? `${project.title}` : "";
 
   return `
-  <form action="#" id="add-project-form">
+  <form action="#" id="project-form">
     <label for="title">Title: </label>
     <input type="text" name="title" id="title" value="${titleAttribute}" />
     <button type="submit">Add todo</button>
@@ -102,7 +109,7 @@ function createProjectForm(project) {
 
 function createTodoForm(todo) {
   return `
-  <form action="#" id="add-todo-form">
+  <form action="#" id="todo-form">
     <label for="title">Title: </label>
     <input type="text" name="title" id="title" />
     <label for="description">Description: </label>
