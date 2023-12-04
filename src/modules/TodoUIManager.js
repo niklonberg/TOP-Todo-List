@@ -69,6 +69,7 @@ const TodoUIManager = (() => {
   };
   appContent.addEventListener("click", editSelectedItem);
 
+  /* something weird going on here. */
   const updateEditedItem = (templateObj, elementToChange) => {
     const newItem = createListItemFromObject(templateObj);
     console.log(templateObj, elementToChange, newItem);

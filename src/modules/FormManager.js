@@ -45,6 +45,10 @@ const FormManager = (() => {
     form.addEventListener("submit", submitHandler);
   };
 
+  /* refactor me */
+  /* DO WE NEED TO FEED THE TEMPLATE OBJ TO TODOUI,
+  CAN WE NOT JUST EDIT THE PROJECT/TODO DATA,
+  THEN RE RENDER THE LI ?? */
   const handleFormSubmit = (
     event,
     form,
@@ -54,13 +58,16 @@ const FormManager = (() => {
   ) => {
     event.preventDefault();
     const templateObj = createObjectFromForm(getInputElements(form));
-    console.log(templateObj);
     //if is edit action
     if (itemToEdit) {
+      //run ProjectManager.editProject
+      itemToEdit.hasOwnProperty("projectID")
+        ? ProjectManager.editProject(itemToEdit, templateObj)
+        : ProjectManager.editTodo(itemToEdit, templateObj);
+
       //send templateObj to TodoUIManager
       TodoUIManager.updateEditedItem(templateObj, elementToChange);
-      //run ProjectManager.editProject
-      //or run ProjectManager.editTodo
+
       return;
     }
     //do above and return
