@@ -39,19 +39,18 @@ const ProjectManager = (() => {
     return todo;
   };
 
-  /* refactor me */
-  const removeSelectedTodo = (todoID) => {
-    projects.forEach((project) => {
-      project.removeTodo(todoID);
-    });
-  };
-
   /* refactor me? */
   const getSelectedTodo = (todoID) => {
     const projectWithTodo = projects.find((project) => project.getTodo(todoID));
     console.log(projectWithTodo);
     console.log(projectWithTodo.getTodo(todoID));
     return projectWithTodo.getTodo(todoID);
+  };
+
+  /* refactor me */
+  const removeSelectedTodo = (todoID) => {
+    const projectWithTodo = projects.find((project) => project.getTodo(todoID));
+    projectWithTodo.removeTodo(todoID);
   };
 
   const editItem = (itemToEdit, templateObj) => {
@@ -63,6 +62,7 @@ const ProjectManager = (() => {
     console.log(projects);
   };
 
+  /* refactor me */
   const toggleSelectedTodoProperty = (todoID, todoProperty) => {
     console.log(todoID, todoProperty);
     projects

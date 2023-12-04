@@ -25,4 +25,3 @@ ProjectManager.addTodoToSelectedProject({
 log(ProjectManager.getProjects());
 TodoUIManager.renderProjectsList("projects");
 TodoUIManager.renderSelectedGroup();
-/* TodoUIManager.renderSelectedGroup("todos"); */
