@@ -39,11 +39,8 @@ const ProjectManager = (() => {
     return todo;
   };
 
-  /* refactor me? */
-  const getSelectedTodo = (todoID) => {
-    const projectWithTodo = projects.find((project) => project.getTodo(todoID));
-    return projectWithTodo.getTodo(todoID);
-  };
+  const getSelectedTodo = (todoID) =>
+    getProjectFromTodoID(todoID).getTodo(todoID);
 
   const removeSelectedTodo = (todoID) =>
     getProjectFromTodoID(todoID).removeTodo(todoID);
