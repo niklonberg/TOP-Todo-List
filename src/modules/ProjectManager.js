@@ -72,11 +72,11 @@ const ProjectManager = (() => {
       // filter through all projects todos
       // return the ones with a date obj of today
     }
-    if (someFlag === "week-tasks") {
+    if (listGroupSelectionID === "week-tasks") {
       // filter through all projects todos
       // return the ones with a date within next 7 days
     }
-    if (someFlag === "important-tasks") {
+    if (listGroupSelectionID === "important-tasks") {
       // filter through all projects todos
       // return the ones with a isImportant === true
     }
