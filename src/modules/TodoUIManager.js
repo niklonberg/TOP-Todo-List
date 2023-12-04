@@ -39,7 +39,7 @@ const TodoUIManager = (() => {
   const showSelectedGroup = (event) => {
     const listGroupSelection = event.target.closest("li");
     if (listGroupSelection !== previousListGroupSelection) {
-      const projectID = listGroupSelection.dataset.project;
+      const projectID = listGroupSelection.dataset?.project;
       if (projectID !== undefined)
         ProjectManager.setSelectedProject(+projectID);
       renderSelectedGroup(listGroupSelection);

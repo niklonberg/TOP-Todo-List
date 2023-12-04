@@ -10,24 +10,36 @@ const FormManager = (() => {
   //variable that tracks if addForm exists
   /* that way can avoid trying to do multiple create/edit actions at a time
   and also having to track which element currently contains a form */
-  let addFormExists;
-  let editFormExists;
+  let projectFormExists;
+  let todoFormExists;
 
-  /* function checkIfProjectFormExists() {
-    return document.querySelector("#add-project-form") ? true : false;
-  } */
+  function checkIfProjectFormExists() {
+    return document.querySelector("#project-form") ? true : false;
+  }
+
+  function checkIfTodoFormExists() {
+    return document.querySelector("#todo-form") ? true : false;
+  }
+
+  /* cant figure out how to limit forms count to one of each */
+  function limitFormCount() {
+    if (checkIfProjectFormExists()) return true;
+    if (checkIfTodoFormExists()) return true;
+  }
 
   const createForm = (event, object, objectID, parentElement) => {
-    /*     if (checkIfProjectFormExists()) return; */
+    if (limitFormCount()) return;
+
     const elementToChange =
       parentElement || event.target.previousElementSibling;
     console.log(elementToChange);
-
     const itemToEdit = object
       ? object === "project"
         ? ProjectManager.getProject(objectID)
         : ProjectManager.getSelectedTodo(objectID)
       : null;
+    console.log(object);
+    console.log(itemToEdit);
 
     const isProjectForm = determineFormType(object || event.target.id);
     const formTypeTemplate = isProjectForm
