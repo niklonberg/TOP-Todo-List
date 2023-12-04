@@ -25,14 +25,8 @@ const ProjectManager = (() => {
 
   const setSelectedProject = (projectID) => {
     deselectCurrProject();
-    projects.forEach((project) => {
-      if (project.projectID === projectID) {
-        currSelectedProj = project;
-        currSelectedProj.toggleSelected();
-        console.log(currSelectedProj);
-        return;
-      }
-    });
+    currSelectedProj = getProject(projectID);
+    currSelectedProj.toggleSelected();
   };
 
   const deselectCurrProject = () => currSelectedProj?.toggleSelected();
@@ -52,6 +46,7 @@ const ProjectManager = (() => {
     });
   };
 
+  /* refactor me? */
   const getSelectedTodo = (todoID) => {
     const projectWithTodo = projects.find((project) => project.getTodo(todoID));
     console.log(projectWithTodo);

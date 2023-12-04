@@ -58,24 +58,15 @@ const FormManager = (() => {
   ) => {
     event.preventDefault();
     const templateObj = createObjectFromForm(getInputElements(form));
-    //if is edit action
     if (itemToEdit) {
-      //run ProjectManager.editProject
-      /* itemToEdit.hasOwnProperty("projectID")
-        ? ProjectManager.editProject(itemToEdit, templateObj)
-        : ProjectManager.editTodo(itemToEdit, templateObj); */
       "projectID" in itemToEdit || "todoID" in itemToEdit
         ? ProjectManager.editItem(itemToEdit, templateObj)
         : null;
-
-      //send templateObj to TodoUIManager
       TodoUIManager.updateEditedItem(templateObj, elementToChange);
 
       return;
     }
-    //do above and return
 
-    //otherwise continue and do below
     const object = isProjectForm
       ? ProjectManager.addProject(templateObj)
       : ProjectManager.addTodoToSelectedProject(templateObj);
