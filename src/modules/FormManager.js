@@ -5,30 +5,14 @@ const FormManager = (() => {
   /* references */
   const createNewTodoBtn = document.querySelector("#create-new-todo");
   const createNewProjectBtn = document.querySelector("#create-new-project");
-
-  //variable that tracks if editForm exists
-  //variable that tracks if addForm exists
-  /* that way can avoid trying to do multiple create/edit actions at a time
-  and also having to track which element currently contains a form */
-  let projectFormExists;
-  let todoFormExists;
-
-  function checkIfProjectFormExists() {
-    return document.querySelector("#project-form") ? true : false;
-  }
-
-  function checkIfTodoFormExists() {
-    return document.querySelector("#todo-form") ? true : false;
-  }
-
-  /* cant figure out how to limit forms count to one of each */
-  function limitFormCount() {
-    if (checkIfProjectFormExists()) return true;
-    if (checkIfTodoFormExists()) return true;
-  }
+  let projectFormExists = false;
+  let todoFormExists = false;
 
   const createForm = (event, object, objectID, parentElement) => {
-    if (limitFormCount()) return;
+    console.log("project form exists: ", projectFormExists);
+    console.log("todo form exists: ", todoFormExists);
+    const isProjectForm = determineFormType(object || event.target.id);
+    if (limitFormCount(isProjectForm)) return;
 
     const elementToChange =
       parentElement || event.target.previousElementSibling;
@@ -41,7 +25,6 @@ const FormManager = (() => {
     console.log(object);
     console.log(itemToEdit);
 
-    const isProjectForm = determineFormType(object || event.target.id);
     const formTypeTemplate = isProjectForm
       ? createProjectForm(itemToEdit)
       : createTodoForm(itemToEdit);
@@ -50,6 +33,10 @@ const FormManager = (() => {
 
     const form = elementToChange.querySelector("form");
     initializeForm(form, isProjectForm, itemToEdit, elementToChange);
+
+    toggleProjectTodoExisting(true, isProjectForm);
+    console.log("project form exists: ", projectFormExists);
+    console.log("todo form exists: ", todoFormExists);
   };
   createNewProjectBtn.addEventListener("click", createForm);
   createNewTodoBtn.addEventListener("click", createForm);
@@ -63,10 +50,6 @@ const FormManager = (() => {
     form.addEventListener("submit", submitHandler);
   };
 
-  /* refactor me */
-  /* DO WE NEED TO FEED THE TEMPLATE OBJ TO TODOUI,
-  CAN WE NOT JUST EDIT THE PROJECT/TODO DATA,
-  THEN RE RENDER THE LI ?? */
   const handleFormSubmit = (
     event,
     form,
@@ -90,6 +73,10 @@ const FormManager = (() => {
       : ProjectManager.addTodoToSelectedProject(templateObj);
 
     TodoUIManager.addLatestItem(object, isProjectForm);
+
+    toggleProjectTodoExisting(false, isProjectForm);
+    console.log("project form exists: ", projectFormExists);
+    console.log("todo form exists: ", todoFormExists);
   };
 
   const getInputElements = (form) =>
@@ -105,6 +92,16 @@ export default FormManager;
 function determineFormType(objectType) {
   console.log(objectType);
   return objectType.includes("project") || objectType === "project";
+}
+
+function limitFormCount(isProjectForm) {
+  if (isProjectForm && projectFormExists) return true;
+  if (!isProjectForm && todoFormExists) return true;
+  return false;
+}
+
+function toggleProjectTodoExisting(boolean, isProjectForm) {
+  isProjectForm ? (projectFormExists = boolean) : (todoFormExists = boolean);
 }
 
 function createProjectForm(project) {
