@@ -45,6 +45,7 @@ const ProjectManager = (() => {
     return todo;
   };
 
+  /* refactor me */
   const removeSelectedTodo = (todoID) => {
     projects.forEach((project) => {
       project.removeTodo(todoID);
@@ -58,22 +59,13 @@ const ProjectManager = (() => {
     return projectWithTodo.getTodo(todoID);
   };
 
-  /* hang on, you have the itemToEdit already */
-  const editProject = (itemToEdit, templateObj) => {
-    console.log(itemToEdit, templateObj);
+  const editItem = (itemToEdit, templateObj) => {
+    console.log("item to edit is: ", itemToEdit);
+    console.log("templateObj is: ", templateObj);
     for (const key in templateObj) {
       itemToEdit[key] = templateObj[key];
     }
     console.log(projects);
-  };
-  /* hang on, you have the itemToEdit already */
-  const editTodo = (itemToEdit, templateObj) => {
-    const todo = getSelectedTodo(itemToEdit.todoID);
-    console.log("todo is: ", todo);
-    console.log("item to edit is: ", itemToEdit);
-    console.log("templateObj is: ", templateObj);
-    for (const key in templateObj) {
-    }
   };
 
   const toggleSelectedTodoProperty = (todoID, todoProperty) => {
@@ -116,8 +108,7 @@ const ProjectManager = (() => {
     addTodoToSelectedProject,
     removeSelectedTodo,
     getSelectedTodo,
-    editProject,
-    editTodo,
+    editItem,
     toggleSelectedTodoProperty,
     getFilteredTasks,
   };

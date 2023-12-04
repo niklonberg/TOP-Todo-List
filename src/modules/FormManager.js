@@ -61,9 +61,12 @@ const FormManager = (() => {
     //if is edit action
     if (itemToEdit) {
       //run ProjectManager.editProject
-      itemToEdit.hasOwnProperty("projectID")
+      /* itemToEdit.hasOwnProperty("projectID")
         ? ProjectManager.editProject(itemToEdit, templateObj)
-        : ProjectManager.editTodo(itemToEdit, templateObj);
+        : ProjectManager.editTodo(itemToEdit, templateObj); */
+      "projectID" in itemToEdit || "todoID" in itemToEdit
+        ? ProjectManager.editItem(itemToEdit, templateObj)
+        : null;
 
       //send templateObj to TodoUIManager
       TodoUIManager.updateEditedItem(templateObj, elementToChange);
