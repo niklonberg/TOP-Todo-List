@@ -11,6 +11,7 @@ const FormManager = (() => {
   const limitFormCount = (isProjectForm) => {
     if (isProjectForm && projectFormExists) return true;
     if (!isProjectForm && todoFormExists) return true;
+    /* if (isProjectForm && !todoFormExists) return true; */
     return false;
   };
 
@@ -111,7 +112,8 @@ function createProjectForm(project) {
   <form action="#" id="project-form">
     <label for="title">Title: </label>
     <input type="text" name="title" id="title" value="${titleAttribute}" />
-    <button type="submit">Add todo</button>
+    <button type="submit">Confirm</button>
+    <button type="button">Cancel</button>
   </form>
   `;
 }
@@ -125,7 +127,8 @@ function createTodoForm(todo) {
     <input type="text" name="description" id="description" />
     <label for="isImportant">Extra important?</label>
     <input type="checkbox" name="isImportant" id="isImportant" />
-    <button type="submit">Add todo</button>
+    <button type="submit">Confirm</button>
+    <button type="button">Cancel</button>
   </form>
   `;
 }

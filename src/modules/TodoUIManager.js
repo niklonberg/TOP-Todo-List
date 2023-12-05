@@ -37,7 +37,13 @@ const TodoUIManager = (() => {
   };
 
   const showSelectedGroup = (event) => {
-    const listGroupSelection = event.target.closest("li");
+    const listGroupSelection =
+      event.target.tagName === "LI" || event.target.tagName === "H3"
+        ? event.target.closest("LI")
+        : null;
+
+    if (!listGroupSelection) return;
+
     if (listGroupSelection !== previousListGroupSelection) {
       console.log("selection is: ", listGroupSelection);
       const projectID = listGroupSelection?.dataset?.project;
