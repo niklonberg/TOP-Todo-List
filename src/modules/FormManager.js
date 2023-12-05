@@ -18,6 +18,9 @@ const FormManager = (() => {
 
   const toggleProjectTodoExisting = (boolean) => {
     isProjectForm ? (projectFormExists = boolean) : (todoFormExists = boolean);
+    console.log("projectForm is: ", isProjectForm);
+    console.log("projectFormExists is: ", projectFormExists);
+    console.log("todoFormExists is: ", todoFormExists);
   };
 
   const createForm = (event, object, objectID, parentElement) => {
@@ -44,7 +47,7 @@ const FormManager = (() => {
     createAndAppendForm(elementToChange, formTypeTemplate);
 
     const form = elementToChange.querySelector("form");
-    initializeForm(form, isProjectForm, itemToEdit, elementToChange);
+    initializeForm(form, itemToEdit, elementToChange);
 
     toggleProjectTodoExisting(true);
   };
@@ -53,22 +56,16 @@ const FormManager = (() => {
 
   const cancelCreateForm = () => {};
 
-  const initializeForm = (form, isProjectForm, itemToEdit, elementToChange) => {
+  const initializeForm = (form, itemToEdit, elementToChange) => {
     const submitHandler = (event) => {
-      handleFormSubmit(event, form, isProjectForm, itemToEdit, elementToChange);
+      handleFormSubmit(event, form, itemToEdit, elementToChange);
       form.removeEventListener("submit", submitHandler);
       form.remove();
     };
     form.addEventListener("submit", submitHandler);
   };
 
-  const handleFormSubmit = (
-    event,
-    form,
-    isProjectForm,
-    itemToEdit,
-    elementToChange
-  ) => {
+  const handleFormSubmit = (event, form, itemToEdit, elementToChange) => {
     event.preventDefault();
     const templateObj = createObjectFromForm(getInputElements(form));
     if (itemToEdit) {
