@@ -6,8 +6,6 @@ const ProjectManager = (() => {
   let currSelectedProj;
 
   /* currSelectedProject operations */
-  const getCurrSelectedProject = () => currSelectedProj;
-
   const getCurrSelectedProjectTodos = () => currSelectedProj.getTodos();
 
   const setSelectedProject = (projectID) => {
@@ -41,12 +39,17 @@ const ProjectManager = (() => {
 
   const getProjects = () => projects;
 
+  const getProjectFromTodoID = (todoID) =>
+    projects.find((project) => project.getTodo(todoID));
+
+  /* todo operations */
   const getSelectedTodo = (todoID) =>
     getProjectFromTodoID(todoID).getTodo(todoID);
 
   const removeSelectedTodo = (todoID) =>
     getProjectFromTodoID(todoID).removeTodo(todoID);
 
+  /* edit operations */
   const editItem = (itemToEdit, templateObj) => {
     console.log("item to edit is: ", itemToEdit);
     console.log("templateObj is: ", templateObj);
@@ -58,9 +61,6 @@ const ProjectManager = (() => {
 
   const toggleSelectedTodoProperty = (todoID, todoProperty) =>
     getProjectFromTodoID(todoID).toggleTodoBoolProperty(todoID, todoProperty);
-
-  const getProjectFromTodoID = (todoID) =>
-    projects.find((project) => project.getTodo(todoID));
 
   const getFilteredTasks = (listGroupSelectionID = "all-tasks") => {
     if (listGroupSelectionID === "all-tasks") {
@@ -89,7 +89,6 @@ const ProjectManager = (() => {
     removeSelectedProject,
     getProjects,
     getProject,
-    getCurrSelectedProject,
     getCurrSelectedProjectTodos /* sure about export all of them?? */,
     setSelectedProject,
     addTodoToCurrSelectedProject,
