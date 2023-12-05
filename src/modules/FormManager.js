@@ -8,8 +8,6 @@ const FormManager = (() => {
   const createNewProjectBtn = document.querySelector("#create-new-project");
   let projectFormExists = false;
   let todoFormExists = false;
-  let todoItemBeforeEdit;
-  let projectItemBeforeEdit;
 
   const limitFormCount = (isProjectForm) => {
     if (isProjectForm && projectFormExists) return true;
@@ -79,7 +77,7 @@ const FormManager = (() => {
 
     const object = isProjectForm
       ? ProjectManager.addProject(templateObj)
-      : ProjectManager.addTodoToSelectedProject(templateObj);
+      : ProjectManager.addTodoToCurrSelectedProject(templateObj);
 
     TodoUIManager.addLatestItem(object, isProjectForm);
 
@@ -91,12 +89,12 @@ const FormManager = (() => {
 
   const resetTodoFormExists = () => (todoFormExists = false);
 
-  const formCancelClicked = (event) => {
+  const handleEditFormCancelClicked = (event) => {
     if (event.target.classList.contains("cancel-item-edit")) {
-      console.log("i-ran");
+      TodoUIManager.cancelEditSelectedItem(event);
     }
   };
-  appContent.addEventListener("click", formCancelClicked);
+  appContent.addEventListener("click", handleEditFormCancelClicked);
 
   return {
     createForm,

@@ -6,20 +6,20 @@ log(ProjectManager);
 ProjectManager.addProject({ title: "Refurnish Home" });
 ProjectManager.addProject({ title: "Paint Walls" });
 ProjectManager.setSelectedProject(0);
-ProjectManager.addTodoToSelectedProject({
+ProjectManager.addTodoToCurrSelectedProject({
   title: "move sofa",
   description: "lift dont drag",
 });
-ProjectManager.addTodoToSelectedProject({
+ProjectManager.addTodoToCurrSelectedProject({
   title: "move table",
   description: "drag it roughly",
 });
 ProjectManager.setSelectedProject(1);
-ProjectManager.addTodoToSelectedProject({
+ProjectManager.addTodoToCurrSelectedProject({
   title: "buy paint",
   description: "mix it well before applying",
 });
-ProjectManager.addTodoToSelectedProject({
+ProjectManager.addTodoToCurrSelectedProject({
   title: "buy brush",
 });
 log(ProjectManager.getProjects());

@@ -5,6 +5,28 @@ const ProjectManager = (() => {
   let projects = [];
   let currSelectedProj;
 
+  /* currSelectedProject operations */
+  const getCurrSelectedProject = () => currSelectedProj;
+
+  const getCurrSelectedProjectTodos = () => currSelectedProj.getTodos();
+
+  const setSelectedProject = (projectID) => {
+    deselectCurrProject();
+    currSelectedProj = getProject(projectID);
+    currSelectedProj.toggleSelected();
+  };
+
+  const deselectCurrProject = () => currSelectedProj?.toggleSelected();
+
+  const addTodoToCurrSelectedProject = (inputElements) => {
+    console.log("selected project is: ", currSelectedProj);
+    const todo = TodoFactory(inputElements);
+    currSelectedProj.addTodo(todo);
+    console.log(projects);
+    return todo;
+  };
+
+  /* project operations */
   const addProject = (projectTitle) => {
     const project = ProjectFactory(projectTitle);
     projects.push(project);
@@ -18,26 +40,6 @@ const ProjectManager = (() => {
     projects.find((project) => project.projectID === projectID);
 
   const getProjects = () => projects;
-
-  const getSelectedProject = () => currSelectedProj;
-
-  const getSelectedProjectTodos = () => currSelectedProj.getTodos();
-
-  const setSelectedProject = (projectID) => {
-    deselectCurrProject();
-    currSelectedProj = getProject(projectID);
-    currSelectedProj.toggleSelected();
-  };
-
-  const deselectCurrProject = () => currSelectedProj?.toggleSelected();
-
-  const addTodoToSelectedProject = (inputElements) => {
-    console.log("selected project is: ", currSelectedProj);
-    const todo = TodoFactory(inputElements);
-    currSelectedProj.addTodo(todo);
-    console.log(projects);
-    return todo;
-  };
 
   const getSelectedTodo = (todoID) =>
     getProjectFromTodoID(todoID).getTodo(todoID);
@@ -87,10 +89,10 @@ const ProjectManager = (() => {
     removeSelectedProject,
     getProjects,
     getProject,
-    getSelectedProject,
-    getSelectedProjectTodos /* sure about export all of them?? */,
+    getCurrSelectedProject,
+    getCurrSelectedProjectTodos /* sure about export all of them?? */,
     setSelectedProject,
-    addTodoToSelectedProject,
+    addTodoToCurrSelectedProject,
     removeSelectedTodo,
     getSelectedTodo,
     editItem,

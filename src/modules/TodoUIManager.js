@@ -28,7 +28,7 @@ const TodoUIManager = (() => {
 
     const selectedGroupTodos =
       listGroupSelection && listGroupSelection.dataset.project
-        ? ProjectManager.getSelectedProjectTodos()
+        ? ProjectManager.getCurrSelectedProjectTodos()
         : ProjectManager.getFilteredTasks(listGroupSelection?.id);
 
     selectedGroupTodos.forEach((grouping) =>
@@ -80,6 +80,16 @@ const TodoUIManager = (() => {
   };
   appContent.addEventListener("click", editSelectedItem);
 
+  const cancelEditSelectedItem = (event) => {
+    const [object, objectID, parentLi] = determineTodoOrProject(event);
+    console.log(object, objectID, parentLi);
+    const searchObj = {
+      [`${object}ID`]: objectID,
+    };
+    console.log(searchObj);
+    const newLI = null;
+  };
+
   /* something weird going on here. */
   const updateEditedItem = (templateObj, elementToChange) => {
     const newItem = createListItemFromObject(templateObj);
@@ -115,6 +125,7 @@ const TodoUIManager = (() => {
     renderProjectsList,
     renderSelectedGroup,
     addLatestItem,
+    cancelEditSelectedItem,
     updateEditedItem,
   };
 })();
