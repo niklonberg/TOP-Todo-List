@@ -62,6 +62,16 @@ const ProjectManager = (() => {
   const toggleSelectedTodoProperty = (todoID, todoProperty) =>
     getProjectFromTodoID(todoID).toggleTodoBoolProperty(todoID, todoProperty);
 
+  const getSelectedItem = (objectType, ID) => {
+    if (objectType === "project") {
+      return getProject(ID);
+    }
+
+    if (objectType === "todo") {
+      return getSelectedTodo(ID);
+    }
+  };
+
   const getFilteredTasks = (listGroupSelectionID = "all-tasks") => {
     if (listGroupSelectionID === "all-tasks") {
       return projects
@@ -95,6 +105,7 @@ const ProjectManager = (() => {
     removeSelectedTodo,
     getSelectedTodo,
     editItem,
+    getSelectedItem,
     toggleSelectedTodoProperty,
     getFilteredTasks,
   };

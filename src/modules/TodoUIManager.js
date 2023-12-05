@@ -83,11 +83,10 @@ const TodoUIManager = (() => {
   const cancelEditSelectedItem = (event) => {
     const [object, objectID, parentLi] = determineTodoOrProject(event);
     console.log(object, objectID, parentLi);
-    const searchObj = {
-      [`${object}ID`]: objectID,
-    };
+    const searchObj = ProjectManager.getSelectedItem(object, objectID);
     console.log(searchObj);
-    const newLI = null;
+    const newLI = createListItemFromObject(searchObj);
+    parentLi.innerHTML = newLI.innerHTML;
   };
 
   /* something weird going on here. */

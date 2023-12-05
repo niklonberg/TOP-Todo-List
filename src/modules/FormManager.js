@@ -8,6 +8,7 @@ const FormManager = (() => {
   const createNewProjectBtn = document.querySelector("#create-new-project");
   let projectFormExists = false;
   let todoFormExists = false;
+  let isProjectForm;
 
   const limitFormCount = (isProjectForm) => {
     if (isProjectForm && projectFormExists) return true;
@@ -15,12 +16,12 @@ const FormManager = (() => {
     return false;
   };
 
-  const toggleProjectTodoExisting = (boolean, isProjectForm) => {
+  const toggleProjectTodoExisting = (boolean) => {
     isProjectForm ? (projectFormExists = boolean) : (todoFormExists = boolean);
   };
 
   const createForm = (event, object, objectID, parentElement) => {
-    const isProjectForm = determineFormType(object || event.target.id);
+    isProjectForm = determineFormType(object || event.target.id);
     if (limitFormCount(isProjectForm)) return;
 
     const elementToChange =
@@ -28,7 +29,9 @@ const FormManager = (() => {
     console.log(elementToChange);
     const itemToEdit = object
       ? object === "project"
-        ? ProjectManager.getProject(objectID)
+        ? ProjectManager.getProject(
+            objectID
+          ) /* use ProjectManager.getSelectedItem */
         : ProjectManager.getSelectedTodo(objectID)
       : null;
     console.log(object);
@@ -43,10 +46,12 @@ const FormManager = (() => {
     const form = elementToChange.querySelector("form");
     initializeForm(form, isProjectForm, itemToEdit, elementToChange);
 
-    toggleProjectTodoExisting(true, isProjectForm);
+    toggleProjectTodoExisting(true);
   };
   createNewProjectBtn.addEventListener("click", createForm);
   createNewTodoBtn.addEventListener("click", createForm);
+
+  const cancelCreateForm = () => {};
 
   const initializeForm = (form, isProjectForm, itemToEdit, elementToChange) => {
     const submitHandler = (event) => {
@@ -81,7 +86,7 @@ const FormManager = (() => {
 
     TodoUIManager.addLatestItem(object, isProjectForm);
 
-    toggleProjectTodoExisting(false, isProjectForm);
+    toggleProjectTodoExisting(false);
   };
 
   const getInputElements = (form) =>
@@ -92,7 +97,8 @@ const FormManager = (() => {
   const handleEditFormCancelClicked = (event) => {
     if (event.target.classList.contains("cancel-item-edit")) {
       TodoUIManager.cancelEditSelectedItem(event);
-    }
+      toggleProjectTodoExisting(false);
+    } // or run cancelCreateForm
   };
   appContent.addEventListener("click", handleEditFormCancelClicked);
 
