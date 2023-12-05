@@ -11,6 +11,9 @@ const FormManager = (() => {
   let isProjectForm;
 
   const limitFormCount = (isProjectForm) => {
+    console.log("projectForm is: ", isProjectForm);
+    console.log("projectFormExists is: ", projectFormExists);
+    console.log("todoFormExists is: ", todoFormExists);
     if (isProjectForm && projectFormExists) return true;
     if (!isProjectForm && todoFormExists) return true;
     return false;
@@ -54,8 +57,27 @@ const FormManager = (() => {
   createNewProjectBtn.addEventListener("click", createForm);
   createNewTodoBtn.addEventListener("click", createForm);
 
-  const cancelCreateForm = () => {};
+  const removeCreateForm = (form) => {
+    form.remove();
+  };
 
+  /* rename to handleFormCancelClicked */
+  const handleEditFormCancelClicked = (event) => {
+    if (event.target.classList.contains("cancel-item-edit")) {
+      toggleProjectTodoExisting(false);
+      if (event.target.parentElement.tagName === "FORM") {
+        removeCreateForm(event.target.parentElement);
+        return;
+      }
+
+      TodoUIManager.cancelEditSelectedItem(event);
+      /* toggleProjectTodoExisting(false); */
+    }
+  };
+  appContent.addEventListener("click", handleEditFormCancelClicked);
+
+  /* what happens if a form gets removed from the dom by switching views? */
+  /* the event listener still exists right? */
   const initializeForm = (form, itemToEdit, elementToChange) => {
     const submitHandler = (event) => {
       handleFormSubmit(event, form, itemToEdit, elementToChange);
@@ -68,12 +90,13 @@ const FormManager = (() => {
   const handleFormSubmit = (event, form, itemToEdit, elementToChange) => {
     event.preventDefault();
     const templateObj = createObjectFromForm(getInputElements(form));
+    toggleProjectTodoExisting(false);
     if (itemToEdit) {
       "projectID" in itemToEdit || "todoID" in itemToEdit
         ? ProjectManager.editItem(itemToEdit, templateObj)
         : null;
       TodoUIManager.updateEditedItem(templateObj, elementToChange);
-
+      /* toggleProjectTodoExisting(false); */
       return;
     }
 
@@ -82,22 +105,13 @@ const FormManager = (() => {
       : ProjectManager.addTodoToCurrSelectedProject(templateObj);
 
     TodoUIManager.addLatestItem(object, isProjectForm);
-
-    toggleProjectTodoExisting(false);
+    /* toggleProjectTodoExisting(false); */
   };
 
   const getInputElements = (form) =>
     [...form.elements].filter((item) => item.tagName === "INPUT");
 
   const resetTodoFormExists = () => (todoFormExists = false);
-
-  const handleEditFormCancelClicked = (event) => {
-    if (event.target.classList.contains("cancel-item-edit")) {
-      TodoUIManager.cancelEditSelectedItem(event);
-      toggleProjectTodoExisting(false);
-    } // or run cancelCreateForm
-  };
-  appContent.addEventListener("click", handleEditFormCancelClicked);
 
   return {
     createForm,
