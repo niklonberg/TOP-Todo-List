@@ -3,15 +3,17 @@ import TodoUIManager from "./TodoUIManager.js";
 
 const FormManager = (() => {
   /* references */
+  const appContent = document.querySelector("#app-content");
   const createNewTodoBtn = document.querySelector("#create-new-todo");
   const createNewProjectBtn = document.querySelector("#create-new-project");
   let projectFormExists = false;
   let todoFormExists = false;
+  let todoItemBeforeEdit;
+  let projectItemBeforeEdit;
 
   const limitFormCount = (isProjectForm) => {
     if (isProjectForm && projectFormExists) return true;
     if (!isProjectForm && todoFormExists) return true;
-    /* if (isProjectForm && !todoFormExists) return true; */
     return false;
   };
 
@@ -20,8 +22,6 @@ const FormManager = (() => {
   };
 
   const createForm = (event, object, objectID, parentElement) => {
-    console.log("project form exists: ", projectFormExists);
-    console.log("todo form exists: ", todoFormExists);
     const isProjectForm = determineFormType(object || event.target.id);
     if (limitFormCount(isProjectForm)) return;
 
@@ -46,8 +46,6 @@ const FormManager = (() => {
     initializeForm(form, isProjectForm, itemToEdit, elementToChange);
 
     toggleProjectTodoExisting(true, isProjectForm);
-    console.log("project form exists: ", projectFormExists);
-    console.log("todo form exists: ", todoFormExists);
   };
   createNewProjectBtn.addEventListener("click", createForm);
   createNewTodoBtn.addEventListener("click", createForm);
@@ -86,15 +84,23 @@ const FormManager = (() => {
     TodoUIManager.addLatestItem(object, isProjectForm);
 
     toggleProjectTodoExisting(false, isProjectForm);
-    console.log("project form exists: ", projectFormExists);
-    console.log("todo form exists: ", todoFormExists);
   };
 
   const getInputElements = (form) =>
     [...form.elements].filter((item) => item.tagName === "INPUT");
 
+  const resetTodoFormExists = () => (todoFormExists = false);
+
+  const formCancelClicked = (event) => {
+    if (event.target.classList.contains("cancel-item-edit")) {
+      console.log("i-ran");
+    }
+  };
+  appContent.addEventListener("click", formCancelClicked);
+
   return {
     createForm,
+    resetTodoFormExists,
   };
 })();
 
@@ -113,7 +119,7 @@ function createProjectForm(project) {
     <label for="title">Title: </label>
     <input type="text" name="title" id="title" value="${titleAttribute}" />
     <button type="submit">Confirm</button>
-    <button type="button">Cancel</button>
+    <button type="button" class="cancel-item-edit">Cancel</button>
   </form>
   `;
 }
@@ -128,7 +134,7 @@ function createTodoForm(todo) {
     <label for="isImportant">Extra important?</label>
     <input type="checkbox" name="isImportant" id="isImportant" />
     <button type="submit">Confirm</button>
-    <button type="button">Cancel</button>
+    <button type="button" class="cancel-item-edit">Cancel</button>
   </form>
   `;
 }

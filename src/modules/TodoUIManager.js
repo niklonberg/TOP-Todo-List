@@ -51,6 +51,8 @@ const TodoUIManager = (() => {
         ProjectManager.setSelectedProject(+projectID);
       renderSelectedGroup(listGroupSelection);
       previousListGroupSelection = listGroupSelection;
+
+      FormManager.resetTodoFormExists();
     }
   };
   sideBar.addEventListener("click", showSelectedGroup);
@@ -68,6 +70,7 @@ const TodoUIManager = (() => {
   const editSelectedItem = (event) => {
     const [isDeleteAction, isEditAction] = determineEditOrDeleteAction(event);
     if (!isDeleteAction && !isEditAction) return;
+
     const [object, objectID, parentLi] =
       isDeleteAction || isEditAction ? determineTodoOrProject(event) : null;
 
