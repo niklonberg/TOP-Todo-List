@@ -1,6 +1,6 @@
 import ProjectManager from "./ProjectManager.js";
 import TodoUIManager from "./TodoUIManager.js";
-import parse from "date-fns/parse";
+import { parse, format } from "date-fns";
 
 const FormManager = (() => {
   /* references */
@@ -151,8 +151,9 @@ function createTodoForm(todo) {
   const descVal = todo?.description ? todo.description : "";
   const importantVal = todo?.isImportant ? todo.isImportant : "";
   const isImportantChecked = importantVal ? "checked" : "";
-  const dateVal = todo?.dueDate ? todo.dueDate : "";
-  /* remember me */
+  const dateVal =
+    todo?.dueDate instanceof Date ? format(todo.dueDate, "yyyy-MM-dd") : "";
+
   return `
   <form action="#" id="todo-form">
     <label for="title">Title: </label>
@@ -162,7 +163,7 @@ function createTodoForm(todo) {
     <label for="isImportant">Extra important?</label>
     <input type="checkbox" name="isImportant" id="isImportant" ${isImportantChecked}/>
     <label for="dueDate">Have a date its due for ?</label>
-    <input type="date" name="dueDate" id="dueDate">
+    <input type="date" name="dueDate" id="dueDate" value="${dateVal}">
     <button type="submit">Confirm</button>
     <button type="button" class="cancel-item-edit">Cancel</button>
   </form>
