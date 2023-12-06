@@ -58,17 +58,14 @@ const FormManager = (() => {
   createNewProjectBtn.addEventListener("click", createForm);
   createNewTodoBtn.addEventListener("click", createForm);
 
-  const removeCreateForm = (form) => {
-    form.remove();
-    //remove event listener
-  };
-
-  /* rename to handleFormCancelClicked */
-  const handleEditFormCancelClicked = (event) => {
+  /* dunno if eventlisteners are being duplicated here */
+  const handleFormCancelClicked = (event) => {
     if (event.target.classList.contains("cancel-item-edit")) {
       toggleProjectTodoExisting(false);
-      if (event.target.parentElement.tagName === "FORM") {
-        removeCreateForm(event.target.parentElement);
+      console.log(event.target.parentElement);
+      const form = event.target.parentElement;
+      if (!event.target.closest("UL")) {
+        form.remove();
         return;
       }
 
@@ -76,7 +73,7 @@ const FormManager = (() => {
       /* toggleProjectTodoExisting(false); */
     }
   };
-  appContent.addEventListener("click", handleEditFormCancelClicked);
+  appContent.addEventListener("click", handleFormCancelClicked);
 
   /* what happens if a form gets removed from the dom by switching views? */
   /* the event listener still exists right? */
@@ -149,7 +146,7 @@ function createTodoForm(todo) {
   const importantVal = todo?.isImportant ? todo.isImportant : "";
   const isImportantChecked = importantVal ? "checked" : "";
   const dateVal = todo?.dueDate ? todo.dueDate : "";
-
+  /* remember me */
   return `
   <form action="#" id="todo-form">
     <label for="title">Title: </label>
