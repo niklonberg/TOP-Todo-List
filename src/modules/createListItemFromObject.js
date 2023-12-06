@@ -21,9 +21,7 @@ function createListItemFromObject(object) {
       li.appendChild(p);
     }
 
-    if (key === "completionDate") {
-      //add default value if no completionDate is given
-      console.log(value);
+    if (key === "dueDate") {
       let ele;
       if (value !== "No Due Date") {
         ele = createElement("time");

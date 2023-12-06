@@ -13,6 +13,7 @@ ProjectManager.addTodoToCurrSelectedProject({
 ProjectManager.addTodoToCurrSelectedProject({
   title: "move table",
   description: "drag it roughly",
+  dueDate: "No Due Date",
 });
 ProjectManager.setSelectedProject(1);
 ProjectManager.addTodoToCurrSelectedProject({

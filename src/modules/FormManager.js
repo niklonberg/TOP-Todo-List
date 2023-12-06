@@ -131,12 +131,12 @@ function determineFormType(objectType) {
 }
 
 function createProjectForm(project) {
-  const titleAttribute = project?.title ? `${project.title}` : "";
+  const titleVal = project?.title ? project.title : "";
 
   return `
   <form action="#" id="project-form">
     <label for="title">Title: </label>
-    <input type="text" name="title" id="title" value="${titleAttribute}" />
+    <input type="text" name="title" id="title" value="${titleVal}" />
     <button type="submit">Confirm</button>
     <button type="button" class="cancel-item-edit">Cancel</button>
   </form>
@@ -144,16 +144,22 @@ function createProjectForm(project) {
 }
 
 function createTodoForm(todo) {
+  const titleVal = todo?.title ? todo.title : "";
+  const descVal = todo?.description ? todo.description : "";
+  const importantVal = todo?.isImportant ? todo.isImportant : "";
+  const isImportantChecked = importantVal ? "checked" : "";
+  const dateVal = todo?.dueDate ? todo.dueDate : "";
+
   return `
   <form action="#" id="todo-form">
     <label for="title">Title: </label>
-    <input type="text" name="title" id="title" />
+    <input type="text" name="title" id="title" value="${titleVal}" />
     <label for="description">Description: </label>
-    <input type="text" name="description" id="description" />
+    <input type="text" name="description" id="description" value="${descVal}" />
     <label for="isImportant">Extra important?</label>
-    <input type="checkbox" name="isImportant" id="isImportant" />
-    <label for="completionDate">Have a completion date in mind?</label>
-    <input type="date" name="completionDate" id="completionDate">
+    <input type="checkbox" name="isImportant" id="isImportant" ${isImportantChecked}/>
+    <label for="dueDate">Have a date its due for ?</label>
+    <input type="date" name="dueDate" id="dueDate">
     <button type="submit">Confirm</button>
     <button type="button" class="cancel-item-edit">Cancel</button>
   </form>
@@ -165,8 +171,8 @@ function createObjectFromForm(formInputs) {
     if (item.type === "checkbox") {
       return { ...object, [item.id]: item.checked };
     }
-    if (item.id === "completionDate") {
-      console.log("completionDate value is: ", item.value);
+    if (item.id === "dueDate") {
+      console.log("dueDate value is: ", item.value);
       if (item.value) {
         const todoDueDate = parse(item.value, "yyyy-MM-dd", new Date());
         return { ...object, [item.id]: todoDueDate };
