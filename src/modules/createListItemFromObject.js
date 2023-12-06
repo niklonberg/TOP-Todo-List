@@ -1,5 +1,5 @@
 import createElement from "./createElement.js";
-import { parse, format } from "date-fns"; /* need parse? */
+import format from "date-fns/format";
 
 function createListItemFromObject(object) {
   const [objID, idTag] = getObjectIDAndTag(object);
@@ -23,10 +23,11 @@ function createListItemFromObject(object) {
 
     if (key === "completionDate") {
       //add default value if no completionDate is given
-      /* const time = createElement("time");
+      console.log(value);
+      const time = createElement("time");
       time.setAttribute("datetime", value);
-      time.textContent = format('')
-      li.appendChild(time); */
+      time.textContent = format(value, "MMMM do, ccc - yyyy");
+      li.appendChild(time);
     }
   }
 
