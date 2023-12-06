@@ -166,11 +166,14 @@ function createObjectFromForm(formInputs) {
       return { ...object, [item.id]: item.checked };
     }
     if (item.id === "completionDate") {
-      const todoDueDate = parse(item.value, "yyyy-MM-dd", new Date());
-      return { ...object, [item.id]: todoDueDate };
-    } else {
-      return item.value ? { ...object, [item.id]: item.value } : object;
+      console.log("completionDate value is: ", item.value);
+      if (item.value) {
+        const todoDueDate = parse(item.value, "yyyy-MM-dd", new Date());
+        return { ...object, [item.id]: todoDueDate };
+      }
+      return { ...object, [item.id]: "No Due Date" };
     }
+    return item.value ? { ...object, [item.id]: item.value } : object;
   }, {});
 }
 

@@ -24,10 +24,17 @@ function createListItemFromObject(object) {
     if (key === "completionDate") {
       //add default value if no completionDate is given
       console.log(value);
-      const time = createElement("time");
-      time.setAttribute("datetime", value);
-      time.textContent = format(value, "MMMM do, ccc - yyyy");
-      li.appendChild(time);
+      let ele;
+      if (value !== "No Due Date") {
+        ele = createElement("time");
+        ele.setAttribute("datetime", value);
+        ele.textContent = format(value, "MMMM do, ccc - yyyy");
+      } else {
+        ele = createElement("p");
+        ele.textContent = value;
+      }
+
+      li.appendChild(ele);
     }
   }
 
