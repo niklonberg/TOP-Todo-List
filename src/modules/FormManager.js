@@ -90,6 +90,12 @@ const FormManager = (() => {
     event.preventDefault();
     const templateObj = createObjectFromForm(getInputElements(form));
     toggleProjectTodoExisting(false);
+    if (!validateForm(templateObj)) {
+      console.log("element to change is: ", itemToEdit);
+      TodoUIManager.updateEditedItem(itemToEdit, elementToChange);
+      return;
+    }
+
     if (itemToEdit) {
       "projectID" in itemToEdit || "todoID" in itemToEdit
         ? ProjectManager.editItem(itemToEdit, templateObj)
@@ -184,4 +190,8 @@ function createAndAppendForm(elementToAppendFormTo, formTypeTemplate) {
   elementToAppendFormTo.tagName === "LI"
     ? (elementToAppendFormTo.innerHTML = formTypeTemplate)
     : elementToAppendFormTo.insertAdjacentHTML("beforeend", formTypeTemplate);
+}
+
+function validateForm(templateObj) {
+  return templateObj.hasOwnProperty("title");
 }
