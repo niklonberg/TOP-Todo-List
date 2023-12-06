@@ -1,5 +1,6 @@
 import ProjectManager from "./ProjectManager.js";
 import TodoUIManager from "./TodoUIManager.js";
+import parse from "date-fns/parse";
 
 const FormManager = (() => {
   /* references */
@@ -163,6 +164,10 @@ function createObjectFromForm(formInputs) {
   return formInputs.reduce((object, item) => {
     if (item.type === "checkbox") {
       return { ...object, [item.id]: item.checked };
+    }
+    if (item.id === "completionDate") {
+      const todoDueDate = parse(item.value, "yyyy-MM-dd", new Date());
+      return { ...object, [item.id]: todoDueDate };
     } else {
       return item.value ? { ...object, [item.id]: item.value } : object;
     }
