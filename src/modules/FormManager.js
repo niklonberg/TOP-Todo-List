@@ -59,6 +59,7 @@ const FormManager = (() => {
 
   const removeCreateForm = (form) => {
     form.remove();
+    //remove event listener
   };
 
   /* rename to handleFormCancelClicked */
@@ -104,6 +105,8 @@ const FormManager = (() => {
       ? ProjectManager.addProject(templateObj)
       : ProjectManager.addTodoToCurrSelectedProject(templateObj);
 
+    console.log(templateObj);
+    console.log(object);
     TodoUIManager.addLatestItem(object, isProjectForm);
     /* toggleProjectTodoExisting(false); */
   };
@@ -148,6 +151,8 @@ function createTodoForm(todo) {
     <input type="text" name="description" id="description" />
     <label for="isImportant">Extra important?</label>
     <input type="checkbox" name="isImportant" id="isImportant" />
+    <label for="completionDate">Have a completion date in mind?</label>
+    <input type="date" name="completionDate" id="completionDate">
     <button type="submit">Confirm</button>
     <button type="button" class="cancel-item-edit">Cancel</button>
   </form>
