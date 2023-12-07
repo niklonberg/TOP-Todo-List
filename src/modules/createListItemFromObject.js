@@ -16,19 +16,20 @@ function createListItemFromObject(object) {
     li.appendChild(img);
   }
 
+  const listDetailsDiv = createElement("div", "list-details");
   for (const [key, value] of Object.entries(object)) {
-    /* console.log(key + ": " + value); */
     if (key === "title") {
       const heading = createElement("h3");
       heading.textContent = value;
-      li.appendChild(heading);
+      listDetailsDiv.appendChild(heading);
     }
 
     if (key === "description") {
       const p = createElement("p");
       p.textContent = value;
-      li.appendChild(p);
+      listDetailsDiv.appendChild(p);
     }
+    li.appendChild(listDetailsDiv);
 
     if (key === "dueDate") {
       let ele;
