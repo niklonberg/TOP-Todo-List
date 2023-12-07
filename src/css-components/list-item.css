@@ -15,7 +15,6 @@
   }
 
   .toggle-complete-btn {
-    cursor: pointer;
     width: 20px;
     height: 20px;
     order: -1;
@@ -26,5 +25,17 @@
     background-size: 100%;
     background-repeat: no-repeat;
     border-radius: 50%;
+  }
+
+  .toggle-important-btn {
+    width: 20px;
+    height: 20px;
+    background: url(../images/star-outline.png);
+    background-size: contain;
+    border: none;
+  }
+
+  .toggle-important-btn.checked {
+    background-image: url(../images/star.png);
   }
 }

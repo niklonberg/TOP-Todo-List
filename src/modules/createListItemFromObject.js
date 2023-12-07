@@ -46,6 +46,7 @@ function createListItemFromObject(object) {
     }
   }
 
+  /* refactor me? */
   if (object.hasOwnProperty("todoID")) {
     const checkCompleteBtn = createElement("button", "toggle-complete-btn");
     checkCompleteBtn.setAttribute("aria-label", "Toggle complete");
@@ -53,7 +54,8 @@ function createListItemFromObject(object) {
     li.appendChild(checkCompleteBtn);
 
     const checkImportantBtn = createElement("button", "toggle-important-btn");
-    checkImportantBtn.textContent = "Mark important"; /* make sep fn */
+    checkCompleteBtn.setAttribute("aria-label", "Toggle important");
+    object.isImportant ? checkImportantBtn.classList.add("checked") : null;
     li.appendChild(checkImportantBtn);
   }
 
