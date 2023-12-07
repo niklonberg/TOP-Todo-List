@@ -47,9 +47,8 @@ function createListItemFromObject(object) {
   }
 
   if (object.hasOwnProperty("todoID")) {
-    /* use order to place completeBtn all the way to left in li */
     const checkCompleteBtn = createElement("button", "toggle-complete-btn");
-    checkCompleteBtn.textContent = "Mark complete"; /* make sep fn */
+    checkCompleteBtn.setAttribute("aria-label", "Toggle complete");
     li.appendChild(checkCompleteBtn);
 
     const checkImportantBtn = createElement("button", "toggle-important-btn");

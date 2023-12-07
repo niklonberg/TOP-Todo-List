@@ -5,4 +5,22 @@
     gap: var(--sm-gap);
     cursor: pointer;
   }
+
+  .list-details {
+    flex: 1;
+  }
+
+  .toggle-complete-btn {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    order: -1;
+  }
+
+  .toggle-complete-btn.checked {
+    background-image: url(../images/check-mark.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+  }
 }

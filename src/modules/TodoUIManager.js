@@ -115,6 +115,7 @@ const TodoUIManager = (() => {
 
     if (todoProperty) {
       const btn = event.target;
+      btn.classList.toggle("checked");
       const todoID = +btn.closest("li").dataset.todo;
       ProjectManager.toggleSelectedTodoProperty(todoID, todoProperty);
     }

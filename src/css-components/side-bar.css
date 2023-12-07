@@ -24,9 +24,8 @@
     border-bottom: 2px solid var(--text-color);
     letter-spacing: 1.5px;
   }
-  /* ensure long words break correctly */
-  /* #side-bar h3 {
-    min-width: 0;
-    flex: 1;
-  } */
+
+  #side-bar .list-details {
+    min-width: 0; /* ensure long words break correctly */
+  }
 }
