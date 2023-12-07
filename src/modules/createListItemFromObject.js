@@ -49,6 +49,7 @@ function createListItemFromObject(object) {
   if (object.hasOwnProperty("todoID")) {
     const checkCompleteBtn = createElement("button", "toggle-complete-btn");
     checkCompleteBtn.setAttribute("aria-label", "Toggle complete");
+    object.isCompleted ? checkCompleteBtn.classList.add("checked") : null;
     li.appendChild(checkCompleteBtn);
 
     const checkImportantBtn = createElement("button", "toggle-important-btn");
@@ -58,6 +59,8 @@ function createListItemFromObject(object) {
 
   const editContainer = createEditContainer();
   li.appendChild(editContainer);
+
+  object.isCompleted ? li.classList.add("todo-complete") : null;
 
   return li; /* lots of repeating appendCHilding */
 }
