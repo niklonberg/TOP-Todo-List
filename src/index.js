@@ -21,7 +21,8 @@ ProjectManager.addTodoToCurrSelectedProject({
 ProjectManager.setSelectedProject(1);
 ProjectManager.addTodoToCurrSelectedProject({
   title: "buy paint",
-  description: "mix it well before applying",
+  description:
+    "mix it well before applying super long description just to make life annoying and harder and really push myself to handle extreme edge cases",
 });
 ProjectManager.addTodoToCurrSelectedProject({
   title: "buy brush",

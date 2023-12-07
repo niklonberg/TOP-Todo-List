@@ -2,15 +2,9 @@
   #side-bar {
     background-color: var(--primary-contrast);
     box-shadow: 5px 0px 10px 0px rgba(0, 0, 0, 0.2);
-    /* max-width: 300px; */
-    /* overflow-wrap: break-word; */
+    overflow-wrap: break-word;
+    max-width: 300px;
     padding-inline: var(--m-gap);
-  }
-
-  #side-bar h2 {
-    border-bottom: 2px solid var(--text-color);
-    letter-spacing: 1.5px;
-    margin-bottom: 0;
   }
 
   #side-bar ul {
@@ -18,9 +12,13 @@
     padding: 0;
   }
 
-  #side-bar ul li {
-    display: flex;
-    align-items: center;
-    gap: var(--sm-gap);
+  #side-bar h2 {
+    border-bottom: 2px solid var(--text-color);
+    letter-spacing: 1.5px;
+  }
+
+  #side-bar h3 {
+    min-width: 0; /* ensure long words break correctly */
+    flex: 1;
   }
 }

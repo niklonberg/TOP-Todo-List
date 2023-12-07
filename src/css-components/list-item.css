@@ -1,0 +1,8 @@
+@layer component {
+  .list-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sm-gap);
+    cursor: pointer;
+  }
+}

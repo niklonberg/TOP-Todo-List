@@ -4,8 +4,17 @@ import format from "date-fns/format";
 function createListItemFromObject(object) {
   const [objID, idTag] = getObjectIDAndTag(object);
 
-  const li = createElement("li");
+  const li = createElement("li", "list-item");
   li.dataset[idTag] = objID;
+
+  if (object.hasOwnProperty("projectID")) {
+    const img = createElement("img");
+    img.src = "../src/images/drag.png";
+    img.alt = "";
+    img.height = "25";
+    img.width = "25";
+    li.appendChild(img);
+  }
 
   for (const [key, value] of Object.entries(object)) {
     /* console.log(key + ": " + value); */
