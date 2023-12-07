@@ -12,6 +12,14 @@
     padding: 0;
   }
 
+  #side-bar .list-item {
+    padding-inline: var(--sm-gap);
+  }
+
+  #side-bar .list-item:hover {
+    background-color: var(--primary);
+  }
+
   #side-bar h2 {
     border-bottom: 2px solid var(--text-color);
     letter-spacing: 1.5px;

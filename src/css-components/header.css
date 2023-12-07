@@ -1,0 +1,16 @@
+@layer component {
+  #main-header {
+    padding-inline: var(--m-gap);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--secondary);
+  }
+
+  #main-header h2 {
+    font-size: clamp(24px, 5vw, 36px);
+  }
+
+  #main-header span {
+    color: var(--secondary);
+  }
+}
