@@ -118,6 +118,9 @@ const TodoUIManager = (() => {
       btn.classList.toggle("checked");
       const todoID = +btn.closest("li").dataset.todo;
       ProjectManager.toggleSelectedTodoProperty(todoID, todoProperty);
+      todoProperty === "isCompleted"
+        ? btn.closest("li").classList.toggle("todo-complete")
+        : null;
     }
   };
   appContent.addEventListener("click", toggleBtnTodoProperty);
