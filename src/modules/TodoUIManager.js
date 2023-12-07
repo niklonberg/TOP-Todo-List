@@ -6,7 +6,7 @@ import createBaseGroupHTML from "./createBaseGroupHTML.js";
 const TodoUIManager = (() => {
   /* references */
   const appContent = document.querySelector("#app-content");
-  const mainContent = document.querySelector("#content");
+  const mainContent = document.querySelector("#main-content");
   const projectsList = document.querySelector("#projects-list");
   const sideBar = document.querySelector("#side-bar");
   const hideSideBarBtn = document.querySelector("#hide-sidebar");
