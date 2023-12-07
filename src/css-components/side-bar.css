@@ -1,0 +1,6 @@
+@layer component {
+  #side-bar {
+    max-width: 300px;
+    overflow-wrap: break-word;
+  }
+}

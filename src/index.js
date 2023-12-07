@@ -4,7 +4,9 @@ import FormManager from "./modules/FormManager.js";
 import ProjectManager from "./modules/ProjectManager.js";
 import TodoUIManager from "./modules/TodoUIManager.js";
 log(ProjectManager);
-ProjectManager.addProject({ title: "Refurnish Home" });
+ProjectManager.addProject({
+  title: "Refurnish Homedfgvdfgdfgdfgdfgdfgdfgsdefsdf",
+});
 ProjectManager.addProject({ title: "Paint Walls" });
 ProjectManager.setSelectedProject(0);
 ProjectManager.addTodoToCurrSelectedProject({
