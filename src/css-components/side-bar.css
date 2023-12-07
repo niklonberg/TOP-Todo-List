@@ -1,6 +1,26 @@
 @layer component {
   #side-bar {
-    max-width: 300px;
-    overflow-wrap: break-word;
+    background-color: var(--primary-contrast);
+    box-shadow: 5px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    /* max-width: 300px; */
+    /* overflow-wrap: break-word; */
+    padding-inline: var(--m-gap);
+  }
+
+  #side-bar h2 {
+    border-bottom: 2px solid var(--text-color);
+    letter-spacing: 1.5px;
+    margin-bottom: 0;
+  }
+
+  #side-bar ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  #side-bar ul li {
+    display: flex;
+    align-items: center;
+    gap: var(--sm-gap);
   }
 }

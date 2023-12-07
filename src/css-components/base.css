@@ -1,8 +1,10 @@
 @layer base {
   :root {
-    --primary: white;
+    --primary: rgb(239, 239, 239);
+    --primary-contrast: rgb(255, 255, 255);
     --secondary: green;
     --tertiary: blue;
+    --text-color: rgb(52, 52, 52);
 
     --sm-gap: 10px;
     --m-gap: 20px;
@@ -21,6 +23,7 @@
   body {
     font-family: system-ui, sans-serif;
     background-color: var(--primary);
+    color: var(--text-color);
     margin: 0;
   }
 
