@@ -90,11 +90,10 @@ const TodoUIManager = (() => {
     parentLi.innerHTML = newLI.innerHTML;
   };
 
-  /* something weird going on here. */
   const updateEditedItem = (templateObj, elementToChange) => {
     const newItem = createListItemFromObject(templateObj);
     console.log(templateObj, elementToChange, newItem);
-    elementToChange.innerHTML = newItem.innerHTML;
+    elementToChange.replaceWith(newItem);
   };
 
   const removeSelectedItem = (objectToDelete, objectID, parentLi) => {

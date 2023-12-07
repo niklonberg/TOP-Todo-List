@@ -100,7 +100,7 @@ const FormManager = (() => {
       "projectID" in itemToEdit || "todoID" in itemToEdit
         ? ProjectManager.editItem(itemToEdit, templateObj)
         : null;
-      TodoUIManager.updateEditedItem(templateObj, elementToChange);
+      TodoUIManager.updateEditedItem(itemToEdit, elementToChange);
       /* toggleProjectTodoExisting(false); */
       return;
     }
