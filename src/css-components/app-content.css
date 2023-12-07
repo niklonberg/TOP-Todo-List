@@ -5,7 +5,6 @@
 
   #app-content main {
     flex: 1;
-    margin: var(--l-gap);
   }
 
   .hidden {
