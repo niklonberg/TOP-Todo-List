@@ -3,4 +3,8 @@
     display: grid;
     grid-template-columns: 300px 1fr;
   }
+
+  .hidden {
+    display: none;
+  }
 }

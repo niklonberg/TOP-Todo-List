@@ -9,6 +9,7 @@ const TodoUIManager = (() => {
   const mainContent = document.querySelector("#content");
   const projectsList = document.querySelector("#projects-list");
   const sideBar = document.querySelector("#side-bar");
+  const hideSideBarBtn = document.querySelector("#hide-sidebar");
   let previousListGroupSelection;
 
   const renderProjectsList = () => {
@@ -119,6 +120,10 @@ const TodoUIManager = (() => {
     }
   };
   appContent.addEventListener("click", toggleBtnTodoProperty);
+
+  hideSideBarBtn.addEventListener("click", () => {
+    sideBar.classList.toggle("hidden");
+  });
 
   return {
     renderProjectsList,
