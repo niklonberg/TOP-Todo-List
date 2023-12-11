@@ -89,8 +89,11 @@ const ProjectManager = (() => {
       // return the ones with a date within next 7 days
     }
     if (listGroupSelectionID === "important-tasks") {
-      // filter through all projects todos
-      // return the ones with a isImportant === true
+      return projects
+        .map((project) => {
+          return project.getTodos().filter((todo) => todo.isImportant);
+        })
+        .flat();
     }
   };
 
