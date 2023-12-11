@@ -2,6 +2,7 @@ import FormManager from "./FormManager.js";
 import ProjectManager from "./ProjectManager.js";
 import createListItemFromObject from "./createListItemFromObject.js";
 import createBaseGroupHTML from "./createBaseGroupHTML.js";
+import createElement from "./createElement.js";
 
 const TodoUIManager = (() => {
   /* references */
@@ -42,7 +43,6 @@ const TodoUIManager = (() => {
   sideBar.addEventListener("click", showSelectedGroup);
 
   const renderSelectedGroup = (listGroupSelection) => {
-    console.log(listGroupSelection);
     removeHTMLContent(mainContent);
     const [h1, currGroupingTodos] = createBaseGroupHTML(listGroupSelection);
     mainContent.append(h1, currGroupingTodos);
@@ -51,10 +51,17 @@ const TodoUIManager = (() => {
       listGroupSelection && listGroupSelection.dataset.project
         ? ProjectManager.getCurrSelectedProjectTodos()
         : ProjectManager.getFilteredTasks(listGroupSelection?.id);
+    console.log("selected group todos: ", selectedGroupTodos);
 
-    selectedGroupTodos.forEach((grouping) =>
-      currGroupingTodos.appendChild(createListItemFromObject(grouping))
-    );
+    if (selectedGroupTodos.length !== 0) {
+      selectedGroupTodos.forEach((grouping) =>
+        currGroupingTodos.appendChild(createListItemFromObject(grouping))
+      );
+    } else {
+      const p = createElement("p");
+      p.textContent = "No tasks!";
+      currGroupingTodos.replaceWith(p);
+    }
   };
 
   const addLatestItem = (object, isNewProject) => {
