@@ -21,6 +21,26 @@ const TodoUIManager = (() => {
     );
   };
 
+  const showSelectedGroup = (event) => {
+    const listGroupSelection =
+      event.target.tagName === "LI" || event.target.tagName === "H3"
+        ? event.target.closest("LI")
+        : null;
+
+    if (!listGroupSelection) return;
+
+    if (listGroupSelection !== previousListGroupSelection) {
+      console.log("selection is: ", listGroupSelection);
+      const projectID = +listGroupSelection?.dataset?.project;
+      if (projectID) ProjectManager.setSelectedProject(projectID);
+      renderSelectedGroup(listGroupSelection);
+      previousListGroupSelection = listGroupSelection;
+
+      FormManager.resetTodoFormExists();
+    }
+  };
+  sideBar.addEventListener("click", showSelectedGroup);
+
   const renderSelectedGroup = (listGroupSelection) => {
     console.log(listGroupSelection);
     removeHTMLContent(mainContent);
@@ -36,27 +56,6 @@ const TodoUIManager = (() => {
       currGroupingTodos.appendChild(createListItemFromObject(grouping))
     );
   };
-
-  const showSelectedGroup = (event) => {
-    const listGroupSelection =
-      event.target.tagName === "LI" || event.target.tagName === "H3"
-        ? event.target.closest("LI")
-        : null;
-
-    if (!listGroupSelection) return;
-
-    if (listGroupSelection !== previousListGroupSelection) {
-      console.log("selection is: ", listGroupSelection);
-      const projectID = listGroupSelection?.dataset?.project;
-      if (projectID !== undefined)
-        ProjectManager.setSelectedProject(+projectID);
-      renderSelectedGroup(listGroupSelection);
-      previousListGroupSelection = listGroupSelection;
-
-      FormManager.resetTodoFormExists();
-    }
-  };
-  sideBar.addEventListener("click", showSelectedGroup);
 
   const addLatestItem = (object, isNewProject) => {
     console.log(object);
