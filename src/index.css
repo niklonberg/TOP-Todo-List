@@ -1,6 +1,7 @@
 @layer component, base;
 
 @import url(./css-components/base.css);
+@import url(./css-components/todo-wrapper.css);
 @import url(./css-components/app-content.css);
 @import url(./css-components/side-bar.css);
 @import url(./css-components/list-item.css);

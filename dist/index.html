@@ -6,60 +6,62 @@
     <title>Todo List</title>
   </head>
   <body>
-    <header id="main-header">
-      <button id="hide-sidebar">Hide Sidebar</button>
-      <h2>Task<span>Alchemy</span></h2>
-      <button id="toggle-theme">Toggle Theme</button>
-    </header>
-    <div id="app-content">
-      <nav id="side-bar">
-        <h2>Home</h2>
-        <ul id="home">
-          <li id="all-tasks" class="list-item">
-            <img
-              src="../src/images/inbox.png"
-              height="25px"
-              width="25px"
-              alt=""
-            />
-            <h3>All Tasks</h3>
-          </li>
-          <li id="today-tasks" class="list-item">
-            <img
-              src="../src/images/today.png"
-              height="25px"
-              width="25px"
-              alt=""
-            />
-            <h3>Today</h3>
-          </li>
-          <li id="week-tasks" class="list-item">
-            <img
-              src="../src/images/week.png"
-              height="25px"
-              width="25px"
-              alt=""
-            />
-            <h3>Next 7 days</h3>
-          </li>
-          <li id="important-tasks" class="list-item">
-            <img
-              src="../src/images/star.png"
-              height="25px"
-              width="25px"
-              alt=""
-            />
-            <h3>Important</h3>
-          </li>
-        </ul>
-        <h2>Projects</h2>
-        <ul id="projects-list"></ul>
-        <button id="create-new-project">Create project</button>
-      </nav>
-      <main>
-        <div id="main-content"></div>
-        <button id="create-new-todo">Create todo</button>
-      </main>
+    <div id="todo-wrapper">
+      <header id="main-header">
+        <button id="hide-sidebar">Hide Sidebar</button>
+        <h2>Task<span>Alchemy</span></h2>
+        <button id="toggle-theme">Toggle Theme</button>
+      </header>
+      <div id="app-content">
+        <nav id="side-bar">
+          <h2>Home</h2>
+          <ul id="home">
+            <li id="all-tasks" class="list-item">
+              <img
+                src="../src/images/inbox.png"
+                height="25px"
+                width="25px"
+                alt=""
+              />
+              <h3>All Tasks</h3>
+            </li>
+            <li id="today-tasks" class="list-item">
+              <img
+                src="../src/images/today.png"
+                height="25px"
+                width="25px"
+                alt=""
+              />
+              <h3>Today</h3>
+            </li>
+            <li id="week-tasks" class="list-item">
+              <img
+                src="../src/images/week.png"
+                height="25px"
+                width="25px"
+                alt=""
+              />
+              <h3>Next 7 days</h3>
+            </li>
+            <li id="important-tasks" class="list-item">
+              <img
+                src="../src/images/star.png"
+                height="25px"
+                width="25px"
+                alt=""
+              />
+              <h3>Important</h3>
+            </li>
+          </ul>
+          <h2>Projects</h2>
+          <ul id="projects-list"></ul>
+          <button id="create-new-project">Create project</button>
+        </nav>
+        <main>
+          <div id="main-content"></div>
+          <button id="create-new-todo">Create todo</button>
+        </main>
+      </div>
     </div>
     <script src="bundle.js"></script>
   </body>
