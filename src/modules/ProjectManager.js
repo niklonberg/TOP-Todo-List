@@ -73,13 +73,9 @@ const ProjectManager = (() => {
   };
 
   const getFilteredTasks = (listGroupSelectionID = "all-tasks") => {
-    if (listGroupSelectionID === "all-tasks") {
-      return projects
-        .map((project) => {
-          return project.getTodos();
-        })
-        .flat();
-    } /* am i even using dates properly? */
+    if (listGroupSelectionID === "all-tasks")
+      return projects.flatMap((project) => project.getTodos());
+    /* am i even using dates properly? */
     if (listGroupSelectionID === "today-tasks") {
       return projects.flatMap((project) => {
         return project.getTodos().filter((todo) => {
@@ -94,11 +90,9 @@ const ProjectManager = (() => {
       // return the ones with a date within next 7 days
     }
     if (listGroupSelectionID === "important-tasks") {
-      return projects
-        .map((project) => {
-          return project.getTodos().filter((todo) => todo.isImportant);
-        })
-        .flat();
+      return projects.flatMap((project) => {
+        return project.getTodos().filter((todo) => todo.isImportant);
+      });
     }
   };
 
