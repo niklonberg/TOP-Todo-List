@@ -37,5 +37,23 @@
 
   .toggle-important-btn.checked {
     background-image: url(../images/star.png);
+    animation: scaleImpBtn 1s ease-out;
+  }
+
+  @keyframes scaleImpBtn {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    25% {
+      transform: rotate(-10deg);
+    }
+    50% {
+      transform: scale(1.5);
+      transform: translateY(-10px);
+    }
+    75% {
+      transform: rotate(10deg);
+    }
   }
 }
