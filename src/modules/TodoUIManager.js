@@ -29,8 +29,8 @@ const TodoUIManager = (() => {
 
     if (listGroupSelection !== previousListGroupSelection) {
       console.log("selection is: ", listGroupSelection);
-      const projectID = +listGroupSelection?.dataset?.project;
-      if (projectID) ProjectManager.setSelectedProject(projectID);
+      const projectID = listGroupSelection?.dataset?.project;
+      if (projectID) ProjectManager.setSelectedProject(+projectID);
       renderSelectedGroup(listGroupSelection);
       previousListGroupSelection = listGroupSelection;
 

@@ -1,5 +1,6 @@
 import TodoFactory from "./TodoFactory.js";
 import ProjectFactory from "./ProjectFactory.js";
+import parse from "date-fns/parse";
 
 const ProjectManager = (() => {
   let projects = [];
@@ -12,6 +13,7 @@ const ProjectManager = (() => {
     deselectCurrProject();
     currSelectedProj = getProject(projectID);
     currSelectedProj.toggleSelected();
+    console.log(currSelectedProj);
   };
 
   const deselectCurrProject = () => currSelectedProj?.toggleSelected();
