@@ -1,6 +1,7 @@
 import TodoFactory from "./TodoFactory.js";
 import ProjectFactory from "./ProjectFactory.js";
 import parse from "date-fns/parse";
+import { isToday } from "date-fns";
 
 const ProjectManager = (() => {
   let projects = [];
@@ -13,16 +14,13 @@ const ProjectManager = (() => {
     deselectCurrProject();
     currSelectedProj = getProject(projectID);
     currSelectedProj.toggleSelected();
-    console.log(currSelectedProj);
   };
 
   const deselectCurrProject = () => currSelectedProj?.toggleSelected();
 
   const addTodoToCurrSelectedProject = (inputElements) => {
-    console.log("selected project is: ", currSelectedProj);
     const todo = TodoFactory(inputElements);
     currSelectedProj.addTodo(todo);
-    console.log(projects);
     return todo;
   };
 
@@ -81,10 +79,15 @@ const ProjectManager = (() => {
           return project.getTodos();
         })
         .flat();
-    }
+    } /* am i even using dates properly? */
     if (listGroupSelectionID === "today-tasks") {
-      // filter through all projects todos
-      // return the ones with a date obj of today
+      return projects.flatMap((project) => {
+        return project.getTodos().filter((todo) => {
+          if (typeof todo.dueDate === "object") {
+            if (isToday(todo.dueDate)) return todo;
+          }
+        });
+      });
     }
     if (listGroupSelectionID === "week-tasks") {
       // filter through all projects todos

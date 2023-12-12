@@ -12,6 +12,7 @@ ProjectManager.setSelectedProject(0);
 ProjectManager.addTodoToCurrSelectedProject({
   title: "move sofa",
   description: "lift dont drag",
+  dueDate: new Date(2023, 11, 15),
 });
 ProjectManager.addTodoToCurrSelectedProject({
   title: "move table",
@@ -26,7 +27,11 @@ ProjectManager.addTodoToCurrSelectedProject({
 });
 ProjectManager.addTodoToCurrSelectedProject({
   title: "buy brush",
+  dueDate: new Date(2023, 11, 12),
 });
 log(ProjectManager.getProjects());
 TodoUIManager.renderProjectsList("projects");
 TodoUIManager.renderSelectedGroup();
+
+/* create date of today */
+/* create one date three days from today */
