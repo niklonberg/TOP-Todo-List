@@ -23,10 +23,7 @@ const TodoUIManager = (() => {
   };
 
   const showSelectedGroup = (event) => {
-    const listGroupSelection =
-      event.target.tagName === "LI" || event.target.tagName === "H3"
-        ? event.target.closest("LI")
-        : null;
+    const listGroupSelection = event.target.closest("LI");
 
     if (!listGroupSelection) return;
 
